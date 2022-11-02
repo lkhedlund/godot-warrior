@@ -115,7 +115,6 @@ func _move_active_unit(new_cell: Vector2) -> void:
 	_active_unit.move_along_path(_unit_path.current_path)
 	yield(_active_unit, "move_finished")
 	_clear_active_unit()
-		
 
 
 func _on_Cursor_accept_pressed(cell):
