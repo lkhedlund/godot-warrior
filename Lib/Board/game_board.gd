@@ -6,10 +6,11 @@ extends Node2D
 
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
-var _active_unit: Unit
+var _player_unit: Unit
 var _walkable_cells := []
 
 export var grid: Resource = preload("res://Lib/Grid/grid.tres")
+export var starting_position := Vector2(0, 0)
 
 onready var _unit_path: UnitPath = $UnitPath
 onready var _unit_overlay: UnitOverlay = $UnitOverlay
@@ -36,6 +37,9 @@ func _reinitialize() -> void:
 			continue
 			
 		_units[unit.current_cell] = unit
+	
+	_player_unit = get_tree().get_nodes_in_group("Player")[0]
+	_select_unit(_player_unit.current_cell)
 
 func get_walkable_cells(unit: Unit) -> Array:
 	return _flood_fill(unit.current_cell, unit.move_range)
@@ -88,46 +92,46 @@ func _select_unit(cell: Vector2) -> void:
 		return
 		
 	# Once unit is selected, turn on overlay and path drawing
-	_active_unit = _units[cell]
-	_active_unit.is_selected = true
-	_walkable_cells = get_walkable_cells(_active_unit)
+	_player_unit = _units[cell]
+	_player_unit.is_selected = true
+	_walkable_cells = get_walkable_cells(_player_unit)
 	_unit_overlay.draw(_walkable_cells)
 	_unit_path.initialize(_walkable_cells)
 	
-func _deselect_active_unit() -> void:
-	_active_unit.is_selected = false
+func _deselect_player_unit() -> void:
+	_player_unit.is_selected = false
 	_unit_overlay.clear()
 	_unit_path.stop()
 	
-func _clear_active_unit() -> void:
-	_active_unit = null
+func _clear_player_unit() -> void:
+	_player_unit = null
 	_walkable_cells.clear()
 	
-func _move_active_unit(new_cell: Vector2) -> void:
+func _move_player_unit(new_cell: Vector2) -> void:
 	if is_occupied(new_cell) or not new_cell in _walkable_cells:
 		return
 		
 	# When moving a unit we need to update the unit's dict.
-	_units.erase(_active_unit.current_cell)
-	_units[new_cell] = _active_unit
+	_units.erase(_player_unit.current_cell)
+	_units[new_cell] = _player_unit
 	
-	_deselect_active_unit()
-	_active_unit.move_along_path(_unit_path.current_path)
-	yield(_active_unit, "move_finished")
-	_clear_active_unit()
+	_deselect_player_unit()
+	_player_unit.move_along_path(_unit_path.current_path)
+	yield(_player_unit, "move_finished")
+	_clear_player_unit()
 
 
 func _on_Cursor_accept_pressed(cell):
-	if not _active_unit:
+	if not _player_unit:
 		_select_unit(cell)
-	elif _active_unit.is_selected:
-		_move_active_unit(cell)
+	elif _player_unit.is_selected:
+		_move_player_unit(cell)
 
 func _on_Cursor_moved_cursor(new_cell):
-	if _active_unit and _active_unit.is_selected:
-		_unit_path.draw(_active_unit.current_cell, new_cell)
+	if _player_unit and _player_unit.is_selected:
+		_unit_path.draw(_player_unit.current_cell, new_cell)
 		
 func _unhandled_input(event: InputEvent) -> void:
-	if _active_unit and event.is_action_pressed("ui_cancel"):
-		_deselect_active_unit()
-		_clear_active_unit()
+	if _player_unit and event.is_action_pressed("ui_cancel"):
+		_deselect_player_unit()
+		_clear_player_unit()
