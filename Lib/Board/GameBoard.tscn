@@ -1,0 +1,44 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Lib/Board/Cursor/cursor.gd" type="Script" id=1]
+[ext_resource path="res://Lib/Grid/grid.tres" type="Resource" id=2]
+[ext_resource path="res://Lib/Board/game_board.gd" type="Script" id=3]
+[ext_resource path="res://Lib/Unit/unit.gd" type="Script" id=4]
+[ext_resource path="res://Lib/Unit/unit_path.gd" type="Script" id=5]
+[ext_resource path="res://Lib/Unit/unit_overlay.gd" type="Script" id=6]
+[ext_resource path="res://Lib/Assets/pawn.png" type="Texture" id=7]
+[ext_resource path="res://Lib/Unit/unit_overlay.tres" type="TileSet" id=8]
+[ext_resource path="res://Lib/Unit/unit_path.tres" type="TileSet" id=9]
+[ext_resource path="res://Lib/Unit/unit.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Lib/Board/Cursor/cursor.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Lib/Unit/unit_path.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Lib/Unit/unit_overlay.tscn" type="PackedScene" id=13]
+
+[node name="GameBoard" type="YSort"]
+script = ExtResource( 3 )
+
+[node name="UnitOverlay" type="TileMap" parent="." instance=ExtResource( 13 )]
+modulate = Color( 1, 1, 1, 0.196078 )
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 16, 16 )
+format = 1
+script = ExtResource( 6 )
+
+[node name="UnitPath" type="TileMap" parent="." instance=ExtResource( 12 )]
+modulate = Color( 1, 1, 1, 0.392157 )
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 16, 16 )
+format = 1
+script = ExtResource( 5 )
+grid = ExtResource( 2 )
+
+[node name="Unit" type="Path2D" parent="." instance=ExtResource( 10 )]
+position = Vector2( 104, 72 )
+curve = null
+script = ExtResource( 4 )
+skin = ExtResource( 7 )
+move_speed = 200
+
+[node name="Cursor" type="Node2D" parent="." instance=ExtResource( 11 )]
+position = Vector2( 184, 56 )
+script = ExtResource( 1 )
