@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Lib/Board/Cursor/cursor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Lib/Board/game_board.gd" type="Script" id=3]
+[ext_resource path="res://Lib/Assets/pawn.png" type="Texture" id=7]
+[ext_resource path="res://Lib/Unit/unit.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Lib/Unit/unit_path.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Lib/Unit/unit_overlay.tscn" type="PackedScene" id=13]
+
+[node name="GameBoard" type="YSort"]
+script = ExtResource( 3 )
+
+[node name="UnitOverlay" parent="." instance=ExtResource( 13 )]
+
+[node name="UnitPath" parent="." instance=ExtResource( 12 )]
+
+[node name="Player" parent="." instance=ExtResource( 10 )]
+position = Vector2( 104, 72 )
+skin = ExtResource( 7 )
+move_speed = 200
+
+[node name="Cursor" parent="." instance=ExtResource( 1 )]
+
+[connection signal="accept_pressed" from="Cursor" to="." method="_on_Cursor_accept_pressed"]
+[connection signal="moved_cursor" from="Cursor" to="." method="_on_Cursor_moved_cursor"]
