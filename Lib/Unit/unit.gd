@@ -6,7 +6,7 @@ tool
 class_name Unit
 extends Path2D
 
-signal move_finished
+signal action_taken
 
 export var grid: Resource = preload("res://Lib/Grid/grid.tres")
 export var move_range := 6
@@ -32,6 +32,9 @@ func _ready() -> void:
 	# Create the curve resource here - creating in the editor prevented movement
 	if not Engine.editor_hint:
 		curve = Curve2D.new()
+
+func take_action() -> void:
+	print("took action")
 	
 func _process(delta: float) -> void:
 	_path_follow.offset += move_speed * delta
@@ -47,7 +50,7 @@ func _process(delta: float) -> void:
 		_path_follow.offset = 0.0
 		position = grid.calculate_map_position(current_cell)
 		curve.clear_points()
-		emit_signal("move_finished")
+		emit_signal("action_taken")
 
 func move_along_path(path: PoolVector2Array) -> void:
 	if path.empty():
