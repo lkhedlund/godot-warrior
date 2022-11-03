@@ -34,10 +34,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Lib/Board/pathfinder.gd"
 }, {
+"base": "Reference",
+"class": "Player",
+"language": "GDScript",
+"path": "res://player.gd"
+}, {
 "base": "Node",
 "class": "Start",
 "language": "GDScript",
 "path": "res://Lib/Start & Exit/start.gd"
+}, {
+"base": "Node2D",
+"class": "TurnManager",
+"language": "GDScript",
+"path": "res://Lib/Managers/turn_manager.gd"
 }, {
 "base": "Path2D",
 "class": "Unit",
@@ -60,7 +70,9 @@ _global_script_class_icons={
 "GameBoard": "",
 "Grid": "",
 "PathFinder": "",
+"Player": "",
 "Start": "",
+"TurnManager": "",
 "Unit": "",
 "UnitOverlay": "",
 "UnitPath": ""
@@ -69,8 +81,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Godot Warrior"
-run/main_scene="res://main.tscn"
+run/main_scene="res://Lib/game.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GameManager="*res://Lib/Managers/game_manager.tscn"
 
 [display]
 

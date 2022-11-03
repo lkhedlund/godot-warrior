@@ -22,35 +22,6 @@ func _ready() -> void:
 	_timer.wait_time = ui_cooldown
 	position = grid.calculate_map_position(cell)
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		self.cell = grid.calculate_grid_coordinates(event.position)
-	elif event.is_action_pressed("ui_accept"):
-		emit_signal("accept_pressed", cell)
-		get_tree().set_input_as_handled()
-		
-	# Prelim checks to see whether the cursor should move or not if
-	# the user presses an arrow key
-	var should_move := event.is_pressed()
-	
-	# If the player is pressing the key, allow the cursor to move.
-	# If they keep the keypress down, only move after cooldown.
-	if event.is_echo():
-		should_move = should_move and _timer.is_stopped()
-		
-	# And if the cursor shouldn't move, prevent it from doing so
-	if not should_move:
-		return
-		
-	if event.is_action("ui_right"):
-		self.cell += Vector2.RIGHT
-	elif event.is_action("ui_up"):
-		self.cell += Vector2.UP
-	elif event.is_action("ui_left"):
-		self.cell += Vector2.LEFT
-	elif event.is_action("ui_down"):
-		self.cell += Vector2.DOWN
-		
 func _draw() -> void:
 	# Rect2 is built from the position of the top-left corner and its size.
 	# Start position needs to be `-grid.cell_size / 2` to draw square.
