@@ -120,3 +120,4 @@ func move_player_unit(new_cell: Vector2) -> void:
 	_deselect_player_unit()
 	player_unit.move_along_path(_unit_path.current_path)
 	yield(player_unit, "move_finished")
+	_select_unit(player_unit.current_cell)
