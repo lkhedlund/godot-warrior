@@ -12,8 +12,7 @@ func _process(_delta) -> void:
 		return
 		
 	player.play_turn(player_unit)
-	yield(player_unit, "action_taken")
-	
+	yield(player_unit, "move_finished")
 
 func initialize_player() -> void:
 	player = get_tree().get_root().get_node('/root/Game/Player')

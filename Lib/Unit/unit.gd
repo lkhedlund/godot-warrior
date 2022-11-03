@@ -6,14 +6,9 @@ tool
 class_name Unit
 extends Path2D
 
-signal action_taken
+signal move_finished
 
-const DIRECTIONS = {
-	"west": Vector2.LEFT,
-	"east": Vector2.RIGHT,
-	"north": Vector2.UP,
-	"south": Vector2.DOWN
-}
+var game_board
 
 export var grid: Resource = preload("res://Lib/Grid/grid.tres")
 export var move_range := 1
@@ -22,12 +17,14 @@ export var move_speed := 600
 
 var current_cell := Vector2.ZERO setget set_current_cell
 var is_selected := false setget set_is_selected
-
 var _is_moving := false setget _set_is_moving
 
 onready var _sprite: Sprite = $PathFollow2D/Sprite
 onready var _anim_player: AnimationPlayer = $AnimationPlayer
 onready var _path_follow: PathFollow2D = $PathFollow2D
+
+func initialize(board) -> void:
+	game_board = board
 
 func _ready() -> void:
 	# Don't need the unit to update every frame
@@ -40,9 +37,8 @@ func _ready() -> void:
 	if not Engine.editor_hint:
 		curve = Curve2D.new()
 
-func walk(direction: String) -> void:
-	var walking_direction = DIRECTIONS[direction]
-	move_along_path(walking_direction)
+func walk() -> void:
+	game_board.move_player_unit(current_cell + Vector2.RIGHT)
 	
 func _process(delta: float) -> void:
 	_path_follow.offset += move_speed * delta
@@ -58,7 +54,7 @@ func _process(delta: float) -> void:
 		_path_follow.offset = 0.0
 		position = grid.calculate_map_position(current_cell)
 		curve.clear_points()
-		emit_signal("action_taken")
+		emit_signal("move_finished")
 
 func move_along_path(path: PoolVector2Array) -> void:
 	if path.empty():

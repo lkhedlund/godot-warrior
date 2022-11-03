@@ -35,7 +35,9 @@ func _reinitialize() -> void:
 		var unit := child as Unit
 		if not unit:
 			continue
-			
+		
+		# Initialize the gameboard for the unit
+		unit.initialize(self)
 		_units[unit.current_cell] = unit
 	
 	player_unit = get_tree().get_nodes_in_group("Player")[0]
@@ -103,14 +105,14 @@ func _deselect_player_unit() -> void:
 	_unit_overlay.clear()
 	_unit_path.stop()
 	
-func _clear_player_unit() -> void:
-	player_unit = null
-	_walkable_cells.clear()
-	
-func _move_player_unit(new_cell: Vector2) -> void:
+func move_player_unit(new_cell: Vector2) -> void:
+	if !player_unit and !player_unit.is_selected:
+		return
 	if is_occupied(new_cell) or not new_cell in _walkable_cells:
 		return
 		
+	var current_path = _unit_path.set_path(player_unit.current_cell, new_cell)
+	_unit_path.draw(current_path)
 	# When moving a unit we need to update the unit's dict.
 	_units.erase(player_unit.current_cell)
 	_units[new_cell] = player_unit
@@ -118,13 +120,3 @@ func _move_player_unit(new_cell: Vector2) -> void:
 	_deselect_player_unit()
 	player_unit.move_along_path(_unit_path.current_path)
 	yield(player_unit, "move_finished")
-	_clear_player_unit()
-
-func _create_action_path(new_cell):
-	if player_unit and player_unit.is_selected:
-		_unit_path.draw(player_unit.current_cell, new_cell)
-		
-func _unhandled_input(event: InputEvent) -> void:
-	if player_unit and event.is_action_pressed("ui_cancel"):
-		_deselect_player_unit()
-		_clear_player_unit()
