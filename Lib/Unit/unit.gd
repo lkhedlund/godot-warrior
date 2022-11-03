@@ -8,8 +8,15 @@ extends Path2D
 
 signal action_taken
 
+const DIRECTIONS = {
+	"west": Vector2.LEFT,
+	"east": Vector2.RIGHT,
+	"north": Vector2.UP,
+	"south": Vector2.DOWN
+}
+
 export var grid: Resource = preload("res://Lib/Grid/grid.tres")
-export var move_range := 6
+export var move_range := 1
 export var skin: Texture setget set_skin
 export var move_speed := 600
 
@@ -33,8 +40,9 @@ func _ready() -> void:
 	if not Engine.editor_hint:
 		curve = Curve2D.new()
 
-func take_action() -> void:
-	print("took action")
+func walk(direction: String) -> void:
+	var walking_direction = DIRECTIONS[direction]
+	move_along_path(walking_direction)
 	
 func _process(delta: float) -> void:
 	_path_follow.offset += move_speed * delta

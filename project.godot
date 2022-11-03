@@ -34,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Lib/Board/pathfinder.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "Player",
 "language": "GDScript",
 "path": "res://player.gd"

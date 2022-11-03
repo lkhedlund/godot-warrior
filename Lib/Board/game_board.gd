@@ -120,7 +120,7 @@ func _move_player_unit(new_cell: Vector2) -> void:
 	yield(player_unit, "move_finished")
 	_clear_player_unit()
 
-func _on_Cursor_moved_cursor(new_cell):
+func _create_action_path(new_cell):
 	if player_unit and player_unit.is_selected:
 		_unit_path.draw(player_unit.current_cell, new_cell)
 		

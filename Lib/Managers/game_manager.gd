@@ -10,6 +10,10 @@ func _process(_delta) -> void:
 	if not player:
 		initialize_player()
 		return
+		
+	player.play_turn(player_unit)
+	yield(player_unit, "action_taken")
+	
 
 func initialize_player() -> void:
 	player = get_tree().get_root().get_node('/root/Game/Player')
@@ -18,4 +22,3 @@ func initialize_player() -> void:
 	
 	game_board = get_tree().get_root().get_node('/root/Game/GameBoard')
 	player_unit = game_board.player_unit
-	_turn_manager.set_current_turn(player_unit)
