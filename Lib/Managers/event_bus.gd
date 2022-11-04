@@ -13,4 +13,5 @@ Other nested nodes could connect to these signals:
 signal start_turn(unit)
 signal end_turn(unit)
 
-signal player_initialized(player)
+signal board_init
+signal player_init(player)

@@ -19,7 +19,6 @@ onready var _unit_overlay: UnitOverlay = $UnitOverlay
 var _units := {}
 
 func _ready() -> void:
-	EventBus.connect("end_turn", self, '_on_Unit_turn_end')
 	_reinitialize()
 
 func is_occupied(cell: Vector2) -> bool:
@@ -43,6 +42,15 @@ func _reinitialize() -> void:
 	
 	player_unit = get_tree().get_nodes_in_group("Player")[0]
 	_select_unit(player_unit.current_cell)
+	
+func load_level(new_level_index: int) -> void:
+	var levels = get_tree().get_nodes_in_group("Level")
+	for level in levels:
+		level.queue_free()
+
+	var new_level_path = "res://Lib/Levels/Level_%02d.tscn" % new_level_index
+	var new_level = load(new_level_path).instance()
+	add_child(new_level)
 
 func get_walkable_cells(unit: Unit) -> Array:
 	return _flood_fill(unit.current_cell, unit.move_range)

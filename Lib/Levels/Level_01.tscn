@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Lib/Levels/Level.tscn" type="PackedScene" id=1]
+
+[node name="Level_01" instance=ExtResource( 1 )]
+description = "You see before yourself a long hallway with stairs at the end. There is nothing in the way."
+hint = "Call warrior.walk! to walk forward in the Player 'play_turn' method."

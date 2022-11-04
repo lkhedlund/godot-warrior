@@ -14,6 +14,7 @@ export var grid: Resource = preload("res://Lib/Grid/grid.tres")
 export var move_range := 1
 export var skin: Texture setget set_skin
 export var move_speed := 600
+export(Array, Resource) var abilities: Array
 
 var current_cell := Vector2.ZERO setget set_current_cell
 var is_selected := false setget set_is_selected
@@ -36,9 +37,6 @@ func _ready() -> void:
 	# Create the curve resource here - creating in the editor prevented movement
 	if not Engine.editor_hint:
 		curve = Curve2D.new()
-
-func walk() -> void:
-	game_board.move_player_unit(current_cell + Vector2.RIGHT)
 	
 func _process(delta: float) -> void:
 	_path_follow.offset += move_speed * delta
@@ -68,6 +66,15 @@ func move_along_path(path: PoolVector2Array) -> void:
 		current_cell = path[-1]
 		self._is_moving = true
 
+		
+# Abilities
+func walk() -> void:
+	if has_no_ability("walk"):
+		return
+
+	game_board.move_player_unit(current_cell + Vector2.RIGHT)
+
+# Setters
 func set_current_cell(value: Vector2) -> void:
 	current_cell = grid.clamp(value)
 
@@ -87,3 +94,12 @@ func set_skin(value: Texture) -> void:
 func _set_is_moving(value: bool) -> void:
 	_is_moving = value
 	set_process(_is_moving)
+	
+func set_abilities(ability: Resource) -> void:
+	abilities.append(ability)
+	
+func has_no_ability(ability_name: String) -> bool:
+	for ability in abilities:
+		if ability.name == ability_name:
+			return true
+	return false
