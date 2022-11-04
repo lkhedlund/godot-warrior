@@ -87,6 +87,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GameManager="*res://Lib/Managers/game_manager.tscn"
+EventBus="*res://Lib/Managers/event_bus.gd"
 
 [display]
 

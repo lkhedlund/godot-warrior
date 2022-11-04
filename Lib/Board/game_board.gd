@@ -19,6 +19,7 @@ onready var _unit_overlay: UnitOverlay = $UnitOverlay
 var _units := {}
 
 func _ready() -> void:
+	EventBus.connect("end_turn", self, '_on_Unit_turn_end')
 	_reinitialize()
 
 func is_occupied(cell: Vector2) -> bool:
@@ -97,8 +98,10 @@ func _select_unit(cell: Vector2) -> void:
 	player_unit = _units[cell]
 	player_unit.is_selected = true
 	_walkable_cells = get_walkable_cells(player_unit)
-	_unit_overlay.draw(_walkable_cells)
 	_unit_path.initialize(_walkable_cells)
+	
+func look(cells: Array):
+	_unit_overlay.draw(_walkable_cells)
 	
 func _deselect_player_unit() -> void:
 	player_unit.is_selected = false
@@ -120,4 +123,6 @@ func move_player_unit(new_cell: Vector2) -> void:
 	_deselect_player_unit()
 	player_unit.move_along_path(_unit_path.current_path)
 	yield(player_unit, "move_finished")
+
+func _on_Unit_turn_end(unit: Unit) -> void:
 	_select_unit(player_unit.current_cell)
