@@ -2,7 +2,8 @@ extends Node
 
 var game
 
-onready var _level_manager: LevelManager = $LevelManager
+onready var level_manager: LevelManager = $LevelManager
+onready var turn_manager: TurnManager = $TurnManager
 
 func _process(_delta) -> void:
 	if not game:
@@ -12,6 +13,5 @@ func _process(_delta) -> void:
 func initialize_game() -> void:
 	game = get_tree().get_root().get_node('/root/Game')
 	# FIXME: Replace hardcoded level with Save data
-	
-	_level_manager.load_level(1)
+	level_manager.load_level(1)
 	EventBus.emit_signal("game_init")

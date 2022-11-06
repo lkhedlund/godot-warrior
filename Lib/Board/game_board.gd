@@ -27,9 +27,7 @@ func is_occupied(cell: Vector2) -> bool:
 # Clears and refills the `_units` dict with game objects on the board
 func _reinitialize() -> void:
 	_units.clear()
-	
-	# Loop over node's children and filter units
-	# FIXME: Use node group feature to place units anywhere on the scene tree
+
 	for unit in get_tree().get_nodes_in_group("Unit"):
 		if not unit:
 			continue
@@ -37,6 +35,7 @@ func _reinitialize() -> void:
 		# Initialize the gameboard for the unit
 		unit.initialize(self)
 		_units[unit.current_cell] = unit
+		GameManager.turn_manager.add_turn_to_queue(unit)
 
 func get_walkable_cells(unit: Unit) -> Array:
 	return _flood_fill(unit.current_cell, unit.move_range)
