@@ -53,6 +53,9 @@ func _process(delta: float) -> void:
 		position = grid.calculate_map_position(current_cell)
 		curve.clear_points()
 		emit_signal("move_finished")
+		
+func take_turn() -> void:
+	pass
 
 func move_along_path(path: PoolVector2Array) -> void:
 	if path.empty():
@@ -69,7 +72,7 @@ func move_along_path(path: PoolVector2Array) -> void:
 		
 # Abilities
 func walk() -> void:
-	if has_no_ability("walk"):
+	if not has_ability("walk"):
 		return
 
 	game_board.move_player_unit(current_cell + Vector2.RIGHT)
@@ -98,7 +101,7 @@ func _set_is_moving(value: bool) -> void:
 func set_abilities(ability: Resource) -> void:
 	abilities.append(ability)
 	
-func has_no_ability(ability_name: String) -> bool:
+func has_ability(ability_name: String) -> bool:
 	for ability in abilities:
 		if ability.name == ability_name:
 			return true

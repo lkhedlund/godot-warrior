@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Lib/Board/game_board.gd" type="Script" id=1]
 [ext_resource path="res://Lib/Unit/unit_path.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Lib/Assets/pawn.png" type="Texture" id=3]
 [ext_resource path="res://Lib/Unit/unit_overlay.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Lib/Unit/unit.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Lib/Levels/Maps/beginner_map.tscn" type="PackedScene" id=6]
 [ext_resource path="res://player.tscn" type="PackedScene" id=8]
 
@@ -20,10 +18,5 @@ starting_position = Vector2( 10, 10 )
 [node name="UnitOverlay" parent="GameBoard" instance=ExtResource( 4 )]
 
 [node name="UnitPath" parent="GameBoard" instance=ExtResource( 2 )]
-
-[node name="WarriorUnit" parent="GameBoard" groups=["Player"] instance=ExtResource( 5 )]
-position = Vector2( 8, 8 )
-skin = ExtResource( 3 )
-move_speed = 200
 
 [node name="Player" parent="." instance=ExtResource( 8 )]

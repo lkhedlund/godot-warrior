@@ -6,7 +6,7 @@ extends Node2D
 
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
-var player_unit: Unit
+var current_unit: Unit
 var _walkable_cells := []
 
 export var grid: Resource = preload("res://Lib/Grid/grid.tres")
@@ -30,18 +30,13 @@ func _reinitialize() -> void:
 	
 	# Loop over node's children and filter units
 	# FIXME: Use node group feature to place units anywhere on the scene tree
-	for child in get_children():
-		# Cast's the child to given type - will be null if wrong type
-		var unit := child as Unit
+	for unit in get_tree().get_nodes_in_group("Unit"):
 		if not unit:
 			continue
 		
 		# Initialize the gameboard for the unit
 		unit.initialize(self)
 		_units[unit.current_cell] = unit
-	
-	player_unit = get_tree().get_nodes_in_group("Player")[0]
-	_select_unit(player_unit.current_cell)
 	
 func load_level(new_level_index: int) -> void:
 	var levels = get_tree().get_nodes_in_group("Level")
@@ -103,34 +98,34 @@ func _select_unit(cell: Vector2) -> void:
 		return
 		
 	# Once unit is selected, turn on overlay and path drawing
-	player_unit = _units[cell]
-	player_unit.is_selected = true
-	_walkable_cells = get_walkable_cells(player_unit)
+	current_unit = _units[cell]
+	current_unit.is_selected = true
+	_walkable_cells = get_walkable_cells(current_unit)
 	_unit_path.initialize(_walkable_cells)
 	
 func look(cells: Array):
 	_unit_overlay.draw(_walkable_cells)
 	
 func _deselect_player_unit() -> void:
-	player_unit.is_selected = false
+	current_unit.is_selected = false
 	_unit_overlay.clear()
 	_unit_path.stop()
 	
-func move_player_unit(new_cell: Vector2) -> void:
-	if !player_unit and !player_unit.is_selected:
+func move_current_unit(new_cell: Vector2) -> void:
+	if !current_unit and !current_unit.is_selected:
 		return
 	if is_occupied(new_cell) or not new_cell in _walkable_cells:
 		return
 		
-	var current_path = _unit_path.set_path(player_unit.current_cell, new_cell)
+	var current_path = _unit_path.set_path(current_unit.current_cell, new_cell)
 	_unit_path.draw(current_path)
 	# When moving a unit we need to update the unit's dict.
-	_units.erase(player_unit.current_cell)
-	_units[new_cell] = player_unit
+	_units.erase(current_unit.current_cell)
+	_units[new_cell] = current_unit
 	
 	_deselect_player_unit()
-	player_unit.move_along_path(_unit_path.current_path)
-	yield(player_unit, "move_finished")
+	current_unit.move_along_path(_unit_path.current_path)
+	yield(current_unit, "move_finished")
 
 func _on_Unit_turn_end(unit: Unit) -> void:
-	_select_unit(player_unit.current_cell)
+	_select_unit(current_unit.current_cell)
