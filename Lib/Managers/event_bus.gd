@@ -14,3 +14,4 @@ signal start_turn(unit)
 signal end_turn(unit)
 
 signal game_init
+signal unit_turns_loaded

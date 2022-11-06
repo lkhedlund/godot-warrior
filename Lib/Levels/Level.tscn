@@ -33,10 +33,10 @@ script = ExtResource( 2 )
 
 [node name="GameBoard" parent="." instance=ExtResource( 3 )]
 
-[node name="Units" type="YSort" parent="GameBoard"]
-
-[node name="PlayerUnit" parent="GameBoard/Units" instance=ExtResource( 6 )]
-
 [node name="Exit" parent="GameBoard" instance=ExtResource( 1 )]
 position = Vector2( 120, 8 )
 script = SubResource( 1 )
+
+[node name="Units" type="YSort" parent="GameBoard"]
+
+[node name="PlayerUnit" parent="GameBoard/Units" instance=ExtResource( 6 )]

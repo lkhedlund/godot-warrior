@@ -36,6 +36,9 @@ func _reinitialize() -> void:
 		unit.initialize(self)
 		_units[unit.current_cell] = unit
 		GameManager.turn_manager.add_turn_to_queue(unit)
+	
+	# Start the round
+	EventBus.emit_signal("unit_turns_loaded")
 
 func get_walkable_cells(unit: Unit) -> Array:
 	return _flood_fill(unit.current_cell, unit.move_range)
@@ -80,15 +83,9 @@ func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 	
 	return walkable_cells
 
-# Selects unit in the cell if there is one, sets as
-# active unit, and draws walkable cells.
-func _select_unit(cell: Vector2) -> void:
-	# Return early if unit is not registered
-	if not _units.has(cell):
-		return
-		
+func _select_unit(unit: Unit) -> void:
 	# Once unit is selected, turn on overlay and path drawing
-	current_unit = _units[cell]
+	current_unit = unit
 	current_unit.is_selected = true
 	_walkable_cells = get_walkable_cells(current_unit)
 	_unit_path.initialize(_walkable_cells)
@@ -116,6 +113,3 @@ func move_current_unit(new_cell: Vector2) -> void:
 	_deselect_player_unit()
 	current_unit.move_along_path(_unit_path.current_path)
 	yield(current_unit, "move_finished")
-
-func _on_Unit_turn_end(unit: Unit) -> void:
-	_select_unit(current_unit.current_cell)

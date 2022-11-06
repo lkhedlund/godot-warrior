@@ -55,7 +55,8 @@ func _process(delta: float) -> void:
 		emit_signal("move_finished")
 		
 func take_turn() -> void:
-	pass
+	print("Taking turn")
+	game_board._select_unit(self)
 
 func move_along_path(path: PoolVector2Array) -> void:
 	if path.empty():
@@ -69,13 +70,11 @@ func move_along_path(path: PoolVector2Array) -> void:
 		current_cell = path[-1]
 		self._is_moving = true
 
-		
 # Abilities
 func walk() -> void:
-	if not has_ability("walk"):
-		return
-
-	game_board.move_player_unit(current_cell + Vector2.RIGHT)
+	#if not has_ability("walk"):
+	#	return
+	game_board.move_current_unit(current_cell + Vector2.RIGHT)
 
 # Setters
 func set_current_cell(value: Vector2) -> void:
