@@ -1,17 +1,17 @@
 extends Node
 
-var game_board : GameBoard
-var current_level := 1
+var game
 
-func _ready() -> void:
-	EventBus.connect("board_init", self, "_on_GameBoard_init")
+onready var _level_manager: LevelManager = $LevelManager
 
 func _process(_delta) -> void:
-	if not game_board:
-		initialize_board()
+	if not game:
+		initialize_game()
 		return
 
-func initialize_board() -> void:
-	game_board = get_tree().get_root().get_node('/root/Game/GameBoard')
-	game_board.load_level(current_level)
-	EventBus.emit_signal("board_init")
+func initialize_game() -> void:
+	game = get_tree().get_root().get_node('/root/Game')
+	# FIXME: Replace hardcoded level with Save data
+	
+	_level_manager.load_level(1)
+	EventBus.emit_signal("game_init")

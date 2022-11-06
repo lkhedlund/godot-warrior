@@ -1,0 +1,30 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Lib/Unit/unit_path.tres" type="TileSet" id=1]
+[ext_resource path="res://Lib/Grid/grid.tres" type="Resource" id=2]
+[ext_resource path="res://Lib/Board/game_board.gd" type="Script" id=3]
+[ext_resource path="res://Lib/Unit/unit_path.gd" type="Script" id=4]
+[ext_resource path="res://Lib/Unit/unit_overlay.gd" type="Script" id=5]
+[ext_resource path="res://Lib/Unit/unit_overlay.tres" type="TileSet" id=6]
+[ext_resource path="res://Lib/Unit/unit_overlay.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Lib/Unit/unit_path.tscn" type="PackedScene" id=8]
+
+[node name="GameBoard" type="YSort"]
+position = Vector2( 96, 64 )
+script = ExtResource( 3 )
+starting_position = Vector2( 10, 10 )
+
+[node name="UnitOverlay" type="TileMap" parent="." instance=ExtResource( 7 )]
+modulate = Color( 1, 1, 1, 0.196078 )
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 16, 16 )
+format = 1
+script = ExtResource( 5 )
+
+[node name="UnitPath" type="TileMap" parent="." instance=ExtResource( 8 )]
+modulate = Color( 1, 1, 1, 0.392157 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+script = ExtResource( 4 )
+grid = ExtResource( 2 )

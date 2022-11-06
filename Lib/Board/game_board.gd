@@ -37,15 +37,6 @@ func _reinitialize() -> void:
 		# Initialize the gameboard for the unit
 		unit.initialize(self)
 		_units[unit.current_cell] = unit
-	
-func load_level(new_level_index: int) -> void:
-	var levels = get_tree().get_nodes_in_group("Level")
-	for level in levels:
-		level.queue_free()
-
-	var new_level_path = "res://Lib/Levels/Level_%02d.tscn" % new_level_index
-	var new_level = load(new_level_path).instance()
-	add_child(new_level)
 
 func get_walkable_cells(unit: Unit) -> Array:
 	return _flood_fill(unit.current_cell, unit.move_range)

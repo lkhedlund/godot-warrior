@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Lib/Unit/player_unit.gd" type="Script" id=1]
 [ext_resource path="res://Lib/Unit/unit.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Lib/Assets/pawn.png" type="Texture" id=3]
 
 [node name="PlayerUnit" groups=["Player", "Unit"] instance=ExtResource( 2 )]
 script = ExtResource( 1 )
+skin = ExtResource( 3 )
