@@ -4,3 +4,4 @@ extends Node
 export(String, MULTILINE) var description
 export(String, MULTILINE) var hint
 export var score := 0
+

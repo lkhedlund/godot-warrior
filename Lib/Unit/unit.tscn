@@ -35,7 +35,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0.235294 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.235294 ) ]
 }
 
-[node name="Unit" type="Path2D"]
+[node name="Unit" type="Path2D" groups=["Unit"]]
 curve = null
 script = ExtResource( 1 )
 

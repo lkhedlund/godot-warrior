@@ -1,30 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Lib/Exit/exit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Lib/Levels/level.gd" type="Script" id=2]
 [ext_resource path="res://Lib/Board/game_board.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Lib/Levels/Maps/beginner_map.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Lib/Unit/player_unit.tscn" type="PackedScene" id=6]
-
-[sub_resource type="GDScript" id=1]
-script/source = "class_name Exit
-extends Node
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-"
+[ext_resource path="res://Lib/Unit/player_unit.tscn" type="PackedScene" id=5]
 
 [node name="Level" type="Node2D" groups=["Level"]]
 script = ExtResource( 2 )
@@ -35,8 +15,7 @@ script = ExtResource( 2 )
 
 [node name="Exit" parent="GameBoard" instance=ExtResource( 1 )]
 position = Vector2( 120, 8 )
-script = SubResource( 1 )
 
 [node name="Units" type="YSort" parent="GameBoard"]
 
-[node name="PlayerUnit" parent="GameBoard/Units" instance=ExtResource( 6 )]
+[node name="PlayerUnit" parent="GameBoard/Units" instance=ExtResource( 5 )]

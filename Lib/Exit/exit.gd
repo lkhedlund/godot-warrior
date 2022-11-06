@@ -1,17 +1,16 @@
 class_name Exit
-extends Node
+extends Node2D
 
+var current_cell: Vector2
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+export var grid: Resource = preload("res://Lib/Grid/grid.tres")
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	set_process(false)
+	
+	self.current_cell = grid.calculate_grid_coordinates(position)
+	position = grid.calculate_map_position(current_cell)
+	EventBus.connect("exit_level", self, "_on_Exit_level")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_Exit_level() -> void:
+	GameManager.level_manager.load_next_level()

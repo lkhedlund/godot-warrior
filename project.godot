@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Lib/Board/Cursor/cursor.gd"
 }, {
-"base": "Node",
+"base": "Node2D",
 "class": "Exit",
 "language": "GDScript",
 "path": "res://Lib/Exit/exit.gd"
