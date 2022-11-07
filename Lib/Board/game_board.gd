@@ -100,10 +100,9 @@ func _deselect_player_unit() -> void:
 	_unit_path.stop()
 	
 func move_current_unit(new_cell: Vector2) -> void:
-	if !current_unit and !current_unit.is_selected:
-		return
-	if is_occupied(new_cell) or not new_cell in _walkable_cells:
-		return
+	if not current_unit: return
+	if not current_unit.is_selected: return
+	if is_occupied(new_cell) or not new_cell in _walkable_cells: return
 		
 	var current_path = _unit_path.set_path(current_unit.current_cell, new_cell)
 	_unit_path.draw(current_path)

@@ -71,17 +71,13 @@ func move_along_path(path: PoolVector2Array) -> void:
 
 # Abilities
 func walk() -> void:
-	#if not has_ability("walk"):
-	#	return
-	var next_cell = current_cell + Vector2.RIGHT
-	if game_board.is_exit(next_cell):
-		game_board.move_current_unit(next_cell)
-		EventBus.emit_signal("exit_level")
+	if not has_ability("walk"):
+		return
+
+	var next_cell = current_cell + Vector2.LEFT
 
 	if not game_board.is_occupied(next_cell):
 		game_board.move_current_unit(next_cell)
-
-
 
 # Setters
 func set_current_cell(value: Vector2) -> void:

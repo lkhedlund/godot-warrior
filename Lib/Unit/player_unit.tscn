@@ -4,6 +4,6 @@
 [ext_resource path="res://Lib/Unit/unit.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Lib/Assets/pawn.png" type="Texture" id=3]
 
-[node name="PlayerUnit" groups=["Player", "Unit"] instance=ExtResource( 2 )]
+[node name="PlayerUnit" groups=["Player"] instance=ExtResource( 2 )]
 script = ExtResource( 1 )
 skin = ExtResource( 3 )

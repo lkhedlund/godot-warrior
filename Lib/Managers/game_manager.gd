@@ -13,7 +13,7 @@ func _process(_delta) -> void:
 func initialize_game() -> void:
 	game = get_tree().get_root().get_node('/root/Game')
 	# FIXME: Replace hardcoded level with Save data
-	level_manager.load_level(2)
+	level_manager.load_level(1)
 	EventBus.emit_signal("game_init")
 
 func game_over() -> void:
