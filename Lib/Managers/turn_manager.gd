@@ -2,7 +2,6 @@ class_name TurnManager
 extends Node
 
 signal turn_over
-signal round_over
 
 var current_turn : Unit
 var current_round := 1
@@ -14,7 +13,6 @@ onready var _timer: Timer = $Timer
 
 func _ready() -> void:
 	EventBus.connect("play_button_pressed", self, "_on_Play_Button_pressed")
-	self.connect("round_over", self, "_on_round_over")
 	EventBus.connect("exit_level", self, "_on_Exit_level")
 
 func start_round() -> void:
@@ -23,10 +21,8 @@ func start_round() -> void:
 	for unit in turn_queue:
 		advance_turn(unit)
 		yield(self, "turn_over")
-
 	# Advance to the next round
 	advance_round()
-	yield(self, "round_over")
 	
 func advance_turn(unit: Unit) -> void:
 	current_turn = unit
@@ -43,19 +39,17 @@ func add_turn_to_queue(unit: Unit) -> void:
 func advance_round() -> void:
 	if turn_queue.empty(): return
 	current_round += 1
+	start_round()
 	emit_signal("round_over")
-
-func _on_Play_Button_pressed() -> void:
-	start_round()
-
-func _on_round_over() -> void:
-	start_round()
 	
-func _on_Exit_level() -> void:
-	end_round()
-
-func end_round() -> void:
+func reset_rounds() -> void:
 	# Empty turn queue
 	turn_queue.clear()
 	current_round = 0
 	
+# SIGNALS
+func _on_Play_Button_pressed() -> void:
+	start_round()
+	
+func _on_Exit_level() -> void:
+	reset_rounds()

@@ -1,8 +1,9 @@
-[gd_resource type="Theme" load_steps=7 format=2]
+[gd_resource type="Theme" load_steps=9 format=2]
 
 [ext_resource path="res://Lib/UI/Themes/pixel_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Lib/Assets/UI/buttonLong_blue_pressed.png" type="Texture" id=2]
 [ext_resource path="res://Lib/Assets/UI/buttonLong_blue.png" type="Texture" id=3]
+[ext_resource path="res://Lib/Assets/UI/panel_blue.png" type="Texture" id=4]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
@@ -29,6 +30,14 @@ margin_right = 2.0
 margin_top = 2.0
 margin_bottom = 5.0
 
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 100, 100 )
+margin_left = 8.88889
+margin_right = 9.34979
+margin_top = 8.55967
+margin_bottom = 8.0
+
 [resource]
 default_font = ExtResource( 1 )
 Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
@@ -43,3 +52,4 @@ Button/styles/focus = null
 Button/styles/hover = null
 Button/styles/normal = SubResource( 2 )
 Button/styles/pressed = SubResource( 3 )
+Panel/styles/panel = SubResource( 4 )
