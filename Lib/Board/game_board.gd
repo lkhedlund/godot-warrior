@@ -15,6 +15,7 @@ export var starting_position := Vector2(0, 0)
 onready var _unit_path: UnitPath = $UnitPath
 onready var _unit_overlay: UnitOverlay = $UnitOverlay
 onready var _exit: Exit = $Exit
+onready var _turn_manager: TurnManager = $TurnManager
 
 # Dictionary to keep track of units on the board
 var _units := {}
@@ -31,12 +32,13 @@ func is_occupied(cell: Vector2) -> bool:
 # Clears and refills the `_units` dict with game objects on the board
 func _reinitialize() -> void:
 	_units.clear()
+	_turn_manager.clear_turn_queue()
 
 	for unit in get_tree().get_nodes_in_group("Unit"):
 		# Initialize the gameboard for the unit
 		unit.initialize(self)
 		_units[unit.current_cell] = unit
-		GameManager.turn_manager.add_turn_to_queue(unit)
+		_turn_manager.add_turn_to_queue(unit)
 
 	# Start the round
 	EventBus.emit_signal("unit_turns_loaded")

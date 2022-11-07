@@ -5,6 +5,7 @@ var player
 
 func _ready() -> void:
 	player = get_tree().get_root().get_node('/root/Game/Player')
+	._ready()
 
 func take_turn() -> void:
 	.take_turn() # super

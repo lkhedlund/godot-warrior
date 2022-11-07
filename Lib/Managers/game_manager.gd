@@ -3,7 +3,6 @@ extends Node
 var game
 
 onready var level_manager: LevelManager = $LevelManager
-onready var turn_manager: TurnManager = $TurnManager
 
 func _process(_delta) -> void:
 	if not game:
