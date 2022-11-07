@@ -1,0 +1,45 @@
+[gd_resource type="Theme" load_steps=7 format=2]
+
+[ext_resource path="res://Lib/UI/Themes/pixel_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Lib/Assets/UI/buttonLong_blue_pressed.png" type="Texture" id=2]
+[ext_resource path="res://Lib/Assets/UI/buttonLong_blue.png" type="Texture" id=3]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 190, 45 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 2.0
+margin_bottom = 5.0
+modulate_color = Color( 0.6, 0.6, 0.6, 1 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 190, 49 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 2.0
+margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 190, 45 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 2.0
+margin_bottom = 5.0
+
+[resource]
+default_font = ExtResource( 1 )
+Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_focus = Color( 0.94, 0.94, 0.94, 1 )
+Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = ExtResource( 1 )
+Button/styles/disabled = SubResource( 1 )
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = SubResource( 2 )
+Button/styles/pressed = SubResource( 3 )

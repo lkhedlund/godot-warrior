@@ -16,3 +16,5 @@ signal end_turn(unit)
 signal game_init
 signal unit_turns_loaded
 signal exit_level
+
+signal play_button_pressed

@@ -13,8 +13,9 @@ export var _turn_cooldown := 1.0
 onready var _timer: Timer = $Timer
 
 func _ready() -> void:
-	EventBus.connect("unit_turns_loaded", self, "_on_Unit_turns_loaded")
+	EventBus.connect("play_button_pressed", self, "_on_Play_Button_pressed")
 	self.connect("round_over", self, "_on_round_over")
+	EventBus.connect("exit_level", self, "_on_Exit_level")
 
 func start_round() -> void:
 	if turn_queue.empty(): return
@@ -44,13 +45,17 @@ func advance_round() -> void:
 	current_round += 1
 	emit_signal("round_over")
 
-func _on_Unit_turns_loaded() -> void:
-	print("start_new_level")
+func _on_Play_Button_pressed() -> void:
 	start_round()
 
 func _on_round_over() -> void:
 	start_round()
+	
+func _on_Exit_level() -> void:
+	end_round()
 
-func clear_turn_queue() -> void:
+func end_round() -> void:
 	# Empty turn queue
 	turn_queue.clear()
+	current_round = 0
+	

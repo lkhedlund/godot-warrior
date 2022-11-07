@@ -32,7 +32,6 @@ func is_occupied(cell: Vector2) -> bool:
 # Clears and refills the `_units` dict with game objects on the board
 func _reinitialize() -> void:
 	_units.clear()
-	_turn_manager.clear_turn_queue()
 
 	for unit in get_tree().get_nodes_in_group("Unit"):
 		# Initialize the gameboard for the unit
