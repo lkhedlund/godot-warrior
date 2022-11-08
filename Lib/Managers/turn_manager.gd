@@ -40,7 +40,6 @@ func advance_round() -> void:
 	if turn_queue.empty(): return
 	current_round += 1
 	start_round()
-	emit_signal("round_over")
 	
 func reset_rounds() -> void:
 	# Empty turn queue

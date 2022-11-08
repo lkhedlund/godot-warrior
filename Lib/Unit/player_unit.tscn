@@ -1,9 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Lib/Unit/player_unit.gd" type="Script" id=1]
 [ext_resource path="res://Lib/Unit/unit.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Lib/Assets/pawn.png" type="Texture" id=3]
+[ext_resource path="res://Lib/Assets/sword.png" type="Texture" id=4]
 
 [node name="PlayerUnit" groups=["Player"] instance=ExtResource( 2 )]
 script = ExtResource( 1 )
+unit_name = "Player"
 skin = ExtResource( 3 )
+
+[node name="Sprite" parent="PathFollow2D" index="0"]
+texture = ExtResource( 3 )
+
+[node name="Sword" type="Node2D" parent="." index="2"]
+visible = false
+position = Vector2( 7, 5 )
+
+[node name="Sprite" type="Sprite" parent="Sword" index="0"]
+position = Vector2( 0, -4 )
+texture = ExtResource( 4 )

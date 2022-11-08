@@ -10,6 +10,7 @@ func load_level(new_level_index: int) -> void:
 	if ResourceLoader.exists(new_level_path):
 		var new_level = load(new_level_path).instance()
 		GameManager.game.add_child(new_level)
+		EventBus.emit_signal("update_player_log", new_level.description)
 	else:
 		GameManager.game_over()
 

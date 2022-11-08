@@ -10,6 +10,7 @@ signal move_finished
 
 var game_board
 
+export var unit_name: String
 export var grid: Resource = preload("res://Lib/Grid/grid.tres")
 export var move_range := 1
 export var skin: Texture setget set_skin
@@ -100,7 +101,9 @@ func _set_is_moving(value: bool) -> void:
 	_is_moving = value
 	set_process(_is_moving)
 	
-func set_abilities(ability: Resource) -> void:
+func set_ability(ability: Resource) -> void:
+	if has_ability(ability.name): return
+
 	abilities.append(ability)
 	
 func has_ability(ability_name: String) -> bool:
