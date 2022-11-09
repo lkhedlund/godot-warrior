@@ -1,8 +1,6 @@
 class_name LevelManager
 extends Node
 
-var current_level := 1
-
 func load_level(new_level_index: int) -> void:
 	clear_levels()
 
@@ -15,7 +13,8 @@ func load_level(new_level_index: int) -> void:
 		GameManager.game_over()
 
 func load_next_level() -> void:
-	var next_level = current_level + 1
+	var next_level = GameManager.player_stats.current_level + 1
+	GameManager.player_stats.current_level = next_level
 	load_level(next_level)
 
 func clear_levels() -> void:
