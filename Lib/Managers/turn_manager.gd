@@ -35,6 +35,9 @@ func add_turn_to_queue(unit: Unit) -> void:
 	if turn_queue.has(unit): return
 
 	turn_queue.append(unit)
+	
+func remove_turn_from_queue(unit: Unit) -> void:
+	turn_queue.erase(unit)
 
 func advance_round() -> void:
 	if turn_queue.empty(): return

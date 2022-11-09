@@ -20,6 +20,7 @@ func game_over() -> void:
 	get_tree().quit()
 
 func load_player_stats():
+	initialize_player_stats()
 	# Load the player's current stats
 	var existing_stats = load("user://player_stats.tres")
 	if existing_stats:

@@ -13,6 +13,8 @@ Other nested nodes could connect to these signals:
 signal start_turn(unit)
 signal end_turn(unit)
 
+signal health_changed(unit, new_health)
+
 signal game_init
 signal player_init
 signal unit_turns_loaded
@@ -23,4 +25,3 @@ signal ability_gained(ability)
 
 signal play_button_pressed
 signal update_player_log(new_line)
-

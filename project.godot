@@ -14,10 +14,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Lib/Unit/Abilities/ability.gd"
 }, {
+"base": "Ability",
+"class": "Attack",
+"language": "GDScript",
+"path": "res://Lib/Unit/Abilities/attack.gd"
+}, {
 "base": "Node2D",
 "class": "Cursor",
 "language": "GDScript",
 "path": "res://Lib/Board/Cursor/cursor.gd"
+}, {
+"base": "Unit",
+"class": "EnemyUnit",
+"language": "GDScript",
+"path": "res://Lib/Unit/enemy_unit.gd"
 }, {
 "base": "Node2D",
 "class": "Exit",
@@ -91,7 +101,9 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Ability": "",
+"Attack": "",
 "Cursor": "",
+"EnemyUnit": "",
 "Exit": "",
 "GameBoard": "",
 "Grid": "",

@@ -12,11 +12,14 @@ var game_board
 
 export var unit_name: String
 export var grid: Resource = preload("res://Lib/Grid/grid.tres")
+export var max_health := 10
 export var move_range := 1
-export var skin: Texture setget set_skin
 export var move_speed := 600
+export var direction : Vector2 = Vector2.LEFT
 export(Array, Resource) var abilities: Array
+export var skin: Texture setget set_skin
 
+var health: int setget set_health
 var current_cell := Vector2.ZERO setget set_current_cell
 var is_selected := false setget set_is_selected
 var _is_moving := false setget _set_is_moving
@@ -31,6 +34,7 @@ func initialize(board) -> void:
 func _ready() -> void:
 	# Don't need the unit to update every frame
 	set_process(false)
+	health = max_health
 	
 	self.current_cell = grid.calculate_grid_coordinates(position)
 	position = grid.calculate_map_position(current_cell)
@@ -69,17 +73,51 @@ func move_along_path(path: PoolVector2Array) -> void:
 		# Change the cell to the target position
 		current_cell = path[-1]
 		self._is_moving = true
+		
+func dead() -> void:
+	game_board.remove_unit_at_position(current_cell)
+	self.queue_free()
 
 # Abilities
+func has_ability(ability_name: String) -> bool:
+	for ability in abilities:
+		if ability.name == ability_name:
+			return true
+	return false
+	
+func load_ability(ability_name: String):
+	for ability in abilities:
+		if ability.name == ability_name:
+			return ability
+
 func walk() -> void:
-	if not has_ability("walk"):
-		return
+	if not has_ability("walk"): return
 
 	var next_cell = current_cell + Vector2.LEFT
 
 	if not game_board.is_occupied(next_cell):
 		game_board.move_current_unit(next_cell)
 
+func attack() -> void:
+	if not has_ability("attack"): return
+	
+	var next_cell: Vector2 = current_cell + direction
+	if game_board.is_occupied(next_cell):
+		var adjacent_unit = game_board.get_unit_at_position(next_cell)
+		var attack = load_ability("attack")
+		if adjacent_unit and attack:
+			attack.do_damage(adjacent_unit)
+	
+func feel(unit_type: String) -> bool:
+	if not has_ability("feel"): return false
+
+	var next_cell: Vector2 = current_cell + direction
+	if game_board.is_occupied(next_cell):
+		var adjacent_unit = game_board.get_unit_at_position(next_cell)
+		return adjacent_unit.is_in_group(unit_type)
+	else:
+		return false
+		
 # Setters
 func set_current_cell(value: Vector2) -> void:
 	current_cell = grid.clamp(value)
@@ -97,12 +135,13 @@ func set_skin(value: Texture) -> void:
 		yield(self, "ready")
 	_sprite.texture = value
 	
+func set_health(damage: int) -> void:
+	health = clamp(health - damage, 0, max_health)
+	print(health)
+	if health <= 0:
+		dead()
+	EventBus.emit_signal("health_changed", self, health)
+	
 func _set_is_moving(value: bool) -> void:
 	_is_moving = value
 	set_process(_is_moving)
-	
-func has_ability(ability_name: String) -> bool:
-	for ability in abilities:
-		if ability.name == ability_name:
-			return true
-	return false

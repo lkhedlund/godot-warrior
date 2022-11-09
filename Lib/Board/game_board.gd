@@ -33,7 +33,7 @@ func is_occupied(cell: Vector2) -> bool:
 func _reinitialize() -> void:
 	_units.clear()
 
-	for unit in get_tree().get_nodes_in_group("Unit"):
+	for unit in get_tree().get_nodes_in_group("unit"):
 		# Initialize the gameboard for the unit
 		unit.initialize(self)
 		_units[unit.current_cell] = unit
@@ -44,6 +44,14 @@ func _reinitialize() -> void:
 
 func get_walkable_cells(unit: Unit) -> Array:
 	return _flood_fill(unit.current_cell, unit.move_range)
+	
+func remove_unit_at_position(cell: Vector2) -> void:
+	var dead_unit = _units[cell]
+	_turn_manager.remove_turn_from_queue(dead_unit)
+	_units.erase(cell)
+	
+func get_unit_at_position(cell: Vector2) -> Unit:
+	return _units[cell]
 	
 func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 	var walkable_cells := []
