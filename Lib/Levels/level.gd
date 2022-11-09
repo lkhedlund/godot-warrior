@@ -15,7 +15,7 @@ func set_new_abilities() -> void:
 	if new_abilities.empty(): return
 
 	for ability in new_abilities:
-		player_unit.set_ability(ability)
+		GameManager.player_stats.set_ability(ability)
 		var ability_text = "Gained new ability: %s" % ability.name.capitalize()
 		EventBus.emit_signal("update_player_log", ability_text)
 		EventBus.emit_signal("ability_gained", ability)

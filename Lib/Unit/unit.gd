@@ -101,11 +101,6 @@ func _set_is_moving(value: bool) -> void:
 	_is_moving = value
 	set_process(_is_moving)
 	
-func set_ability(ability: Resource) -> void:
-	if has_ability(ability.name): return
-
-	abilities.append(ability)
-	
 func has_ability(ability_name: String) -> bool:
 	for ability in abilities:
 		if ability.name == ability_name:
