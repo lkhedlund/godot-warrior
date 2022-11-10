@@ -7,4 +7,5 @@ script = ExtResource( 1 )
 name = "attack"
 description = ""
 ability_range = 1
+action_cost = 1
 damage = 5

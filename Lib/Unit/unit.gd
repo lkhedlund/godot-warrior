@@ -15,6 +15,7 @@ export var grid: Resource = preload("res://Lib/Grid/grid.tres")
 export var max_health := 10
 export var move_range := 1
 export var move_speed := 600
+export var action_points := 1
 export var direction : Vector2 = Vector2.LEFT
 export(Array, Resource) var abilities: Array
 export var skin: Texture setget set_skin
@@ -90,33 +91,27 @@ func load_ability(ability_name: String):
 		if ability.name == ability_name:
 			return ability
 
+func use_ability(ability_name: String, params={}):
+	if not has_ability(ability_name): return
+	
+	var ability = load_ability(ability_name)
+	reduce_ap(ability.action_cost)
+	return ability.perform(self, params)
+	
+func reduce_ap(cost: int) -> void:
+	action_points -= cost
+
+func reset_ap() -> void:
+	action_points = 1
+
 func walk() -> void:
-	if not has_ability("walk"): return
-
-	var next_cell = current_cell + Vector2.LEFT
-
-	if not game_board.is_occupied(next_cell):
-		game_board.move_current_unit(next_cell)
+	use_ability("walk")
 
 func attack() -> void:
-	if not has_ability("attack"): return
-	
-	var next_cell: Vector2 = current_cell + direction
-	if game_board.is_occupied(next_cell):
-		var adjacent_unit = game_board.get_unit_at_position(next_cell)
-		var attack = load_ability("attack")
-		if adjacent_unit and attack:
-			attack.do_damage(adjacent_unit)
+	use_ability("attack")
 	
 func feel(unit_type: String) -> bool:
-	if not has_ability("feel"): return false
-
-	var next_cell: Vector2 = current_cell + direction
-	if game_board.is_occupied(next_cell):
-		var adjacent_unit = game_board.get_unit_at_position(next_cell)
-		return adjacent_unit.is_in_group(unit_type)
-	else:
-		return false
+	return use_ability("feel", { "unit_type": unit_type })
 		
 # Setters
 func set_current_cell(value: Vector2) -> void:

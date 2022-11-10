@@ -25,10 +25,12 @@ func start_round() -> void:
 	advance_round()
 	
 func advance_turn(unit: Unit) -> void:
-	current_turn = unit
-	_timer.start(_turn_cooldown)
-	yield(_timer, "timeout")
-	unit.take_turn()
+	if not unit.action_points <= 0:
+		current_turn = unit
+		_timer.start(_turn_cooldown)
+		yield(_timer, "timeout")
+		unit.take_turn()
+	unit.reset_ap()
 	emit_signal("turn_over")
 	
 func add_turn_to_queue(unit: Unit) -> void:
