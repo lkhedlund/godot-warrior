@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Lib/UI/Themes/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Lib/UI/player_ui.gd" type="Script" id=2]
 [ext_resource path="res://Lib/UI/Themes/Kenney Pixel.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Lib/UI/menu_popup.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 12
@@ -15,15 +16,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
-
-[node name="HintButton" type="Button" parent="PlayerUI"]
-visible = false
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 30.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 20, 20 )
-text = "?"
 
 [node name="BottomContainer" type="HBoxContainer" parent="PlayerUI"]
 anchor_right = 1.0
@@ -57,7 +49,15 @@ margin_right = 300.0
 margin_bottom = 66.0
 alignment = 2
 
+[node name="MenuButton" type="Button" parent="PlayerUI/BottomContainer/PlayerButtons"]
+margin_top = 23.0
+margin_right = 80.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 20, 20 )
+text = "Menu"
+
 [node name="PlayButton" type="Button" parent="PlayerUI/BottomContainer/PlayerButtons"]
+self_modulate = Color( 0.415686, 1, 0.466667, 1 )
 margin_top = 47.0
 margin_right = 80.0
 margin_bottom = 66.0
@@ -65,4 +65,40 @@ rect_min_size = Vector2( 80, 0 )
 size_flags_vertical = 8
 text = "Play_Turn()"
 
+[node name="MenuPopup" type="Popup" parent="PlayerUI"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="PlayerUI/MenuPopup"]
+modulate = Color( 0, 0, 0, 0.596078 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MenuContainer" type="CenterContainer" parent="PlayerUI/MenuPopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MenuButtons" type="VBoxContainer" parent="PlayerUI/MenuPopup/MenuContainer"]
+margin_left = 110.0
+margin_top = 69.0
+margin_right = 210.0
+margin_bottom = 111.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="ResetButton" type="Button" parent="PlayerUI/MenuPopup/MenuContainer/MenuButtons"]
+margin_right = 100.0
+margin_bottom = 19.0
+text = "Reset Game"
+
+[node name="CloseButton" type="Button" parent="PlayerUI/MenuPopup/MenuContainer/MenuButtons"]
+margin_top = 23.0
+margin_right = 100.0
+margin_bottom = 42.0
+text = "Close"
+
+[connection signal="pressed" from="PlayerUI/BottomContainer/PlayerButtons/MenuButton" to="PlayerUI" method="_on_MenuButton_pressed"]
 [connection signal="pressed" from="PlayerUI/BottomContainer/PlayerButtons/PlayButton" to="PlayerUI" method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="PlayerUI/MenuPopup/MenuContainer/MenuButtons/ResetButton" to="PlayerUI/MenuPopup" method="_on_ResetButton_pressed"]
+[connection signal="pressed" from="PlayerUI/MenuPopup/MenuContainer/MenuButtons/CloseButton" to="PlayerUI/MenuPopup" method="_on_CloseButton_pressed"]

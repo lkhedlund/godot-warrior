@@ -20,9 +20,12 @@ signal game_init
 signal player_init
 signal unit_turns_loaded
 signal exit_level
+signal reset_game
 
 signal player_stats_changed(player_stats)
 signal ability_gained(ability)
 
 signal play_button_pressed
 signal update_player_log(new_line)
+
+signal game_speed_adjusted(new_value)
