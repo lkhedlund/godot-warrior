@@ -7,7 +7,8 @@
 [ext_resource path="res://Lib/Unit/Abilities/feel.tres" type="Resource" id=5]
 
 [node name="Level_02" instance=ExtResource( 1 )]
-description = "A spooky ghost haunts your path. You find a knife sitting on the ground in front of you: how lucky!"
+description = "A spooky ghost haunts your path. You find a knife sitting on the ground in front of you: lucky!"
+hint = "Use warrior.feel(\"enemy\") to see if there is anything in front of you, and warrior.attack! to fight it. You can only perform one main action per turn, so make it count!"
 new_abilities = [ ExtResource( 5 ), ExtResource( 4 ) ]
 
 [node name="PlayerUnit" parent="GameBoard/Units" index="0" groups=["Unit"]]

@@ -4,7 +4,7 @@
 [ext_resource path="res://Lib/Unit/Abilities/walk.tres" type="Resource" id=2]
 
 [node name="Level_01" instance=ExtResource( 1 )]
-description = "You see before you a long hallway with stairs at the end. There is nothing in the way."
+description = "You see before you a long hallway with stairs at the end. Freedom at last!"
 hint = "Call warrior.walk! to walk forward in the Player 'play_turn' method."
 new_abilities = [ ExtResource( 2 ) ]
 
