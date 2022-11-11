@@ -25,7 +25,7 @@ func start_round() -> void:
 	advance_round()
 	
 func advance_turn(unit: Unit) -> void:
-	if not unit.action_points <= 0:
+	if unit.action_points > 0:
 		current_turn = unit
 		_timer.start(_turn_cooldown)
 		yield(_timer, "timeout")

@@ -1,7 +1,7 @@
 class_name Walk
 extends Ability
 
-func perform(unit: Unit, params={}):
+func perform(unit: Unit, _params={}):
 	var board = unit.game_board
 	var next_cell = unit.current_cell + unit.direction
 

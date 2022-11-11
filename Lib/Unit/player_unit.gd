@@ -17,9 +17,6 @@ func take_turn() -> void:
 	.take_turn() # super
 	player.play_turn(self)
 
-func attack() -> void:
-	.attack() # super
-
 func _on_Ability_gained(ability: Ability) -> void:
 	if ability.name == "attack":
 		sword.visible = true

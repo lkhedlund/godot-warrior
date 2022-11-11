@@ -3,7 +3,7 @@ extends Ability
 
 export var damage := 10
 
-func perform(unit: Unit, params={}) -> void:
+func perform(unit: Unit, _params={}) -> void:
 	var board = unit.game_board
 	var next_cell: Vector2 = unit.current_cell + unit.direction
 	if board.is_occupied(next_cell):
