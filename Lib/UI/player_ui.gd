@@ -1,6 +1,6 @@
 extends Control
 
-onready var play_button = $BottomContainer/PlayButton
+onready var play_button = $BottomContainer/PlayerButtons/PlayButton
 onready var player_log = $BottomContainer/PlayerOutput/PlayerLog
 
 func _ready() -> void:

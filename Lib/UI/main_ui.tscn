@@ -25,19 +25,20 @@ margin_bottom = 30.0
 rect_min_size = Vector2( 20, 20 )
 text = "?"
 
-[node name="BottomContainer" type="Control" parent="PlayerUI"]
+[node name="BottomContainer" type="HBoxContainer" parent="PlayerUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
-margin_top = 120.0
+margin_top = 104.0
 margin_right = -10.0
 margin_bottom = -10.0
 
 [node name="PlayerOutput" type="Panel" parent="PlayerUI/BottomContainer"]
 self_modulate = Color( 0.176471, 0.176471, 0.176471, 1 )
-margin_right = 209.0
-margin_bottom = 48.0
+margin_right = 216.0
+margin_bottom = 66.0
 rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 3
 
 [node name="PlayerLog" type="RichTextLabel" parent="PlayerUI/BottomContainer/PlayerOutput"]
 anchor_right = 1.0
@@ -50,12 +51,18 @@ custom_fonts/normal_font = SubResource( 1 )
 text = "> You see before you a long hallway with stairs at the end. There is nothing in the way."
 scroll_following = true
 
-[node name="PlayButton" type="Button" parent="PlayerUI/BottomContainer"]
-margin_left = 221.0
-margin_top = 29.0
+[node name="PlayerButtons" type="VBoxContainer" parent="PlayerUI/BottomContainer"]
+margin_left = 220.0
 margin_right = 300.0
-margin_bottom = 48.0
+margin_bottom = 66.0
+alignment = 2
+
+[node name="PlayButton" type="Button" parent="PlayerUI/BottomContainer/PlayerButtons"]
+margin_top = 47.0
+margin_right = 80.0
+margin_bottom = 66.0
+rect_min_size = Vector2( 80, 0 )
 size_flags_vertical = 8
 text = "Play_Turn()"
 
-[connection signal="pressed" from="PlayerUI/BottomContainer/PlayButton" to="PlayerUI" method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="PlayerUI/BottomContainer/PlayerButtons/PlayButton" to="PlayerUI" method="_on_PlayButton_pressed"]

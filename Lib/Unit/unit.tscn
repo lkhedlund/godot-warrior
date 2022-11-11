@@ -44,7 +44,6 @@ rotate = false
 loop = false
 
 [node name="Sprite" type="Sprite" parent="PathFollow2D"]
-modulate = Color( 1, 1, 1, 0.903246 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/idle = SubResource( 1 )

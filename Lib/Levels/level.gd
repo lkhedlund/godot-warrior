@@ -9,6 +9,7 @@ export(Array, Resource) var new_abilities: Array
 onready var player_unit = $GameBoard/Units/PlayerUnit
 
 func _ready() -> void:
+	EventBus.emit_signal("update_player_log", description)
 	set_new_abilities()
 
 func set_new_abilities() -> void:

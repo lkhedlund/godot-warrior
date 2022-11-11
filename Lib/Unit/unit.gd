@@ -119,10 +119,6 @@ func set_current_cell(value: Vector2) -> void:
 
 func set_is_selected(value: bool) -> void:
 	is_selected = value
-	if is_selected:
-		_anim_player.play("selected")
-	else:
-		_anim_player.play("idle")
 
 func set_skin(value: Texture) -> void:
 	skin = value

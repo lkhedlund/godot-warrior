@@ -15,8 +15,16 @@ func _ready() -> void:
 
 func take_turn() -> void:
 	.take_turn() # super
-	player.play_turn(self)
+	#player.play_turn(self)
+	play_turn(self)
 
 func _on_Ability_gained(ability: Ability) -> void:
 	if ability.name == "attack":
 		sword.visible = true
+
+# TODO: Remove on launch.
+func play_turn(warrior: Unit) -> void:
+	if warrior.feel("enemy"):
+		warrior.attack()
+	else:
+		warrior.walk()
