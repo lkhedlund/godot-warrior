@@ -107,8 +107,11 @@ func reset_ap() -> void:
 func walk() -> void:
 	use_ability("walk")
 
-func attack() -> void:
+func attack() -> Unit:
 	use_ability("attack")
+	
+func health() -> int:
+	return use_ability("health")
 	
 func feel(unit_type: String) -> bool:
 	return use_ability("feel", { "unit_type": unit_type })

@@ -10,7 +10,7 @@ func _ready() -> void:
 	EventBus.connect("reset_game", self, "_on_reset_game")
 	initialize_game()
 	load_player_stats()
-	level_manager.load_level(player_stats.current_level)
+	level_manager.load_level(3)
 
 func initialize_game() -> void:
 	game = get_tree().get_root().get_node('/root/Game')

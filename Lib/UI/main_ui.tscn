@@ -1,13 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Lib/UI/Themes/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Lib/UI/player_ui.gd" type="Script" id=2]
 [ext_resource path="res://Lib/UI/Themes/Kenney Pixel.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Lib/UI/menu_popup.gd" type="Script" id=4]
+[ext_resource path="res://Lib/Assets/UI/menu-hamburger.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 12
 font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxTexture" id=2]
 
 [node name="UI" type="CanvasLayer"]
 
@@ -49,12 +52,12 @@ margin_right = 300.0
 margin_bottom = 66.0
 alignment = 2
 
-[node name="MenuButton" type="Button" parent="PlayerUI/BottomContainer/PlayerButtons"]
+[node name="AbilitiesButton" type="Button" parent="PlayerUI/BottomContainer/PlayerButtons"]
 margin_top = 23.0
 margin_right = 80.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 20, 20 )
-text = "Menu"
+text = "Abilities"
 
 [node name="PlayButton" type="Button" parent="PlayerUI/BottomContainer/PlayerButtons"]
 self_modulate = Color( 0.415686, 1, 0.466667, 1 )
@@ -98,7 +101,16 @@ margin_right = 100.0
 margin_bottom = 42.0
 text = "Close"
 
-[connection signal="pressed" from="PlayerUI/BottomContainer/PlayerButtons/MenuButton" to="PlayerUI" method="_on_MenuButton_pressed"]
+[node name="MenuButton" type="Button" parent="PlayerUI"]
+margin_left = 296.0
+margin_top = 8.0
+margin_right = 312.0
+margin_bottom = 24.0
+custom_styles/normal = SubResource( 2 )
+icon = ExtResource( 5 )
+icon_align = 1
+
 [connection signal="pressed" from="PlayerUI/BottomContainer/PlayerButtons/PlayButton" to="PlayerUI" method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="PlayerUI/MenuPopup/MenuContainer/MenuButtons/ResetButton" to="PlayerUI/MenuPopup" method="_on_ResetButton_pressed"]
 [connection signal="pressed" from="PlayerUI/MenuPopup/MenuContainer/MenuButtons/CloseButton" to="PlayerUI/MenuPopup" method="_on_CloseButton_pressed"]
+[connection signal="pressed" from="PlayerUI/MenuButton" to="PlayerUI" method="_on_MenuButton_pressed"]

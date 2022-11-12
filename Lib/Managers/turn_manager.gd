@@ -3,11 +3,10 @@ extends Node
 
 signal turn_over
 
-var current_turn : Unit
 var current_round := 1
 var turn_queue := []
 
-export var _turn_cooldown := 1.0
+export var _turn_cooldown := 0.5
 
 onready var _timer: Timer = $Timer
 
@@ -26,7 +25,6 @@ func start_round() -> void:
 	
 func advance_turn(unit: Unit) -> void:
 	if unit.action_points > 0:
-		current_turn = unit
 		_timer.start(_turn_cooldown)
 		yield(_timer, "timeout")
 		unit.take_turn()
@@ -56,7 +54,7 @@ func reset_rounds() -> void:
 	# Empty turn queue
 	turn_queue.clear()
 	current_round = 0
-	
+
 # SIGNALS
 func _on_Play_Button_pressed() -> void:
 	start_round()
