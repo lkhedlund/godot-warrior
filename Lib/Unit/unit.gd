@@ -7,6 +7,7 @@ class_name Unit
 extends Path2D
 
 signal move_finished
+signal health_changed(amount)
 
 var game_board
 
@@ -129,12 +130,11 @@ func set_skin(value: Texture) -> void:
 		yield(self, "ready")
 	_sprite.texture = value
 	
-func set_health(damage: int) -> void:
-	health = clamp(health - damage, 0, max_health)
-	print(health)
+func set_health(amount: int) -> void:
+	health = clamp(health + amount, 0, max_health)
+	emit_signal("health_changed", amount)
 	if health <= 0:
 		dead()
-	EventBus.emit_signal("health_changed", self, health)
 	
 func _set_is_moving(value: bool) -> void:
 	_is_moving = value

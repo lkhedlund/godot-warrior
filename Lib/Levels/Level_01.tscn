@@ -9,4 +9,3 @@ hint = "Call warrior.walk! to walk forward in the Player 'play_turn' method."
 new_abilities = [ ExtResource( 2 ) ]
 
 [node name="PlayerUnit" parent="GameBoard/Units" index="0" groups=["Unit"]]
-position = Vector2( 8, 8 )

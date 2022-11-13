@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pawn2.png-ff150d4ff117e6cc64d7d701e559b044.stex"
+path="res://.import/cyclops.png-31c1c6068710271202808f44bc519f57.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Lib/Assets/pawn2.png"
-dest_files=[ "res://.import/pawn2.png-ff150d4ff117e6cc64d7d701e559b044.stex" ]
+source_file="res://Lib/Assets/Enemies/cyclops.png"
+dest_files=[ "res://.import/cyclops.png-31c1c6068710271202808f44bc519f57.stex" ]
 
 [params]
 

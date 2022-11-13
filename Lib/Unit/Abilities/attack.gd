@@ -12,6 +12,5 @@ func perform(unit: Unit, _params={}) -> void:
 			do_damage(adjacent_unit)
 
 func do_damage(unit: Unit) -> void:
-	unit.set_health(damage)
-	var new_line = "%s took %s damage" % [unit.name, str(damage)]
-	EventBus.emit_signal("update_player_log", new_line)
+	unit.set_health(-damage)
+

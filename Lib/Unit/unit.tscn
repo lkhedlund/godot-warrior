@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Lib/Unit/unit.gd" type="Script" id=1]
+[ext_resource path="res://Lib/Effects/floating_text_effect.tscn" type="PackedScene" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -48,3 +49,7 @@ loop = false
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/idle = SubResource( 1 )
 anims/selected = SubResource( 2 )
+
+[node name="FloatingTextEffect" parent="." instance=ExtResource( 2 )]
+
+[connection signal="health_changed" from="." to="FloatingTextEffect" method="_on_Unit_health_changed"]
