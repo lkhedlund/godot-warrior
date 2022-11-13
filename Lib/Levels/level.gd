@@ -10,6 +10,7 @@ onready var player_unit = $GameBoard/Units/PlayerUnit
 
 func _ready() -> void:
 	EventBus.emit_signal("update_player_log", description)
+	EventBus.emit_signal("update_player_log", hint, "hint")
 	set_new_abilities()
 
 func set_new_abilities() -> void:
@@ -18,5 +19,4 @@ func set_new_abilities() -> void:
 	for ability in new_abilities:
 		GameManager.player_stats.set_ability(ability)
 		var ability_text = "Gained new ability: %s" % ability.name.capitalize()
-		EventBus.emit_signal("update_player_log", ability_text)
 		EventBus.emit_signal("ability_gained", ability)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Lib/Levels/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Lib/Unit/enemy_unit.tscn" type="PackedScene" id=2]
@@ -7,12 +7,11 @@
 [ext_resource path="res://Lib/Unit/Abilities/attack.tres" type="Resource" id=5]
 [ext_resource path="res://Lib/Unit/Abilities/rest.tres" type="Resource" id=6]
 [ext_resource path="res://Lib/Unit/Abilities/walk.tres" type="Resource" id=7]
-[ext_resource path="res://Lib/Unit/Abilities/health.tres" type="Resource" id=8]
 
 [node name="Level_03" instance=ExtResource( 1 )]
 description = "Uh oh! This room is full of enemies. You're going to have to rest if you want to make it through."
-hint = "Use warrior.health to keep an eye on your health, and warrior.rest to heal up before continuing."
-new_abilities = [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 6 ) ]
+hint = "Use warrior.health to keep an eye on your health, and warrior.rest() to heal up before continuing."
+new_abilities = [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ) ]
 
 [node name="PlayerUnit" parent="GameBoard/Units" index="0"]
 position = Vector2( 8, 8 )

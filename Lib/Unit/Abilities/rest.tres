@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource( 1 )
 name = "rest"
-description = ""
+description = "Call [color=red]rest()[/color] to recover a portion of your health."
 ability_range = 1
 action_cost = 1

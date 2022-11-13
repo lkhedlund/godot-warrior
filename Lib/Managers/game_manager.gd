@@ -23,7 +23,6 @@ func game_over() -> void:
 func load_player_stats():
 	# Load the player's current stats
 	var existing_stats = load("user://player_stats.tres")
-	print(existing_stats)
 	if existing_stats:
 		player_stats = existing_stats
 		return
@@ -36,8 +35,6 @@ func reinitialize_player_stats() -> void:
 
 # Creates a persistent save on stat changes
 func _on_Player_Stats_changed(new_player_stats) -> void:
-	print(new_player_stats.current_level)
-	print(new_player_stats.abilities)
 	ResourceSaver.save("user://player_stats.tres", new_player_stats)
 
 func _on_reset_game() -> void:

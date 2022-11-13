@@ -107,7 +107,7 @@ func reset_ap() -> void:
 func walk() -> void:
 	use_ability("walk")
 
-func attack() -> Unit:
+func attack() -> void:
 	use_ability("attack")
 	
 func health() -> int:

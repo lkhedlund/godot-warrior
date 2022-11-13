@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource( 1 )
 name = "feel"
-description = ""
+description = "Call [color=red]feel()[/color] to determine whether the space in front of you is occupied."
 ability_range = 1
 action_cost = 0
