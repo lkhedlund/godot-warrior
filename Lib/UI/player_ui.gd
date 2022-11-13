@@ -4,7 +4,7 @@ onready var play_button = $BottomContainer/PlayerButtons/PlayButton
 onready var player_log = $BottomContainer/PlayerOutput/PlayerLog
 onready var menu_popup = $MainModal
 onready var abilities_popup = $AbilitiesModal
-onready var new_ability = $BottomContainer/PlayerButtons/AbilitiesButton/NewIcon
+onready var new_ability_icon = $BottomContainer/PlayerButtons/AbilitiesButton/NewIcon
 
 func _ready() -> void:
 	EventBus.connect("update_player_log", self, "_on_Player_Log_update")
@@ -30,9 +30,9 @@ func format_log(log_type: String, new_line: String) -> String:
 	return formatted_line
 	
 # Signals
-
-func _on_Ability_gained(_ability) -> void:
-	new_ability.visible = true
+func _on_Ability_gained(new_ability: Resource) -> void:
+	new_ability_icon.visible = true
+	abilities_popup.add_ability_to_list(new_ability)
 	
 func _on_PlayButton_pressed():
 	play_button.disabled = true
@@ -42,5 +42,5 @@ func _on_MenuButton_pressed():
 	menu_popup.open_menu()
 
 func _on_AbilitiesButton_pressed() -> void:
-	new_ability.visible = false
+	new_ability_icon.visible = false
 	abilities_popup.open_menu()

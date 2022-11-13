@@ -24,7 +24,7 @@ func _ready() -> void:
 	_reinitialize()
 
 func is_occupied(cell: Vector2) -> bool:
-	if _units.has(cell) or is_exit(cell):
+	if _units.has(cell) and grid.is_within_bounds(cell):
 		return true
 	
 	return false

@@ -1,8 +1,8 @@
 class_name PlayerStats
 extends Resource
 
-export var current_level := 1 setget set_current_level
-export(Array, Resource) var abilities: Array
+export var current_level := 0 setget set_current_level
+export(Array) var unlocked_abilities: Array
 
 func set_current_level(new_level: int) -> void:
 	if new_level == current_level: return
@@ -11,10 +11,10 @@ func set_current_level(new_level: int) -> void:
 	_send_update_event()
 
 func set_ability(new_ability: Resource) -> void:
-	if abilities.has(new_ability): return
-
-	print("adding ability", new_ability.name)
-	abilities.append(new_ability)
+	if unlocked_abilities.has(new_ability.name): return
+	
+	unlocked_abilities.append(new_ability.name)
+	EventBus.emit_signal("ability_gained", new_ability)
 	_send_update_event()
 	
 func _send_update_event() -> void:

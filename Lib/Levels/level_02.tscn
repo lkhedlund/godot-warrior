@@ -1,19 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Lib/Levels/level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Lib/Levels/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Lib/Assets/Enemies/rat.png" type="Texture" id=2]
 [ext_resource path="res://Lib/Unit/enemy_unit.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Lib/Unit/Abilities/attack.tres" type="Resource" id=4]
-[ext_resource path="res://Lib/Unit/Abilities/feel.tres" type="Resource" id=5]
+[ext_resource path="res://Lib/Unit/Abilities/rest.tres" type="Resource" id=4]
 
 [node name="Level_02" instance=ExtResource( 1 )]
-description = "A vicious rat blocks your path. You find a knife sitting on the ground in front of you: lucky!"
-hint = "Use warrior.feel(\"enemy\") to see if there is anything in front of you, and warrior.attack! to fight it. You can only perform one main action per turn, so make it count!"
-new_abilities = [ ExtResource( 5 ), ExtResource( 4 ) ]
-
-[node name="PlayerUnit" parent="GameBoard/Units" index="0" groups=["Unit"]]
+description = "Uh oh! This room is full of enemies. You're going to have to rest if you want to make it through."
+hint = "Use warrior.health to keep an eye on your health, and warrior.rest() to heal up before continuing."
+new_abilities = [ ExtResource( 4 ) ]
 
 [node name="EnemyUnit" parent="GameBoard/Units" index="1" instance=ExtResource( 3 )]
-position = Vector2( 64, 8 )
-unit_name = "Rat"
+position = Vector2( 88, 8 )
+skin = ExtResource( 2 )
+
+[node name="EnemyUnit2" parent="GameBoard/Units" index="2" instance=ExtResource( 3 )]
+position = Vector2( 72, 8 )
+skin = ExtResource( 2 )
+
+[node name="EnemyUnit3" parent="GameBoard/Units" index="3" instance=ExtResource( 3 )]
+position = Vector2( 56, 8 )
 skin = ExtResource( 2 )

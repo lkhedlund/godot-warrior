@@ -1,6 +1,5 @@
 extends HBoxContainer
 
-
 var ability_name: String
 var ability_description: String
 

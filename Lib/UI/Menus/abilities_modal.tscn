@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Lib/UI/Menus/abilities_modal.gd" type="Script" id=1]
 [ext_resource path="res://Lib/UI/modal_menu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Lib/Unit/Abilities/attack.tres" type="Resource" id=3]
+[ext_resource path="res://Lib/Unit/Abilities/walk.tres" type="Resource" id=4]
+[ext_resource path="res://Lib/Unit/Abilities/feel.tres" type="Resource" id=5]
+[ext_resource path="res://Lib/Unit/Abilities/rest.tres" type="Resource" id=6]
 
 [node name="AbilitiesModal" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
+abilities = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 6 ) ]
 
 [node name="AbilityList" type="VBoxContainer" parent="." index="2"]
 anchor_right = 1.0

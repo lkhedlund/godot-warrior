@@ -9,11 +9,11 @@ func _ready() -> void:
 	EventBus.connect("player_stats_changed", self, "_on_Player_Stats_changed")
 	EventBus.connect("reset_game", self, "_on_reset_game")
 	initialize_game()
-	load_player_stats()
-	level_manager.load_level(player_stats.current_level)
 
 func initialize_game() -> void:
 	game = get_tree().get_root().get_node('/root/Game')
+	load_player_stats()
+	level_manager.load_level(0)
 	EventBus.emit_signal("game_init")
 
 func game_over() -> void:

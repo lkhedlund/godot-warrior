@@ -4,4 +4,5 @@
 
 [resource]
 script = ExtResource( 1 )
-current_level = 1
+current_level = 0
+unlocked_abilities = [  ]
