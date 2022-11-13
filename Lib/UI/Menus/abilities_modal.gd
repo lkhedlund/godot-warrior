@@ -1,4 +1,4 @@
-extends Popup
+extends ModalMenu
 
 var abilities
 var ability_item_ui = preload("res://Lib/UI/ability_item.tscn")

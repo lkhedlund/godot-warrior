@@ -2,8 +2,8 @@ extends Control
 
 onready var play_button = $BottomContainer/PlayerButtons/PlayButton
 onready var player_log = $BottomContainer/PlayerOutput/PlayerLog
-onready var menu_popup = $MenuPopup
-onready var abilities_popup = $AbilitiesPopup
+onready var menu_popup = $MainModal
+onready var abilities_popup = $AbilitiesModal
 onready var new_ability = $BottomContainer/PlayerButtons/AbilitiesButton/NewIcon
 
 func _ready() -> void:
@@ -12,13 +12,6 @@ func _ready() -> void:
 	EventBus.connect("ability_gained", self, "_on_Ability_gained")
 	# Reset player log
 	player_log.bbcode_text = ""
-
-func _on_PlayButton_pressed():
-	play_button.disabled = true
-	EventBus.emit_signal("play_button_pressed")
-	
-func _on_MenuButton_pressed():
-	menu_popup.open_menu()
 
 func _on_Exit_level() -> void:
 	play_button.disabled = false
@@ -35,10 +28,19 @@ func format_log(log_type: String, new_line: String) -> String:
 		"hint":
 			return "[color=aqua][HINT] %s[/color]" % formatted_line
 	return formatted_line
+	
+# Signals
 
 func _on_Ability_gained(_ability) -> void:
 	new_ability.visible = true
+	
+func _on_PlayButton_pressed():
+	play_button.disabled = true
+	EventBus.emit_signal("play_button_pressed")
+	
+func _on_MenuButton_pressed():
+	menu_popup.open_menu()
 
-func _on_AbilitiesButton_pressed():
+func _on_AbilitiesButton_pressed() -> void:
 	new_ability.visible = false
-	abilities_popup.visible = true
+	abilities_popup.open_menu()
