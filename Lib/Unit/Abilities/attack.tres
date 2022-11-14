@@ -8,4 +8,4 @@ name = "attack"
 description = "Call [color=red]warrior.attack()[/color] to attack anything in the space next to you."
 ability_range = 1
 action_cost = 1
-damage = 5
+damage = 10

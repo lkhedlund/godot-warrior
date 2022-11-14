@@ -106,7 +106,6 @@ icon_align = 1
 [node name="MainModal" parent="PlayerUI" instance=ExtResource( 4 )]
 
 [node name="AbilitiesModal" parent="PlayerUI" instance=ExtResource( 7 )]
-abilities = [  ]
 
 [connection signal="pressed" from="PlayerUI/BottomContainer/PlayerButtons/AbilitiesButton" to="PlayerUI" method="_on_AbilitiesButton_pressed"]
 [connection signal="pressed" from="PlayerUI/BottomContainer/PlayerButtons/PlayButton" to="PlayerUI" method="_on_PlayButton_pressed"]

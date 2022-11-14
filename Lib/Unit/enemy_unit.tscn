@@ -8,3 +8,6 @@
 [node name="EnemyUnit" groups=["enemy"] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 abilities = [ ExtResource( 4 ), ExtResource( 3 ) ]
+
+[node name="FloatingTextEffect" parent="." index="2"]
+position = Vector2( 0, 0 )
