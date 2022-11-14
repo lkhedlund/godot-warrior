@@ -1,7 +1,7 @@
 class_name Attack
 extends Ability
 
-export var damage := 10
+export var damage := 5
 
 func perform(unit: Unit, _params={}) -> void:
 	var board = unit.game_board
@@ -12,5 +12,5 @@ func perform(unit: Unit, _params={}) -> void:
 			do_damage(adjacent_unit)
 
 func do_damage(unit: Unit) -> void:
-	unit.set_health(-damage)
+	unit.take_damage(-damage)
 

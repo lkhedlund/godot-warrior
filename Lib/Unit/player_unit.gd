@@ -13,15 +13,13 @@ func _ready() -> void:
 	player_stats = GameManager.player_stats
 	unlocked_abilities = player_stats.unlocked_abilities
 	._ready()
-	
-#func has_ability(ability_name: String) -> bool:
-	#if not unlocked_abilities.has(ability_name): return false
-
-	#return .has_ability(ability_name) # super
 
 func take_turn() -> void:
 	.take_turn() # super
 	player.play_turn(self)
+	
+func set_health(_amount: int) -> void:
+	pass
 
 func _on_Ability_gained(ability: Ability) -> void:
 	if ability.name == "attack":

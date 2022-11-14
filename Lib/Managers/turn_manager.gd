@@ -24,16 +24,9 @@ func start_round() -> void:
 	advance_round()
 	
 func advance_turn(unit: Unit) -> void:
-	if unit.action_points > 0:
-		_timer.start(_turn_cooldown)
-		yield(_timer, "timeout")
-		unit.take_turn()
-	else:
-		var ap_empty_text = """
-		You've run out of action points. You can only perform
-		one main action at a time, i.e. walk, attack, etc.
-		"""
-		EventBus.emit_signal("update_player_log", ap_empty_text)
+	_timer.start(_turn_cooldown)
+	yield(_timer, "timeout")
+	unit.take_turn()
 	unit.reset_ap()
 	emit_signal("turn_over")
 	

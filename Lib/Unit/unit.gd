@@ -76,6 +76,19 @@ func move_along_path(path: PoolVector2Array) -> void:
 		current_cell = path[-1]
 		self._is_moving = true
 		
+func take_damage(amount: int) -> void:
+	health = clamp(health + amount, 0, max_health)
+	emit_signal("health_changed", amount)
+	if health <= 0:
+		dead()
+	
+func heal(amount: int) -> void:
+	if health < max_health:
+		health = clamp(health + amount, 0, max_health)
+		emit_signal("health_changed", amount)
+		if health <= 0:
+			dead()
+
 func dead() -> void:
 	game_board.remove_unit_at_position(current_cell)
 	self.queue_free()
@@ -96,11 +109,17 @@ func use_ability(ability_name: String, params={}):
 	if not has_ability(ability_name): return
 	
 	var ability = load_ability(ability_name)
+	if can_use_ability(ability):
+		return
+	
 	reduce_ap(ability.action_cost)
 	return ability.perform(self, params)
+
+func can_use_ability(ability) -> bool:
+	return action_points <= 0 and ability.action_cost > 0
 	
 func reduce_ap(cost: int) -> void:
-	action_points -= cost
+	action_points = clamp(action_points - cost, 0, 1)
 
 func reset_ap() -> void:
 	action_points = 1
@@ -111,8 +130,8 @@ func walk() -> void:
 func attack() -> void:
 	use_ability("attack")
 	
-func health() -> int:
-	return use_ability("health")
+func rest() -> void:
+	use_ability("rest")
 	
 func feel(unit_type: String) -> bool:
 	return use_ability("feel", { "unit_type": unit_type })
@@ -133,8 +152,6 @@ func set_skin(value: Texture) -> void:
 func set_health(amount: int) -> void:
 	health = clamp(health + amount, 0, max_health)
 	emit_signal("health_changed", amount)
-	if health <= 0:
-		dead()
 	
 func _set_is_moving(value: bool) -> void:
 	_is_moving = value

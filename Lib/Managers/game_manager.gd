@@ -3,6 +3,8 @@ extends Node
 var game
 var player_stats
 
+export var debug_level := 0
+
 onready var level_manager: LevelManager = $LevelManager
 
 func _ready() -> void:
@@ -13,7 +15,7 @@ func _ready() -> void:
 func initialize_game() -> void:
 	game = get_tree().get_root().get_node('/root/Game')
 	load_player_stats()
-	level_manager.load_level(0)
+	level_manager.load_level(debug_level)
 	EventBus.emit_signal("game_init")
 
 func game_over() -> void:
@@ -21,7 +23,6 @@ func game_over() -> void:
 	get_tree().quit()
 
 func load_player_stats():
-	reinitialize_player_stats()
 	# Load the player's current stats
 	var existing_stats = load("user://player_stats.tres")
 	if existing_stats:
