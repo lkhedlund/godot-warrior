@@ -17,14 +17,14 @@ move_speed = 800
 direction = Vector2( 1, 0 )
 abilities = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 8 ) ]
 skin = ExtResource( 3 )
+weapon_skin = ExtResource( 4 )
+weapon_offset = Vector2( 7, 1 )
 
 [node name="Sprite" parent="PathFollow2D" index="0"]
 texture = ExtResource( 3 )
 
-[node name="Sword" type="Node2D" parent="." index="2"]
-visible = false
-position = Vector2( 7, 5 )
+[node name="Weapon" type="Node2D" parent="." index="3"]
 
-[node name="Sprite" type="Sprite" parent="Sword" index="0"]
-position = Vector2( 0, -4 )
+[node name="Sprite" type="Sprite" parent="Weapon" index="0"]
+position = Vector2( 7, 1 )
 texture = ExtResource( 4 )

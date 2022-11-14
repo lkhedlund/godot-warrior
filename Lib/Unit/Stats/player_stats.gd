@@ -4,6 +4,9 @@ extends Resource
 export var current_level := 0 setget set_current_level
 export(Array) var unlocked_abilities: Array
 
+func has_unlocked(ability_name: String) -> bool:
+	return unlocked_abilities.has(ability_name)
+
 func set_current_level(new_level: int) -> void:
 	if new_level == current_level: return
 
@@ -11,7 +14,7 @@ func set_current_level(new_level: int) -> void:
 	_send_update_event()
 
 func set_ability(new_ability: Resource) -> void:
-	if unlocked_abilities.has(new_ability.name): return
+	if has_unlocked(new_ability.name): return
 	
 	unlocked_abilities.append(new_ability.name)
 	EventBus.emit_signal("ability_gained", new_ability)

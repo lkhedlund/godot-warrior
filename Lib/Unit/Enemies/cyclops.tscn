@@ -5,6 +5,7 @@
 
 [node name="Cyclops" instance=ExtResource( 1 )]
 unit_name = "Cyclops"
+max_health = 25
 skin = ExtResource( 2 )
 
 [node name="Sprite" parent="PathFollow2D" index="0"]

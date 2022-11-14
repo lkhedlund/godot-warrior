@@ -3,9 +3,10 @@
 [ext_resource path="res://Lib/Unit/Abilities/attack.gd" type="Script" id=1]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource( 1 )
 name = "attack"
 description = "Call [color=red]warrior.attack()[/color] to attack anything in the space next to you."
 ability_range = 1
 action_cost = 1
-damage = 10
+damage = 5
