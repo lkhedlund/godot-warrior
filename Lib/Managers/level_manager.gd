@@ -17,6 +17,7 @@ func load_next_level() -> void:
 
 func clear_previous_level() -> void:
 	GameManager.game.remove_child(current_level)
+	current_level.queue_free()
 	
 func get_level_at_index(index: int) -> PackedScene:
 	return levels[index].instance()
