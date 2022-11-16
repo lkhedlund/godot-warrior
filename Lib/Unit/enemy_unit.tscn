@@ -1,13 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Lib/Unit/unit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Lib/Unit/enemy_unit.gd" type="Script" id=2]
-[ext_resource path="res://Lib/Unit/Abilities/attack.tres" type="Resource" id=3]
-[ext_resource path="res://Lib/Unit/Abilities/feel.tres" type="Resource" id=4]
 
 [node name="EnemyUnit" groups=["enemy"] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-abilities = [ ExtResource( 4 ), ExtResource( 3 ) ]
-
-[node name="FloatingTextEffect" parent="." index="2"]
-position = Vector2( 0, 0 )

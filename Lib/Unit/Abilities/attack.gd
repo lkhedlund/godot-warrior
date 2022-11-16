@@ -9,8 +9,4 @@ func perform(unit: Unit, _params={}) -> void:
 	if board.is_occupied(next_cell):
 		var adjacent_unit = board.get_unit_at_position(next_cell)
 		if adjacent_unit:
-			do_damage(adjacent_unit)
-
-func do_damage(unit: Unit) -> void:
-	unit.take_damage(-damage)
-
+			unit.take_damage(-damage)

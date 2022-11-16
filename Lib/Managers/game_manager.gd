@@ -19,8 +19,8 @@ func initialize_game() -> void:
 	EventBus.emit_signal("game_init")
 
 func game_over() -> void:
-	print("Game Over")
-	get_tree().quit()
+	var level_tip = level_manager.get_current_level_tip()
+	EventBus.emit_signal("game_over", level_tip)
 
 func load_player_stats():
 	reinitialize_player_stats()

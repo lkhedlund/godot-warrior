@@ -91,6 +91,9 @@ func heal(amount: int) -> void:
 
 func dead() -> void:
 	game_board.remove_unit_at_position(current_cell)
+	if self.is_in_group("player"):
+		print("Game Over")
+		GameManager.game_over()
 	self.queue_free()
 
 # Abilities

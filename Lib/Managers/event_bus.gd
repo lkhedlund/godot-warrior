@@ -20,6 +20,7 @@ signal player_init
 signal unit_turns_loaded
 signal exit_level
 signal reset_game
+signal game_over(level_tip_text)
 
 signal player_stats_changed(player_stats)
 signal ability_gained(ability)

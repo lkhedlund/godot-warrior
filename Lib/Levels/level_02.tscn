@@ -7,6 +7,7 @@
 [node name="Level_02" instance=ExtResource( 1 )]
 description = "Uh oh! This room is full of enemies. You're going to have to rest if you want to make it through."
 hint = "Use warrior.health to keep an eye on your health, and warrior.rest() to heal up before continuing."
+tip = "When there is no enemy ahead of you call warrior.rest() until health is full before walking forward."
 new_abilities = [ ExtResource( 4 ) ]
 
 [node name="Rat" parent="GameBoard/Units" index="1" instance=ExtResource( 2 )]

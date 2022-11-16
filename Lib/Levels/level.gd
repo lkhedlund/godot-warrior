@@ -3,6 +3,7 @@ extends Node
 
 export(String, MULTILINE) var description
 export(String, MULTILINE) var hint
+export(String, MULTILINE) var tip
 export var score := 0
 export(Array, Resource) var new_abilities: Array
 

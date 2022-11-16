@@ -21,3 +21,6 @@ func clear_previous_level() -> void:
 	
 func get_level_at_index(index: int) -> PackedScene:
 	return levels[index].instance()
+
+func get_current_level_tip() -> String:
+	return current_level.tip
