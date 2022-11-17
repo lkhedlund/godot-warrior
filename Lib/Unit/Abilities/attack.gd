@@ -1,6 +1,8 @@
 class_name Attack
 extends Ability
 
+export var cooldown := 0
+
 func perform(unit: Unit, params={}) -> void:
 	var damage = params["damage"]
 	var board = unit.game_board

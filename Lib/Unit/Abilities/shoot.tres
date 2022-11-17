@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Lib/Unit/Abilities/shoot.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "shoot"
+description = "Call [color=red]warrior.shoot()[/color] to fire your bow!"
+ability_range = 2
+action_cost = 1
+cooldown = 1
