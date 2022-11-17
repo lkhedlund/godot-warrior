@@ -19,7 +19,7 @@ func initialize_game() -> void:
 	EventBus.emit_signal("game_init")
 
 func game_over() -> void:
-	var level_tip = level_manager.get_current_level_tip()
+	var level_tip = "TIP: " + level_manager.get_current_level_tip()
 	EventBus.emit_signal("game_over", level_tip)
 
 func load_player_stats():

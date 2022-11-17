@@ -10,5 +10,5 @@ func display_effect(value, heal=false) -> void:
 	add_child(instance)
 	instance.show_value(str(value), travel, duration, heal)
 
-func _on_Unit_health_changed(amount: int) -> void:
-	display_effect(amount)
+func _on_Unit_health_changed(amount: int, type: String) -> void:
+	display_effect(amount, type == 'heal')
