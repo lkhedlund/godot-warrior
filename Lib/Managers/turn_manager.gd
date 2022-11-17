@@ -4,6 +4,7 @@ extends Node
 signal turn_over
 
 var current_round := 1
+var current_turn: Unit
 var turn_queue := []
 
 export var _turn_cooldown := 0.5
@@ -17,9 +18,13 @@ func _ready() -> void:
 func start_round() -> void:
 	if turn_queue.empty(): return
 
+	var i = 0
 	for unit in turn_queue:
-		advance_turn(unit)
-		yield(self, "turn_over")
+		# Only take turns for the first two units in the 
+		# queue, i.e. the player and first enemy.
+		if i == 0 or i == 1:
+			yield(advance_turn(unit), "completed")
+		i += 1
 	# Advance to the next round
 	advance_round()
 	
@@ -28,7 +33,6 @@ func advance_turn(unit: Unit) -> void:
 	yield(_timer, "timeout")
 	unit.take_turn()
 	unit.reset_ap()
-	emit_signal("turn_over")
 	
 func add_turn_to_queue(unit: Unit) -> void:
 	if turn_queue.has(unit): return
