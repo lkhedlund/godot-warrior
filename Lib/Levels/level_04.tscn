@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Lib/Levels/Level.tscn" type="PackedScene" id=1]
+
+[node name="Level_04" instance=ExtResource( 1 )]
+description = "That archer was a pain. Good thing you grabbed their bow. Ranged attacks unlocked!"

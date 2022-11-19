@@ -105,11 +105,6 @@ _global_script_classes=[ {
 "path": "res://Lib/Unit/Abilities/shoot.gd"
 }, {
 "base": "Node",
-"class": "Start",
-"language": "GDScript",
-"path": "res://Lib/Exit/start.gd"
-}, {
-"base": "Node",
 "class": "TurnManager",
 "language": "GDScript",
 "path": "res://Lib/Managers/turn_manager.gd"
@@ -154,7 +149,6 @@ _global_script_class_icons={
 "PlayerUnit": "",
 "Rest": "",
 "Shoot": "",
-"Start": "",
 "TurnManager": "",
 "Unit": "",
 "UnitOverlay": "",
