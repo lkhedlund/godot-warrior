@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Lib/Levels/Level.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Lib/Unit/Enemies/cyclops.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Lib/Unit/Enemies/archer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Lib/Unit/Enemies/rat.tscn" type="PackedScene" id=3]
 
 [node name="Level_03" instance=ExtResource( 1 )]
-description = "The enemy looks at lot tougher in this room. You brace yourself for a tough battle."
+description = "You spot an archer in the back! They ready their bow and prepare to attack."
 hint = "No new abilities this time, but you must be careful not to rest while taking damage."
+tip = "Create a new variable outside of play_turn() to store your health at the end of the turn. If your stored health is greater than your current health, you're taking damage."
 
-[node name="Cyclops" parent="GameBoard/Units" index="1" instance=ExtResource( 2 )]
+[node name="Rat" parent="GameBoard/Units" index="1" instance=ExtResource( 3 )]
+position = Vector2( 56, 8 )
+
+[node name="Archer" parent="GameBoard/Units" index="2" instance=ExtResource( 2 )]
 position = Vector2( 72, 8 )
+vision_range = 7

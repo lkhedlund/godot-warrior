@@ -9,3 +9,4 @@ description = "Call [color=red]warrior.attack()[/color] to attack anything in th
 ability_range = 1
 action_cost = 1
 cooldown = 0
+is_on_cooldown = false

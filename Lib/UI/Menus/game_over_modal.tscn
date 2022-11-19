@@ -1,15 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Lib/UI/Themes/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Lib/UI/Menus/game_over_modal.gd" type="Script" id=2]
 [ext_resource path="res://Lib/UI/Themes/Kenney Pixel.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Lib/UI/Themes/Kenney Future Narrow.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
 font_data = ExtResource( 3 )
 
+[sub_resource type="DynamicFont" id=2]
+size = 8
+font_data = ExtResource( 4 )
+
 [node name="GameOverModal" type="Popup"]
 pause_mode = 2
+visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
@@ -26,9 +32,9 @@ anchor_bottom = 1.0
 
 [node name="StackedContent" type="VBoxContainer" parent="CentreContainer"]
 margin_left = 60.0
-margin_top = 41.0
+margin_top = 46.0
 margin_right = 260.0
-margin_bottom = 138.0
+margin_bottom = 134.0
 rect_min_size = Vector2( 200, 0 )
 
 [node name="YouDiedLabel" type="RichTextLabel" parent="CentreContainer/StackedContent"]
@@ -43,14 +49,16 @@ fit_content_height = true
 [node name="LevelTip" type="RichTextLabel" parent="CentreContainer/StackedContent"]
 margin_top = 35.0
 margin_right = 200.0
-margin_bottom = 74.0
+margin_bottom = 65.0
+custom_fonts/normal_font = SubResource( 2 )
 text = "When there is no enemy ahead of you call warrior.rest! until health is full before walking forward."
 fit_content_height = true
 
 [node name="TryAgainButton" type="Button" parent="CentreContainer/StackedContent"]
-margin_top = 78.0
+pause_mode = 2
+margin_top = 69.0
 margin_right = 200.0
-margin_bottom = 97.0
+margin_bottom = 88.0
 text = "Try Again"
 
 [connection signal="pressed" from="CentreContainer/StackedContent/TryAgainButton" to="." method="_on_TryAgainButton_pressed"]

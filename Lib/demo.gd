@@ -6,4 +6,7 @@ func play_turn(warrior: Unit) -> void:
 	if warrior.feel("enemy"):
 		warrior.attack()
 	else:
-		warrior.walk()
+		if health <= 15:
+			warrior.rest()
+		else:
+			warrior.walk()

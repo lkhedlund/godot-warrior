@@ -16,6 +16,7 @@ export var grid: Resource = preload("res://Lib/Grid/grid.tres")
 export var max_health := 10
 export var move_range := 1
 export var move_speed := 600
+export var vision_range := 3
 export var action_points := 1
 export var damage := 5
 export var direction : Vector2 = Vector2.LEFT
@@ -114,7 +115,7 @@ func use_ability(ability_name: String, params={}):
 	var ability = load_ability(ability_name)
 
 	if not can_use_ability(ability):
-		var log_text = "Out of action points!"
+		var log_text = "You don't have enough action points to %s!" % ability.name
 		EventBus.emit_signal("update_player_log", log_text)
 		return
 	
@@ -136,8 +137,18 @@ func walk() -> void:
 func attack() -> void:
 	use_ability("attack", { "damage": damage })
 	
+func shoot(target_unit: Unit) -> void:
+	var params = {
+		"damage": damage,
+		"target_unit": target_unit
+	}
+	use_ability("shoot", params)
+	
 func rest() -> void:
 	use_ability("rest")
+	
+func look() -> Array:
+	return use_ability("look")
 	
 func feel(unit_type: String) -> bool:
 	return use_ability("feel", { "unit_type": unit_type })

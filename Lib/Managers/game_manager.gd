@@ -4,6 +4,7 @@ var game
 var player_stats
 
 export var debug_level := 0
+export var debug_mode := false
 
 onready var level_manager: LevelManager = $LevelManager
 
@@ -15,8 +16,13 @@ func _ready() -> void:
 func initialize_game() -> void:
 	game = get_tree().get_root().get_node('/root/Game')
 	load_player_stats()
-	level_manager.load_level(debug_level)
+	level_manager.load_level(get_current_level())
 	EventBus.emit_signal("game_init")
+	
+func get_current_level() -> int:
+	if debug_mode: return debug_level
+	
+	return player_stats.current_level
 
 func game_over() -> void:
 	var level_tip = "TIP: " + level_manager.get_current_level_tip()

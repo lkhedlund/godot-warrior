@@ -45,6 +45,10 @@ func _reinitialize() -> void:
 func get_walkable_cells(unit: Unit) -> Array:
 	return _flood_fill(unit.current_cell, unit.move_range)
 	
+func get_visible_cells(unit: Unit) -> Array:
+	var cells = _flood_fill(unit.current_cell, unit.vision_range)
+	return cells
+	
 func remove_unit_at_position(cell: Vector2) -> void:
 	var dead_unit = _units[cell]
 	_turn_manager.remove_turn_from_queue(dead_unit)
@@ -82,14 +86,11 @@ func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 		walkable_cells.append(current)
 		
 		# look at neighbours of current cell and fill if unoccupied
-		for direction in DIRECTIONS:
-			var coordinates: Vector2 = current + direction
-			if is_occupied(coordinates):
-				continue
-			if coordinates in walkable_cells:
-				continue
+		var coordinates: Vector2 = current + current_unit.direction
+		if coordinates in walkable_cells:
+			continue
 				
-			stack.append(coordinates)
+		stack.append(coordinates)
 	
 	return walkable_cells
 
@@ -99,9 +100,6 @@ func _select_unit(unit: Unit) -> void:
 	current_unit.is_selected = true
 	_walkable_cells = get_walkable_cells(current_unit)
 	_unit_path.initialize(_walkable_cells)
-	
-func look(cells: Array):
-	_unit_overlay.draw(_walkable_cells)
 	
 func _deselect_player_unit() -> void:
 	current_unit.is_selected = false

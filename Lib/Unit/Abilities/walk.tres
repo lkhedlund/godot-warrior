@@ -8,3 +8,5 @@ name = "walk"
 description = "The most basic of actions! Call [color=red]walk()[/color] to walk in a straight line."
 ability_range = 1
 action_cost = 1
+cooldown = 0
+is_on_cooldown = false
