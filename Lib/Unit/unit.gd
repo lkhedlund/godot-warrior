@@ -114,7 +114,7 @@ func use_ability(ability_name: String, params={}):
 	
 	var ability = load_ability(ability_name)
 
-	if not can_use_ability(ability):
+	if not can_use_ability(ability) && self.is_in_group("player"):
 		var log_text = "You don't have enough action points to %s!" % ability.name
 		EventBus.emit_signal("update_player_log", log_text)
 		return

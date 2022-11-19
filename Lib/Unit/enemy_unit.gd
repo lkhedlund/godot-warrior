@@ -2,14 +2,20 @@ tool
 class_name EnemyUnit
 extends Unit
 
+export var ranged_unit := false
+
 func take_turn() -> void:
 	.take_turn() # super
 
-	var targets = self.look()	
-	if targets:
+	if ranged_unit:
+		if feel("player"): return
+
+		var targets = look()	
+		if not targets: return
+		
 		for target in targets:
 			if target.is_in_group("player"):
 				shoot(target)
-	
-	if self.feel("player"):
-		attack()
+	else:
+		if feel("player"):
+			attack()

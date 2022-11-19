@@ -8,6 +8,7 @@ unit_name = "Cyclops"
 max_health = 25
 damage = 15
 skin = ExtResource( 2 )
+ranged_unit = false
 
 [node name="Sprite" parent="PathFollow2D" index="0"]
 texture = ExtResource( 2 )
