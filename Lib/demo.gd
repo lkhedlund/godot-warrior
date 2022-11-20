@@ -1,6 +1,6 @@
 extends Node2D
 
-var current_health
+var current_health := 0
 
 func play_turn(warrior: Unit) -> void:
 	var health = warrior.health
@@ -13,18 +13,10 @@ func play_turn(warrior: Unit) -> void:
 			for target in targets:
 				warrior.shoot(target)
 	else:
-		if taking_damage(health):
+		if health < current_health:
 			warrior.walk()
 		elif health <= 15:
 			warrior.rest()
 		else:
 			warrior.walk()
-	
 	current_health = health
-
-func taking_damage(health: int) -> bool:
-	if current_health:
-		print(health)
-		print(current_health)
-		return health <= current_health
-	return false
