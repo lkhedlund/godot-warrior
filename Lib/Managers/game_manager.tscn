@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Lib/Managers/game_manager.gd" type="Script" id=1]
 [ext_resource path="res://Lib/Managers/level_manager.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Lib/Levels/level_00.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Lib/Levels/level_01.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Lib/Levels/level_02.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Lib/Levels/level_03.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Lib/Levels/level_04.tscn" type="PackedScene" id=7]
 
 [node name="GameManager" type="Node"]
 script = ExtResource( 1 )
-debug_level = 3
+debug_level = 4
 debug_mode = true
 
 [node name="LevelManager" parent="." instance=ExtResource( 2 )]
+levels = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ]

@@ -10,11 +10,17 @@ hint = "Use warrior.health to keep an eye on your health, and warrior.rest() to 
 tip = "When there is no enemy ahead of you call warrior.rest() until health is full before walking forward."
 new_abilities = [ ExtResource( 4 ) ]
 
+[node name="PlayerUnit" parent="GameBoard/Units" index="0"]
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
+
 [node name="Rat" parent="GameBoard/Units" index="1" instance=ExtResource( 2 )]
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 position = Vector2( 56, 8 )
 
 [node name="Rat2" parent="GameBoard/Units" index="2" instance=ExtResource( 2 )]
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 position = Vector2( 72, 8 )
 
 [node name="Rat3" parent="GameBoard/Units" index="3" instance=ExtResource( 2 )]
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 position = Vector2( 88, 8 )

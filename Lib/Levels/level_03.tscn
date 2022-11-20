@@ -9,8 +9,13 @@ description = "You spot an archer in the back! They ready their bow and prepare 
 hint = "No new abilities this time, but you must be careful not to rest while taking damage. If you get close to the archer, they won't be able to attack."
 tip = "Create a new variable outside of play_turn() to store your health at the end of the turn. If your stored health is greater than your current health, you're taking damage."
 
+[node name="PlayerUnit" parent="GameBoard/Units" index="0"]
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
+
 [node name="Rat" parent="GameBoard/Units" index="1" instance=ExtResource( 3 )]
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 position = Vector2( 56, 8 )
 
 [node name="Archer" parent="GameBoard/Units" index="2" instance=ExtResource( 2 )]
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 position = Vector2( 72, 8 )

@@ -50,7 +50,7 @@ margin_top = 35.0
 margin_right = 200.0
 margin_bottom = 65.0
 custom_fonts/normal_font = SubResource( 2 )
-text = "When there is no enemy ahead of you call warrior.rest! until health is full before walking forward."
+bbcode_enabled = true
 fit_content_height = true
 
 [node name="TryAgainButton" type="Button" parent="CentreContainer/StackedContent"]

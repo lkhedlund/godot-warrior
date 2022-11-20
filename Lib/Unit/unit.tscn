@@ -49,6 +49,7 @@ tracks/0/keys = {
 }
 
 [node name="Unit" type="Path2D" groups=["unit"]]
+self_modulate = Color( 1, 1, 1, 1 )
 curve = null
 script = ExtResource( 1 )
 
@@ -57,7 +58,6 @@ rotate = false
 loop = false
 
 [node name="Sprite" type="Sprite" parent="PathFollow2D"]
-modulate = Color( 1, 1, 1, 0.235294 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"

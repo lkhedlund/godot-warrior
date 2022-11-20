@@ -11,5 +11,9 @@ hint = "Use warrior.feel(\"enemy\") to see if there is anything in front of you,
 tip = "Add an if/else condition using warrior.feel(\"enemy\") to decide whether to warrior.attack() or warrior.walk()."
 new_abilities = [ ExtResource( 2 ), ExtResource( 3 ) ]
 
+[node name="PlayerUnit" parent="GameBoard/Units" index="0"]
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
+
 [node name="Rat" parent="GameBoard/Units" index="1" instance=ExtResource( 1 )]
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 position = Vector2( 72, 8 )

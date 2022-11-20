@@ -92,9 +92,10 @@ func heal(amount: int) -> void:
 		emit_signal("health_changed", amount, "heal")
 
 func dead() -> void:
-	game_board.remove_unit_at_position(current_cell)
 	if self.is_in_group("player"):
 		GameManager.game_over()
+	else:
+		game_board.remove_unit_at_position(current_cell)
 	self.queue_free()
 
 # Abilities

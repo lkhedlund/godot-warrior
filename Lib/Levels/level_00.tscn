@@ -5,7 +5,8 @@
 
 [node name="Level_00" instance=ExtResource( 2 )]
 description = "You see before you a long hallway with stairs at the end. Freedom at last!"
-hint = "Call warrior.walk! to walk forward in the Player 'play_turn' method."
+hint = "Call [color=red]warrior.walk()[/color] to walk forward in the Player [color=silver]play_turn[/color] method."
 new_abilities = [ ExtResource( 1 ) ]
 
 [node name="PlayerUnit" parent="GameBoard/Units" index="0" groups=["Unit"]]
+self_modulate = Color( 0.5, 0.6, 1, 0.7 )
