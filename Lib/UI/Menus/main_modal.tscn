@@ -23,19 +23,11 @@ margin_bottom = 23.0
 pressed = true
 text = "Extra Logs"
 
-[node name="DebugCheckbox" type="CheckBox" parent="MenuContainer/MenuButtons" index="1"]
-margin_top = 27.0
-margin_right = 100.0
-margin_bottom = 50.0
-pressed = true
-text = "Debug Mode"
-
-[node name="ResetButton" type="Button" parent="MenuContainer/MenuButtons" index="2"]
+[node name="ResetButton" type="Button" parent="MenuContainer/MenuButtons" index="1"]
 margin_top = 54.0
 margin_right = 100.0
 margin_bottom = 73.0
 text = "Reset Game"
 
 [connection signal="toggled" from="MenuContainer/MenuButtons/ExtraLogsCheckbox" to="." method="_on_ExtraLogsCheckbox_toggled"]
-[connection signal="toggled" from="MenuContainer/MenuButtons/DebugCheckbox" to="." method="_on_DebugCheckbox_toggled"]
 [connection signal="pressed" from="MenuContainer/MenuButtons/ResetButton" to="." method="_on_ResetButton_pressed"]

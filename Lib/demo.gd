@@ -24,5 +24,7 @@ func play_turn(warrior: Unit) -> void:
 
 func taking_damage(health: int) -> bool:
 	if current_health:
+		print(health)
+		print(current_health)
 		return health <= current_health
 	return false
