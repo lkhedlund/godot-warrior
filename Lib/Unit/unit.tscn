@@ -1,7 +1,36 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Lib/Unit/unit.gd" type="Script" id=1]
 [ext_resource path="res://Lib/Effects/floating_text_effect.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Lib/Assets/hurt.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=2]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("HurtEffect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HurtEffect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -19,23 +48,6 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "selected"
-length = 1.4
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("PathFollow2D/Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.7, 1.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0.235294 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.235294 ) ]
-}
-
 [node name="Unit" type="Path2D" groups=["unit"]]
 curve = null
 script = ExtResource( 1 )
@@ -45,11 +57,19 @@ rotate = false
 loop = false
 
 [node name="Sprite" type="Sprite" parent="PathFollow2D"]
+modulate = Color( 1, 1, 1, 0.235294 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/hurt = SubResource( 2 )
 anims/idle = SubResource( 1 )
-anims/selected = SubResource( 2 )
 
 [node name="FloatingTextEffect" parent="." instance=ExtResource( 2 )]
+
+[node name="HurtEffect" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, 2 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 3 )
 
 [connection signal="health_changed" from="." to="FloatingTextEffect" method="_on_Unit_health_changed"]

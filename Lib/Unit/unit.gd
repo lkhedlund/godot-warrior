@@ -81,15 +81,15 @@ func move_along_path(path: PoolVector2Array) -> void:
 func take_damage(amount: int) -> void:
 	health = clamp(health + amount, 0, max_health)
 	emit_signal("health_changed", amount, "damage")
+	_anim_player.play("hurt")
 	if health <= 0:
+		#yield(_anim_player, "animation_finished")
 		dead()
 	
 func heal(amount: int) -> void:
 	if health < max_health:
 		health = clamp(health + amount, 0, max_health)
 		emit_signal("health_changed", amount, "heal")
-		if health <= 0:
-			dead()
 
 func dead() -> void:
 	game_board.remove_unit_at_position(current_cell)
