@@ -10,6 +10,7 @@ Other nested nodes could connect to these signals:
 	EventBus.connect('party_walk_started', self, '_on_Party_walk_started')
 """
 # warning-ignore-all:unused_signal
+signal start_round(turn_queue)
 signal start_turn(unit)
 signal end_turn(unit)
 

@@ -17,3 +17,4 @@ func play_turn(warrior: Unit) -> void:
 			warrior.walk()
 	
 	current_health = health
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Lib/UI/Themes/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Lib/UI/player_ui.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Lib/Assets/new-ability.png" type="Texture" id=6]
 [ext_resource path="res://Lib/UI/Menus/abilities_modal.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Lib/UI/Menus/game_over_modal.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Lib/UI/turn_order.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 12
@@ -111,6 +112,8 @@ theme = null
 theme = null
 
 [node name="GameOverModal" parent="PlayerUI" instance=ExtResource( 8 )]
+
+[node name="TurnOrder" parent="PlayerUI" instance=ExtResource( 9 )]
 
 [connection signal="pressed" from="PlayerUI/BottomContainer/PlayerButtons/AbilitiesButton" to="PlayerUI" method="_on_AbilitiesButton_pressed"]
 [connection signal="pressed" from="PlayerUI/BottomContainer/PlayerButtons/PlayButton" to="PlayerUI" method="_on_PlayButton_pressed"]
