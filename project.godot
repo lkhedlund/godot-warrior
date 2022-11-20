@@ -29,10 +29,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Lib/Unit/enemy_unit.gd"
 }, {
-"base": "Node2D",
+"base": "Interactable",
 "class": "Exit",
 "language": "GDScript",
-"path": "res://Lib/Exit/exit.gd"
+"path": "res://Lib/World/exit.gd"
 }, {
 "base": "Ability",
 "class": "Feel",
@@ -53,6 +53,11 @@ _global_script_classes=[ {
 "class": "Guard",
 "language": "GDScript",
 "path": "res://Lib/Unit/Abilities/guard.gd"
+}, {
+"base": "Node2D",
+"class": "Interactable",
+"language": "GDScript",
+"path": "res://Lib/World/interactable.gd"
 }, {
 "base": "Node",
 "class": "Level",
@@ -139,6 +144,7 @@ _global_script_class_icons={
 "GameBoard": "",
 "Grid": "",
 "Guard": "",
+"Interactable": "",
 "Level": "",
 "LevelManager": "",
 "Look": "",

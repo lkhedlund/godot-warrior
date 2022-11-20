@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Lib/Exit/exit.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Lib/World/exit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Lib/Levels/level.gd" type="Script" id=2]
 [ext_resource path="res://Lib/Board/game_board.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Lib/Levels/Maps/beginner_map.tscn" type="PackedScene" id=4]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Lib/World/interactable.gd" type="Script" id=2]
+
+[node name="Interactable" type="Node2D" groups=["interactable"]]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]

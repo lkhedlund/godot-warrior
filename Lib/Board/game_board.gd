@@ -123,3 +123,9 @@ func move_current_unit(new_cell: Vector2) -> void:
 	
 func is_exit(cell: Vector2) -> bool:
 	return _exit.current_cell == cell
+	
+func is_trap(cell: Vector2) -> bool:
+	if $Trap:
+		return $Trap.current_cell == cell
+	
+	return false

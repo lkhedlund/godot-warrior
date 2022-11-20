@@ -76,6 +76,8 @@ func move_along_path(path: PoolVector2Array) -> void:
 		curve.add_point(grid.calculate_map_position(point) - position)
 		# Change the cell to the target position
 		current_cell = path[-1]
+		if game_board.is_trap(current_cell):
+			dead()
 		self._is_moving = true
 		
 func take_damage(amount: int) -> void:
