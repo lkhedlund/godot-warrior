@@ -1,14 +1,22 @@
 class_name Feel
 extends Ability
 
-func perform(unit: Unit, params={}):
-	var board = unit.game_board
-	var next_cell: Vector2 = unit.current_cell + unit.direction
+var board
 
-	if board.is_occupied(next_cell):
-		var adjacent_unit = board.get_unit_at_position(next_cell)
-		if params.has("unit_type"):
-			return adjacent_unit.is_in_group(params["unit_type"])
-		# If unit type is not provided, perform action anyways
-		return true
+func perform(unit: Unit, params={}):
+	if not params.has("unit_type"):
+		return false
+
+	board = unit.game_board
+	var next_cell: Vector2 = unit.current_cell + unit.direction
+	return feel_space(next_cell, params["unit_type"])
+
+func feel_space(next_cell: Vector2, unit_type: String) -> bool:
+	match unit_type:
+		"enemy":
+			if board.is_occupied(next_cell):
+				var adjacent_unit = board.get_unit_at_position(next_cell)
+				return adjacent_unit.is_in_group(unit_type)
+		"trap":
+			return board.is_trap(next_cell)
 	return false
