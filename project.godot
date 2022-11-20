@@ -109,6 +109,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Lib/Unit/Abilities/shoot.gd"
 }, {
+"base": "Interactable",
+"class": "Trap",
+"language": "GDScript",
+"path": "res://Lib/World/trap.gd"
+}, {
 "base": "Node",
 "class": "TurnManager",
 "language": "GDScript",
@@ -155,6 +160,7 @@ _global_script_class_icons={
 "PlayerUnit": "",
 "Rest": "",
 "Shoot": "",
+"Trap": "",
 "TurnManager": "",
 "Unit": "",
 "UnitOverlay": "",

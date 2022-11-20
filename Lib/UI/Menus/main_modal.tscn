@@ -12,9 +12,9 @@ anchor_bottom = 1.0
 
 [node name="MenuButtons" type="VBoxContainer" parent="MenuContainer" index="0"]
 margin_left = 110.0
-margin_top = 67.0
+margin_top = 53.0
 margin_right = 210.0
-margin_bottom = 113.0
+margin_bottom = 126.0
 rect_min_size = Vector2( 100, 0 )
 
 [node name="ExtraLogsCheckbox" type="CheckBox" parent="MenuContainer/MenuButtons" index="0"]
@@ -23,11 +23,19 @@ margin_bottom = 23.0
 pressed = true
 text = "Extra Logs"
 
-[node name="ResetButton" type="Button" parent="MenuContainer/MenuButtons" index="1"]
+[node name="DebugCheckbox" type="CheckBox" parent="MenuContainer/MenuButtons" index="1"]
 margin_top = 27.0
 margin_right = 100.0
-margin_bottom = 46.0
+margin_bottom = 50.0
+pressed = true
+text = "Debug Mode"
+
+[node name="ResetButton" type="Button" parent="MenuContainer/MenuButtons" index="2"]
+margin_top = 54.0
+margin_right = 100.0
+margin_bottom = 73.0
 text = "Reset Game"
 
 [connection signal="toggled" from="MenuContainer/MenuButtons/ExtraLogsCheckbox" to="." method="_on_ExtraLogsCheckbox_toggled"]
+[connection signal="toggled" from="MenuContainer/MenuButtons/DebugCheckbox" to="." method="_on_DebugCheckbox_toggled"]
 [connection signal="pressed" from="MenuContainer/MenuButtons/ResetButton" to="." method="_on_ResetButton_pressed"]
