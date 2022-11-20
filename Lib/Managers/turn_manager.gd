@@ -7,7 +7,7 @@ var current_round := 1
 var current_turn: Unit
 var turn_queue := []
 
-export var _turn_cooldown := 0.5
+export var _turn_cooldown := 0.75
 
 onready var _timer: Timer = $Timer
 

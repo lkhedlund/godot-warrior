@@ -118,7 +118,8 @@ func use_ability(ability_name: String, params={}):
 		var log_text = "You don't have enough action points to %s!" % ability.name
 		EventBus.emit_signal("update_player_log", log_text)
 		return
-	
+
+	log_action(ability)
 	reduce_ap(ability.action_cost)
 	return ability.perform(self, params)
 
@@ -152,7 +153,15 @@ func look() -> Array:
 	
 func feel(unit_type: String) -> bool:
 	return use_ability("feel", { "unit_type": unit_type })
-		
+	
+func log_action(ability) -> void:
+	if ability.action_cost < 1: return
+
+	var extra_log = "%s performed [color=red]%s[/color] action" % [self.unit_name, ability.name]
+	if self.is_in_group("enemy"):
+		extra_log = "[color=silver]%s[/color]" % extra_log
+	EventBus.emit_signal("update_player_log", extra_log, "extra")
+
 # Setters
 func set_current_cell(value: Vector2) -> void:
 	current_cell = grid.clamp(value)

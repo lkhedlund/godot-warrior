@@ -18,16 +18,16 @@ func _on_Exit_level() -> void:
 	player_log.text = ""
 
 func _on_Player_Log_update(new_line: String, log_type: String = "default") -> void:
-	if not player_log.bbcode_text.empty():
-		player_log.bbcode_text += "\n"
-	player_log.bbcode_text += format_log(log_type, new_line)
-
-func format_log(log_type: String, new_line: String) -> String:
-	var formatted_line = "> %s" % new_line
+	var base_line = "> %s" % new_line
+	var formatted = base_line
 	match log_type:
 		"hint":
-			return "[color=aqua][HINT] %s[/color]" % formatted_line
-	return formatted_line
+			formatted = "[color=aqua]HINT %s[/color]" % base_line
+		"extra":
+			if not GameManager.player_stats.extra_logging: return
+	if not player_log.bbcode_text.empty():
+		player_log.bbcode_text += "\n"
+	player_log.bbcode_text += formatted
 	
 # Signals
 func _on_Ability_gained(new_ability: Resource) -> void:

@@ -12,14 +12,22 @@ anchor_bottom = 1.0
 
 [node name="MenuButtons" type="VBoxContainer" parent="MenuContainer" index="0"]
 margin_left = 110.0
-margin_top = 80.0
+margin_top = 67.0
 margin_right = 210.0
-margin_bottom = 100.0
+margin_bottom = 113.0
 rect_min_size = Vector2( 100, 0 )
 
-[node name="ResetButton" type="Button" parent="MenuContainer/MenuButtons" index="0"]
+[node name="ExtraLogsCheckbox" type="CheckBox" parent="MenuContainer/MenuButtons" index="0"]
 margin_right = 100.0
-margin_bottom = 19.0
+margin_bottom = 23.0
+pressed = true
+text = "Extra Logs"
+
+[node name="ResetButton" type="Button" parent="MenuContainer/MenuButtons" index="1"]
+margin_top = 27.0
+margin_right = 100.0
+margin_bottom = 46.0
 text = "Reset Game"
 
+[connection signal="toggled" from="MenuContainer/MenuButtons/ExtraLogsCheckbox" to="." method="_on_ExtraLogsCheckbox_toggled"]
 [connection signal="pressed" from="MenuContainer/MenuButtons/ResetButton" to="." method="_on_ResetButton_pressed"]
