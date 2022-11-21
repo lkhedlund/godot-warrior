@@ -83,7 +83,7 @@ func move_along_path(path: PoolVector2Array) -> void:
 		self._is_moving = true
 		
 func take_damage(amount: int) -> void:
-	health = clamp(health + amount, 0, max_health)
+	health = int(clamp(health + amount, 0, max_health))
 	emit_signal("health_changed", amount, "damage")
 	_anim_player.play("hurt")
 	if health <= 0:
@@ -92,7 +92,7 @@ func take_damage(amount: int) -> void:
 	
 func heal(amount: int) -> void:
 	if health < max_health:
-		health = clamp(health + amount, 0, max_health)
+		health = int(clamp(health + amount, 0, max_health))
 		emit_signal("health_changed", amount, "heal")
 
 func dead() -> void:
@@ -133,7 +133,7 @@ func can_use_ability(ability) -> bool:
 	return (action_points - ability.action_cost) >= 0
 
 func reduce_ap(cost: int) -> void:
-	action_points = clamp(action_points - cost, 0, 1)
+	action_points = int(clamp(action_points - cost, 0, 1))
 
 func reset_ap() -> void:
 	action_points = 1
@@ -185,7 +185,7 @@ func set_skin(value: Texture) -> void:
 	_sprite.texture = value
 	
 func set_health(amount: int) -> void:
-	health = clamp(health + amount, 0, max_health)
+	health = int(clamp(health + amount, 0, max_health))
 	emit_signal("health_changed", amount)
 	
 func _set_is_moving(value: bool) -> void:

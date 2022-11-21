@@ -1,8 +1,6 @@
 class_name TurnManager
 extends Node
 
-signal turn_over
-
 var current_round := 1
 var current_turn: Unit
 var turn_queue := []

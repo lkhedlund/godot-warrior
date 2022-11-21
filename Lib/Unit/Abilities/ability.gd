@@ -8,5 +8,5 @@ export var action_cost := 1
 export var cooldown := 0
 export var is_on_cooldown := false
 
-func perform(unit: Unit, _params={}):
+func perform(_unit: Unit, _params={}):
 	pass
