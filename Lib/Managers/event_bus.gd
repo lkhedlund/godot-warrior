@@ -28,4 +28,4 @@ signal ability_gained(ability)
 signal play_button_pressed
 signal update_player_log(new_line, log_type)
 
-signal game_speed_adjusted(new_value)
+signal game_speed_changed(new_value)

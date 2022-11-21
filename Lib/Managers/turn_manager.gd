@@ -7,13 +7,15 @@ var current_round := 1
 var current_turn: Unit
 var turn_queue := []
 
-export var _turn_cooldown := 0.5
+var _turn_cooldown := 0.5
 
 onready var _timer: Timer = $Timer
 
 func _ready() -> void:
 	EventBus.connect("play_button_pressed", self, "_on_Play_Button_pressed")
 	EventBus.connect("exit_level", self, "_on_Exit_level")
+	EventBus.connect("game_speed_changed", self, "_on_game_speed_changed")
+	_turn_cooldown = GameManager.player_stats.game_speed
 
 func start_round() -> void:
 	if turn_queue.empty(): return
@@ -53,6 +55,9 @@ func reset_rounds() -> void:
 	current_round = 0
 
 # SIGNALS
+func _on_game_speed_changed(value: float) -> void:
+	_turn_cooldown = value
+
 func _on_Play_Button_pressed() -> void:
 	start_round()
 	
