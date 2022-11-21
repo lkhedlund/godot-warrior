@@ -144,6 +144,9 @@ func walk() -> void:
 func attack() -> void:
 	use_ability("attack", { "damage": damage })
 	
+func disarm() -> void:
+	use_ability("disarm")
+	
 func shoot(target_unit: Unit) -> void:
 	var params = {
 		"damage": damage,

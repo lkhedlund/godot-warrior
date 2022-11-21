@@ -19,8 +19,10 @@ onready var _turn_manager: TurnManager = $TurnManager
 
 # Dictionary to keep track of units on the board
 var _units := {}
+var _traps := {}
 
 func _ready() -> void:
+	EventBus.connect("trap_disarmed", self, "_on_trap_disarmed")
 	_reinitialize()
 
 func is_occupied(cell: Vector2) -> bool:
@@ -38,6 +40,9 @@ func _reinitialize() -> void:
 		unit.initialize(self)
 		_units[unit.current_cell] = unit
 		_turn_manager.add_turn_to_queue(unit)
+		
+	for trap in get_tree().get_nodes_in_group("trap"):
+		_traps[trap.current_cell] = trap
 
 	# Start the round
 	EventBus.emit_signal("unit_turns_loaded")
@@ -127,7 +132,10 @@ func is_exit(cell: Vector2) -> bool:
 	return _exit.current_cell == cell
 	
 func is_trap(cell: Vector2) -> bool:
-	if $Trap:
-		return $Trap.current_cell == cell
+	return _traps.has(cell)
 	
-	return false
+# SIGNALS
+func _on_trap_disarmed(cell: Vector2) -> void:
+	if is_trap(cell):
+		_traps[cell].queue_free()
+		_traps.erase(cell)

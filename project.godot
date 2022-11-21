@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Lib/Board/Cursor/cursor.gd"
 }, {
+"base": "Ability",
+"class": "Disarm",
+"language": "GDScript",
+"path": "res://Lib/Unit/Abilities/disarm.gd"
+}, {
 "base": "Unit",
 "class": "EnemyUnit",
 "language": "GDScript",
@@ -143,6 +148,7 @@ _global_script_class_icons={
 "Ability": "",
 "Attack": "",
 "Cursor": "",
+"Disarm": "",
 "EnemyUnit": "",
 "Exit": "",
 "Feel": "",

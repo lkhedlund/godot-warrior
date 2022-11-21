@@ -21,9 +21,10 @@ func _ready() -> void:
 func take_turn() -> void:
 	.take_turn() # super
 	player.play_turn(self)
-	
+
 func set_health(_amount: int) -> void:
-	pass
+	var text = "You can't set your health directly. Use [color=red]rest()[/color] to heal"
+	EventBus.emit_signal("update_log", text)
 
 func set_weapon_skin(value: Texture) -> void:
 	weapon_skin = value

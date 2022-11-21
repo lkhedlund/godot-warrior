@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Lib/Unit/Abilities/disarm.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "disarm"
+description = "Call [color=red]warrior.disarm()[/color] to disarm traps and chests."
+ability_range = 1
+action_cost = 1
+cooldown = 0
+is_on_cooldown = false
