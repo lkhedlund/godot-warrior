@@ -149,7 +149,7 @@ func disarm() -> void:
 	
 func shoot(target_unit: Unit) -> void:
 	var params = {
-		"damage": damage,
+		"damage": damage - 2,
 		"target_unit": target_unit
 	}
 	use_ability("shoot", params)

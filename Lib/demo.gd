@@ -4,8 +4,7 @@ var current_health := 0
 
 func play_turn(warrior: Unit) -> void:
 	var health = warrior.health
-	
-	ranged_attack(warrior)
+	var targets = warrior.look()
 
 	if warrior.feel("enemy"):
 		warrior.attack()
@@ -16,12 +15,13 @@ func play_turn(warrior: Unit) -> void:
 			warrior.walk()
 		elif health <= 15:
 			warrior.rest()
+		elif targets:
+			ranged_attack(warrior, targets)
 		else:
 			warrior.walk()
 	current_health = health
 
-func ranged_attack(warrior: Unit) -> void:
-	var targets = warrior.look()
+func ranged_attack(warrior: Unit, targets: Array) -> void:
 	if not targets: return
 
 	for target in targets:

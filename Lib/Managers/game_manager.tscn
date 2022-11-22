@@ -5,7 +5,6 @@
 
 [node name="GameManager" type="Node"]
 script = ExtResource( 1 )
-debug_level = 5
 debug_mode = true
 
 [node name="LevelManager" parent="." instance=ExtResource( 2 )]

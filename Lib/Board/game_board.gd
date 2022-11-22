@@ -51,7 +51,8 @@ func get_walkable_cells(unit: Unit) -> Array:
 	return _flood_fill(unit.current_cell, unit.move_range)
 	
 func get_visible_cells(unit: Unit) -> Array:
-	var cells = _flood_fill(unit.current_cell, unit.vision_range)
+	var starting_cell = unit.current_cell + (current_unit.direction * 2)
+	var cells = _flood_fill(starting_cell, unit.vision_range - 2)
 	if GameManager.debug_mode:
 		_unit_overlay.draw(cells)
 	return cells

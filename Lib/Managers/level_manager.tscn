@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Lib/Managers/level_manager.gd" type="Script" id=1]
 [ext_resource path="res://Lib/Levels/level_00.tscn" type="PackedScene" id=2]
@@ -7,7 +7,8 @@
 [ext_resource path="res://Lib/Levels/level_03.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Lib/Levels/level_04.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Lib/Levels/level_05.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Lib/Levels/level_06.tscn" type="PackedScene" id=8]
 
 [node name="LevelManager" type="Node"]
 script = ExtResource( 1 )
-levels = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ]
+levels = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ]

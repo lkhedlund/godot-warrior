@@ -8,8 +8,6 @@ func take_turn() -> void:
 	.take_turn() # super
 
 	if ranged_unit:
-		if feel("player"): return
-
 		var targets = look()	
 		if not targets: return
 		

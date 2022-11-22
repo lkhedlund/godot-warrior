@@ -6,9 +6,9 @@
 [ext_resource path="res://Lib/World/trap.tscn" type="PackedScene" id=5]
 
 [node name="Level_04" instance=ExtResource( 1 )]
-description = "That archer was a pain. Good thing you grabbed their bow. Kill the enemy to disarm the trap."
-hint = "To find a target, use [color=red]warrior.look()[/color] to get an array of units, and  [color=red]warrior.shoot()[/color] to shoot your bow. You can also [color=red]feel(\"trap\")[/color] to stop yourself from walking over it."
-tip = "Stop yourself by feeling for the trap. You can use  [color=red]look()[/color] to find all of the units within three squares, then a  \"for loop\" to [color=red]shoot()[/color] each unit."
+description = "The room is full of traps! Those spikes do not look friendly."
+hint = "Use [color=red]feel(\"trap\")[/color] to determine if a trap is infront of you, and [color=red]disarm()[/color] to disable it. "
+tip = "Make sure you aren't trying to walk over the trap before disarming it. You might also need to adjust your health to make sure you get to the archer before they kill you."
 new_abilities = [ ExtResource( 2 ) ]
 
 [node name="PlayerUnit" parent="GameBoard/Units" index="0"]
