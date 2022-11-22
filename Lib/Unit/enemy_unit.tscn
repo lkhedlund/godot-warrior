@@ -8,3 +8,4 @@
 [node name="EnemyUnit" groups=["enemy"] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 abilities = [ ExtResource( 4 ), ExtResource( 3 ) ]
+ranged_unit = false

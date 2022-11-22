@@ -17,6 +17,7 @@ func set_path(cell_start: Vector2, cell_end: Vector2) -> PoolVector2Array:
 	current_path = _pathfinder.calculate_point_path(cell_start, cell_end)
 	return current_path
 
+# warning-ignore:shadowed_variable
 func draw(current_path: PoolVector2Array) -> void:
 	for cell in current_path:
 		set_cellv(cell, 0)

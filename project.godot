@@ -185,6 +185,10 @@ config/icon="res://icon.png"
 GameManager="*res://Lib/Managers/game_manager.tscn"
 EventBus="*res://Lib/Managers/event_bus.gd"
 
+[debug]
+
+gdscript/warnings/return_value_discarded=false
+
 [display]
 
 window/size/width=320

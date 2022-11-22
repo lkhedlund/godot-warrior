@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Lib/Levels/Level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Lib/Unit/Abilities/shoot.tres" type="Resource" id=2]
+[ext_resource path="res://Lib/Unit/Abilities/look.tres" type="Resource" id=3]
+[ext_resource path="res://Lib/Unit/Enemies/rat.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Lib/Unit/Enemies/wizard.tscn" type="PackedScene" id=5]
+
+[node name="Level_05" instance=ExtResource( 1 )]
+description = "Wizards chant ahead. Certain death awaits those who barge in."
+hint = "To find a target, use [color=red]warrior.look()[/color] to get an array of units, and  [color=red]warrior.shoot()[/color] to shoot your bow."
+tip = "You can use a [color=silver]for loop[/color] to loop through the units. First, assign the result of [color=red]look()[/color] to a variable, then [color=red]for unit in units:[/color] to access each unit.
+"
+new_abilities = [ ExtResource( 3 ), ExtResource( 2 ) ]
+
+[node name="Wizard" parent="GameBoard/Units" index="1" instance=ExtResource( 5 )]
+position = Vector2( 56, 8 )
+
+[node name="Wizard2" parent="GameBoard/Units" index="2" instance=ExtResource( 5 )]
+position = Vector2( 104, 8 )
+
+[node name="Rat" parent="GameBoard/Units" index="3" instance=ExtResource( 4 )]
+position = Vector2( 88, 8 )
