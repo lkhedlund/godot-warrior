@@ -20,6 +20,12 @@ func _ready() -> void:
 func take_turn() -> void:
 	.take_turn() # super
 	player.play_turn(self)
+	
+func has_ability(ability_name: String) -> bool:
+	for ability in abilities:
+		if ability.name == ability_name and player_stats.has_unlocked(ability_name):
+			return true
+	return false
 
 func set_health(_amount: int) -> void:
 	var text = "You can't set your health directly. Use [color=red]rest()[/color] to heal"
@@ -39,8 +45,5 @@ func set_weapon_offset(value: Vector2) -> void:
 		
 func _on_new_abilities_gained(new_abilities: Array) -> void:
 	for ability in new_abilities:
-		ability.unlocked = true
 		player_stats.set_ability(ability)
-		if GameManager.debug_mode:
-			print("Ability %s unlocked? %s" % [ability.name, str(ability.unlocked)])
 

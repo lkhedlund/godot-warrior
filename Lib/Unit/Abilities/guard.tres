@@ -8,4 +8,3 @@ name = "guard"
 description = "Call [color=red]warrior.guard()[/color] to protect yourself from attacks."
 ability_range = 1
 action_cost = 1
-unlocked = false

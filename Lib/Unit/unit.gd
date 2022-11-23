@@ -106,7 +106,7 @@ func dead() -> void:
 # Abilities
 func has_ability(ability_name: String) -> bool:
 	for ability in abilities:
-		if ability.name == ability_name and ability.unlocked:
+		if ability.name == ability_name:
 			return true
 	return false
 	

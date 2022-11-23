@@ -5,7 +5,6 @@ export var name: String
 export(String, MULTILINE) var description
 export var ability_range := 1
 export var action_cost := 1
-export var unlocked := false
 
 func perform(_unit: Unit, _params={}):
 	pass

@@ -4,6 +4,6 @@
 
 [node name="TurnManager" type="Node"]
 script = ExtResource( 1 )
-_turn_cooldown = 0.25
+_turn_cooldown = 0.15
 
 [node name="Timer" type="Timer" parent="."]
