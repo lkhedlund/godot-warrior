@@ -1,6 +1,8 @@
 class_name LevelManager
 extends Node
 
+signal level_loaded
+
 var current_level: Node2D
 export(Array, PackedScene) var levels: Array
 
@@ -8,6 +10,7 @@ func load_level(new_level_index: int) -> void:
 	var new_level = get_level_at_index(new_level_index)
 	current_level = new_level
 	GameManager.game.add_child(new_level)
+	emit_signal("level_loaded")
 
 func load_next_level() -> void:
 	var next_level = GameManager.player_stats.current_level + 1

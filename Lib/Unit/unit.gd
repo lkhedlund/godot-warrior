@@ -105,12 +105,8 @@ func dead() -> void:
 
 # Abilities
 func has_ability(ability_name: String) -> bool:
-	if self.is_in_group("player"):
-		var unlocked = GameManager.player_stats.unlocked_abilities
-		if not unlocked.has(ability_name): return false
-
 	for ability in abilities:
-		if ability.name == ability_name:
+		if ability.name == ability_name and ability.unlocked:
 			return true
 	return false
 	

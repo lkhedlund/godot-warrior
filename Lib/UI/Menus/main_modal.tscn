@@ -17,38 +17,18 @@ margin_right = 210.0
 margin_bottom = 131.0
 rect_min_size = Vector2( 100, 0 )
 
-[node name="GameSpeed" type="VBoxContainer" parent="MenuContainer/MenuButtons" index="0"]
-margin_right = 100.0
-margin_bottom = 32.0
-size_flags_horizontal = 3
-
-[node name="SpeedLabel" type="Label" parent="MenuContainer/MenuButtons/GameSpeed" index="0"]
-margin_right = 100.0
-margin_bottom = 12.0
-text = "Game Speed"
-
-[node name="SpeedSlider" type="HSlider" parent="MenuContainer/MenuButtons/GameSpeed" index="1"]
-margin_top = 16.0
-margin_right = 100.0
-margin_bottom = 32.0
-max_value = 2.0
-step = 0.05
-value = 0.75
-scrollable = false
-
-[node name="ExtraLogsCheckbox" type="CheckBox" parent="MenuContainer/MenuButtons" index="1"]
+[node name="ExtraLogsCheckbox" type="CheckBox" parent="MenuContainer/MenuButtons" index="0"]
 margin_top = 36.0
 margin_right = 100.0
 margin_bottom = 59.0
 pressed = true
 text = "Extra Logs"
 
-[node name="ResetButton" type="Button" parent="MenuContainer/MenuButtons" index="2"]
+[node name="ResetButton" type="Button" parent="MenuContainer/MenuButtons" index="1"]
 margin_top = 63.0
 margin_right = 100.0
 margin_bottom = 82.0
 text = "Reset Game"
 
-[connection signal="value_changed" from="MenuContainer/MenuButtons/GameSpeed/SpeedSlider" to="." method="_on_SpeedSlider_value_changed"]
 [connection signal="toggled" from="MenuContainer/MenuButtons/ExtraLogsCheckbox" to="." method="_on_ExtraLogsCheckbox_toggled"]
 [connection signal="pressed" from="MenuContainer/MenuButtons/ResetButton" to="." method="_on_ResetButton_pressed"]

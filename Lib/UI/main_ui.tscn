@@ -105,7 +105,6 @@ icon = ExtResource( 5 )
 icon_align = 1
 
 [node name="MainModal" parent="PlayerUI" instance=ExtResource( 4 )]
-visible = false
 theme = null
 
 [node name="AbilitiesModal" parent="PlayerUI" instance=ExtResource( 7 )]

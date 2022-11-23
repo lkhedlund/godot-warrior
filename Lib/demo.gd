@@ -13,7 +13,7 @@ func play_turn(warrior: Unit) -> void:
 	else:
 		if health < current_health:
 			warrior.walk()
-		elif health <= 15:
+		elif health <= 14:
 			warrior.rest()
 		elif targets:
 			ranged_attack(warrior, targets)

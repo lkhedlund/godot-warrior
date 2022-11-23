@@ -4,6 +4,13 @@ extends Unit
 
 export var ranged_unit := false
 
+func _ready():
+	initialize_abilities()
+	
+func initialize_abilities() -> void:
+	for ability in abilities:
+		ability.unlocked = true
+
 func take_turn() -> void:
 	.take_turn() # super
 

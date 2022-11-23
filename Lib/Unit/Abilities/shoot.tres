@@ -8,5 +8,4 @@ name = "shoot"
 description = "Call [color=red]warrior.shoot()[/color] to fire your bow!"
 ability_range = 2
 action_cost = 1
-cooldown = 1
-is_on_cooldown = false
+unlocked = false

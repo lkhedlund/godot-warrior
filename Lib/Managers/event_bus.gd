@@ -25,8 +25,7 @@ signal game_over(level_tip_text)
 signal trap_disarmed(cell)
 
 signal player_stats_changed(player_stats)
-signal ability_gained(ability)
+signal new_abilities_gained(abilities)
 
 signal play_button_pressed
 signal update_player_log(new_line, log_type)
-signal game_speed_changed(new_value)

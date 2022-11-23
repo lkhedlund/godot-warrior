@@ -17,7 +17,6 @@ func initialize_game() -> void:
 	game = get_tree().get_root().get_node('/root/Game')
 	load_player_stats()
 	level_manager.load_level(get_current_level())
-	EventBus.emit_signal("game_init")
 	
 func get_current_level() -> int:
 	if debug_mode: return debug_level
@@ -29,6 +28,7 @@ func game_over() -> void:
 	EventBus.emit_signal("game_over", level_tip)
 
 func load_player_stats():
+	reinitialize_player_stats()
 	# Load the player's current stats
 	var existing_stats = load("user://player_stats.tres")
 	if existing_stats:
