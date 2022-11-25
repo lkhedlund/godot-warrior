@@ -8,3 +8,4 @@ name = "look"
 description = "Call [color=red]warrior.look()[/color] to find units ahead of you."
 ability_range = 3
 action_cost = 0
+level_unlocked = 5

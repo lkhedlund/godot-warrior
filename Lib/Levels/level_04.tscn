@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Lib/Levels/Level.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Lib/Unit/Abilities/disarm.tres" type="Resource" id=2]
 [ext_resource path="res://Lib/Unit/Enemies/archer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Lib/World/trap.tscn" type="PackedScene" id=5]
 
@@ -9,7 +8,6 @@
 description = "The room is full of traps! Those spikes do not look friendly."
 hint = "Use [color=red]feel(\"trap\")[/color] to determine if a trap is infront of you, and [color=red]disarm()[/color] to disable it. "
 tip = "Make sure you aren't trying to walk over the trap before disarming it. You might also need to adjust your health to make sure you get to the archer before they kill you."
-new_abilities = [ ExtResource( 2 ) ]
 
 [node name="PlayerUnit" parent="GameBoard/Units" index="0"]
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )

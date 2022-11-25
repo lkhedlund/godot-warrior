@@ -8,3 +8,4 @@ name = "rest"
 description = "Call [color=red]rest()[/color] to recover a portion of your health."
 ability_range = 1
 action_cost = 1
+level_unlocked = 2

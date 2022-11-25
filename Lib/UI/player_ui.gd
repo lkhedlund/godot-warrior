@@ -1,5 +1,7 @@
 extends Control
 
+var player_stats
+
 onready var play_button = $BottomContainer/PlayerButtons/PlayButton
 onready var player_log = $BottomContainer/PlayerOutput/PlayerLog
 onready var menu_popup = $MainModal
@@ -9,7 +11,8 @@ onready var new_ability_icon = $BottomContainer/PlayerButtons/AbilitiesButton/Ne
 func _ready() -> void:
 	EventBus.connect("update_player_log", self, "_on_Player_Log_update")
 	EventBus.connect("exit_level", self, "_on_Exit_level")
-	EventBus.connect("ability_gained", self, "_on_Ability_gained")
+	EventBus.connect("abilities_unlocked", self, "_on_abilities_unlocked")
+	player_stats = GameManager.player_stats
 	# Reset player log
 	player_log.bbcode_text = ""
 
@@ -30,16 +33,19 @@ func _on_Player_Log_update(new_line: String, log_type: String = "default") -> vo
 	player_log.bbcode_text += formatted
 	
 # Signals
-func _on_Ability_gained(new_ability: Resource) -> void:
-	new_ability_icon.visible = true
-	abilities_popup.add_ability_to_list(new_ability)
-	
 func _on_PlayButton_pressed():
 	play_button.disabled = true
 	EventBus.emit_signal("play_button_pressed")
 	
 func _on_MenuButton_pressed():
 	menu_popup.open_menu()
+	
+func _on_abilities_unlocked(abilities: Dictionary) -> void:
+	for key in abilities:
+		var ability = abilities[key]
+		if ability.level_unlocked == player_stats.current_level:
+			new_ability_icon.visible = true
+		abilities_popup.add_ability_to_list(ability)
 
 func _on_AbilitiesButton_pressed() -> void:
 	new_ability_icon.visible = false

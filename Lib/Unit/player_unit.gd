@@ -2,6 +2,8 @@ tool
 class_name PlayerUnit
 extends Unit
 
+signal abilities_unlocked
+
 var player
 var player_stats
 
@@ -11,9 +13,9 @@ export var weapon_offset: Vector2 setget set_weapon_offset
 onready var _weapon_sprite: Sprite = $Weapon/Sprite
 
 func _ready() -> void:
-	EventBus.connect("new_abilities_gained", self, "_on_new_abilities_gained")
 	player = get_tree().get_root().get_node('/root/Game/Demo')
 	player_stats = GameManager.player_stats
+	unlock_abilities()
 	_weapon_sprite.visible = player_stats.has_unlocked("attack")
 	._ready()
 
@@ -44,8 +46,11 @@ func set_weapon_offset(value: Vector2) -> void:
 	if not _weapon_sprite:
 		yield(self, "ready")
 	_weapon_sprite.position = value
-		
-func _on_new_abilities_gained(new_abilities: Array) -> void:
-	for ability in new_abilities:
-		player_stats.set_ability(ability)
+	
+func unlock_abilities() -> void:
+	var unlocked_abilities := {}
+	for ability in abilities:
+		if ability.level_unlocked <= player_stats.current_level:
+			unlocked_abilities[ability.name] = ability
+	player_stats.unlocked_abilities = unlocked_abilities
 

@@ -62,7 +62,7 @@ _global_script_classes=[ {
 "base": "Ability",
 "class": "Guard",
 "language": "GDScript",
-"path": "res://Lib/Unit/Abilities/guard.gd"
+"path": "res://Lib/Unit/Abilities/defend.gd"
 }, {
 "base": "Node2D",
 "class": "Interactable",

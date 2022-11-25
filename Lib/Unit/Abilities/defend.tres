@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource( 1 )
-name = "guard"
+name = "defend"
 description = "Call [color=red]warrior.defend()[/color] to protect yourself from attacks."
 ability_range = 1
 action_cost = 1
-level_unlocked = 0
+level_unlocked = 6
