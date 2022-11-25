@@ -1,6 +1,7 @@
 extends Popup
 
-onready var level_tip = $CentreContainer/StackedContent/LevelTip
+onready var label = $CentreContainer/GameOverContent/ConditionLabel
+onready var extra_text = $CentreContainer/GameOverContent/ExtraText
 
 func _ready() -> void:
 	EventBus.connect("game_over", self, "_on_Game_Over")
@@ -8,7 +9,11 @@ func _ready() -> void:
 func _on_TryAgainButton_pressed() -> void:
 	get_tree().quit()
 
-func _on_Game_Over(level_tip_text: String) -> void:
+func _on_Game_Over(type: String, game_over_text: String) -> void:
 	get_tree().paused = true
-	level_tip.bbcode_text = level_tip_text
+	var default_label = "[shake rate=10 level=2]You Died[/shake]"
+	if type == "win":
+		default_label = "[rainbow freq=0.2 sat=10 val=20]You Win![/rainbow]"
+	label.bbcode_text = default_label
+	extra_text.bbcode_text = game_over_text
 	self.visible = true

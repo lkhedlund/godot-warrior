@@ -2,8 +2,6 @@ tool
 class_name PlayerUnit
 extends Unit
 
-signal abilities_unlocked
-
 var player
 var player_stats
 

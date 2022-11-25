@@ -28,7 +28,7 @@ func get_current_level() -> int:
 
 func game_over() -> void:
 	var level_tip = "TIP: " + level_manager.get_current_level_tip()
-	EventBus.emit_signal("game_over", level_tip)
+	EventBus.emit_signal("game_over", "lose", level_tip)
 
 func load_player_stats():
 	# Load the player's current stats
@@ -40,7 +40,7 @@ func load_player_stats():
 		
 func reinitialize_player_stats() -> void:
 	var new_player_stats = load("res://Lib/Unit/Stats/player_stats.tres")
-	var save = ResourceSaver.save("user://player_stats.tres", new_player_stats)
+	ResourceSaver.save("user://player_stats.tres", new_player_stats)
 	player_stats = new_player_stats
 
 # Creates a persistent save on stat changes

@@ -2,7 +2,6 @@ extends ModalMenu
 
 onready var player_stats = GameManager.player_stats
 onready var extra_logs = $MenuContainer/MenuButtons/ExtraLogsCheckbox
-onready var speed_slider = $MenuContainer/MenuButtons/GameSpeed/SpeedSlider
 
 func _ready() -> void:
 	extra_logs.pressed = player_stats.extra_logging

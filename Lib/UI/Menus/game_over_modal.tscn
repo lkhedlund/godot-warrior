@@ -29,14 +29,14 @@ anchor_bottom = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="StackedContent" type="VBoxContainer" parent="CentreContainer"]
+[node name="GameOverContent" type="VBoxContainer" parent="CentreContainer"]
 margin_left = 60.0
-margin_top = 46.0
+margin_top = 67.0
 margin_right = 260.0
-margin_bottom = 134.0
+margin_bottom = 112.0
 rect_min_size = Vector2( 200, 0 )
 
-[node name="YouDiedLabel" type="RichTextLabel" parent="CentreContainer/StackedContent"]
+[node name="ConditionLabel" type="RichTextLabel" parent="CentreContainer/GameOverContent"]
 margin_right = 200.0
 margin_bottom = 31.0
 custom_fonts/normal_font = SubResource( 1 )
@@ -45,7 +45,7 @@ bbcode_text = "[shake rate=10 level=2]You Died[/shake]"
 text = "You Died"
 fit_content_height = true
 
-[node name="LevelTip" type="RichTextLabel" parent="CentreContainer/StackedContent"]
+[node name="ExtraText" type="RichTextLabel" parent="CentreContainer/GameOverContent"]
 margin_top = 35.0
 margin_right = 200.0
 margin_bottom = 65.0
@@ -53,11 +53,12 @@ custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="TryAgainButton" type="Button" parent="CentreContainer/StackedContent"]
+[node name="TryAgainButton" type="Button" parent="CentreContainer/GameOverContent"]
 pause_mode = 2
+visible = false
 margin_top = 69.0
 margin_right = 200.0
 margin_bottom = 88.0
 text = "Try Again"
 
-[connection signal="pressed" from="CentreContainer/StackedContent/TryAgainButton" to="." method="_on_TryAgainButton_pressed"]
+[connection signal="pressed" from="CentreContainer/GameOverContent/TryAgainButton" to="." method="_on_TryAgainButton_pressed"]
