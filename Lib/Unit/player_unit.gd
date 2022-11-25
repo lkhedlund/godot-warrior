@@ -22,6 +22,8 @@ func take_turn() -> void:
 	player.play_turn(self)
 	
 func has_ability(ability_name: String) -> bool:
+	if GameManager.god_mode: return true
+
 	for ability in abilities:
 		if ability.name == ability_name and player_stats.has_unlocked(ability_name):
 			return true

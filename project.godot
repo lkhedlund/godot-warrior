@@ -45,6 +45,11 @@ _global_script_classes=[ {
 "path": "res://Lib/Unit/Abilities/feel.gd"
 }, {
 "base": "Node2D",
+"class": "FloatingTextEffect",
+"language": "GDScript",
+"path": "res://Lib/Effects/floating_text_effect.gd"
+}, {
+"base": "Node2D",
 "class": "GameBoard",
 "language": "GDScript",
 "path": "res://Lib/Board/game_board.gd"
@@ -152,6 +157,7 @@ _global_script_class_icons={
 "EnemyUnit": "",
 "Exit": "",
 "Feel": "",
+"FloatingTextEffect": "",
 "GameBoard": "",
 "Grid": "",
 "Guard": "",

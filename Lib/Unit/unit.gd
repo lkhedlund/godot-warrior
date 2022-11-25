@@ -79,7 +79,6 @@ func move_along_path(path: PoolVector2Array) -> void:
 		current_cell = path[-1]
 		if game_board.is_trap(current_cell):
 			dead()
-			emit_signal("dead")
 		self._is_moving = true
 		
 func take_damage(amount: int) -> void:
@@ -87,7 +86,6 @@ func take_damage(amount: int) -> void:
 	emit_signal("health_changed", amount, "damage")
 	_anim_player.play("hurt")
 	if health <= 0:
-		#yield(_anim_player, "animation_finished")
 		dead()
 	
 func heal(amount: int) -> void:
@@ -100,7 +98,7 @@ func dead() -> void:
 		GameManager.game_over()
 	else:
 		game_board.remove_unit_at_position(current_cell)
-	emit_signal("dead")
+	yield(_anim_player, "animation_finished")
 	self.queue_free()
 
 # Abilities

@@ -12,9 +12,9 @@ anchor_bottom = 1.0
 
 [node name="MenuButtons" type="VBoxContainer" parent="MenuContainer" index="0"]
 margin_left = 110.0
-margin_top = 49.0
+margin_top = 67.0
 margin_right = 210.0
-margin_bottom = 131.0
+margin_bottom = 113.0
 rect_min_size = Vector2( 100, 0 )
 
 [node name="ExtraLogsCheckbox" type="CheckBox" parent="MenuContainer/MenuButtons" index="0"]

@@ -5,6 +5,7 @@ var player_stats
 
 export var debug_level := 0
 export var debug_mode := false
+export var god_mode := false
 
 onready var level_manager: LevelManager = $LevelManager
 
@@ -19,7 +20,9 @@ func initialize_game() -> void:
 	level_manager.load_level(get_current_level())
 	
 func get_current_level() -> int:
-	if debug_mode: return debug_level
+	if debug_mode: 
+		player_stats.current_level = debug_level
+		return debug_level
 	
 	return player_stats.current_level
 
@@ -28,7 +31,6 @@ func game_over() -> void:
 	EventBus.emit_signal("game_over", level_tip)
 
 func load_player_stats():
-	reinitialize_player_stats()
 	# Load the player's current stats
 	var existing_stats = load("user://player_stats.tres")
 	if existing_stats:
@@ -38,7 +40,7 @@ func load_player_stats():
 		
 func reinitialize_player_stats() -> void:
 	var new_player_stats = load("res://Lib/Unit/Stats/player_stats.tres")
-	ResourceSaver.save("user://player_stats.tres", new_player_stats)
+	var save = ResourceSaver.save("user://player_stats.tres", new_player_stats)
 	player_stats = new_player_stats
 
 # Creates a persistent save on stat changes
