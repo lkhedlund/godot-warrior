@@ -7,6 +7,7 @@ onready var player_log = $BottomContainer/PlayerOutput/PlayerLog
 onready var menu_popup = $MainModal
 onready var abilities_popup = $AbilitiesModal
 onready var new_ability_icon = $BottomContainer/PlayerButtons/AbilitiesButton/NewIcon
+onready var credits_popup = $CreditsModal
 
 func _ready() -> void:
 	EventBus.connect("update_player_log", self, "_on_Player_Log_update")
@@ -50,3 +51,6 @@ func _on_abilities_unlocked(abilities: Dictionary) -> void:
 func _on_AbilitiesButton_pressed() -> void:
 	new_ability_icon.visible = false
 	abilities_popup.open_menu()
+
+func _on_MainModal_credits_opened():
+	credits_popup.open_menu()

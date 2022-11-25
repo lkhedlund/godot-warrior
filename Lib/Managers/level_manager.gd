@@ -16,7 +16,8 @@ func load_level(new_level_index: int) -> void:
 func load_next_level() -> void:
 	var next_level_index = GameManager.player_stats.current_level + 1
 	if not range(levels.size()).has(next_level_index):
-		EventBus.emit_signal("game_over", "win", "")
+		var text = "Congratulations! Thanks to your exceptional programming skills the warrior has escaped with their life. Keep challenging yourself to learn more, and thanks for playing!"
+		EventBus.emit_signal("game_over", "win", text)
 		return
 	GameManager.player_stats.current_level = next_level_index
 	clear_previous_level()
