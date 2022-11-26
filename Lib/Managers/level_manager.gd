@@ -15,6 +15,8 @@ func load_level(new_level_index: int) -> void:
 
 func load_next_level() -> void:
 	var next_level_index = GameManager.player_stats.current_level + 1
+	# Assume if you hit the end of the available levels that
+	# you've won the game. Good enough for now :D.
 	if not range(levels.size()).has(next_level_index):
 		var text = "Congratulations! Thanks to your exceptional programming skills the warrior has escaped with their life. Keep challenging yourself to learn more, and thanks for playing!"
 		EventBus.emit_signal("game_over", "win", text)
