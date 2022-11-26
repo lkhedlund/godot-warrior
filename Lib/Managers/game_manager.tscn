@@ -14,7 +14,7 @@
 [node name="GameManager" type="Node"]
 script = ExtResource( 1 )
 game_speed = 0.25
-debug_level = 7
+debug_level = 1
 debug_mode = true
 
 [node name="LevelManager" parent="." instance=ExtResource( 2 )]

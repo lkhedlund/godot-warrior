@@ -15,6 +15,7 @@ func take_turn() -> void:
 			attack()
 		else:
 			walk()
+	emit_signal("turn_over")
 
 func ranged_attack() -> void:
 	var targets = look()	

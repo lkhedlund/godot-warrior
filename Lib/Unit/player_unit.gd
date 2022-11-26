@@ -19,6 +19,7 @@ func _ready() -> void:
 func take_turn() -> void:
 	.take_turn() # super
 	player.play_turn(self)
+	emit_signal("turn_over")
 	
 func has_ability(ability_name: String) -> bool:
 	if GameManager.god_mode: return true

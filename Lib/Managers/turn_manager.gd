@@ -2,7 +2,6 @@ class_name TurnManager
 extends Node
 
 var current_round := 1
-var current_turn: Unit
 var turn_queue := []
 
 var _turn_cooldown
@@ -21,7 +20,8 @@ func start_round() -> void:
 	for unit in turn_queue:
 		unit.reset()
 		if is_next_in_queue(i):
-			yield(advance_turn(unit), "completed")
+			advance_turn(unit)
+			yield(unit, "turn_over")
 		i += 1
 	# Advance to the next round
 	advance_round()
@@ -30,7 +30,7 @@ func advance_turn(unit: Unit) -> void:
 	_timer.start(_turn_cooldown)
 	yield(_timer, "timeout")
 	unit.take_turn()
-	
+
 func add_turn_to_queue(unit: Unit) -> void:
 	if turn_queue.has(unit): return
 

@@ -6,6 +6,7 @@ tool
 class_name Unit
 extends Path2D
 
+signal turn_over
 signal move_finished
 signal health_changed(amount, type)
 

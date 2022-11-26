@@ -12,6 +12,7 @@ func take_turn() -> void:
 		cooldown -= 1
 		if cooldown == 0:
 			is_enraged = true
+		emit_signal("turn_over")
 		return
 
 	if feel("player"):
@@ -23,3 +24,5 @@ func take_turn() -> void:
 		is_enraged = false
 	else:
 		walk()
+
+	emit_signal("turn_over")
