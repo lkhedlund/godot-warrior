@@ -65,6 +65,7 @@ anims/hurt = SubResource( 2 )
 anims/idle = SubResource( 1 )
 
 [node name="FloatingTextEffect" parent="." instance=ExtResource( 2 )]
+position = Vector2( -8, -8 )
 
 [node name="HurtEffect" type="Sprite" parent="."]
 visible = false

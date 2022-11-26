@@ -17,13 +17,15 @@ export var max_health := 10
 export var move_range := 1
 export var move_speed := 600
 export var vision_range := 3
-export var action_points := 1
+export var max_action_points := 1
 export var damage := 5
+export var armor := 3
 export var direction : Vector2 = Vector2.LEFT
 export(Array, Resource) var abilities: Array
 export var skin: Texture setget set_skin
 
 var health: int setget set_health
+var action_points: int setget set_action_points
 var current_cell := Vector2.ZERO setget set_current_cell
 var is_selected := false setget set_is_selected
 var _is_moving := false setget _set_is_moving
@@ -40,6 +42,7 @@ func _ready() -> void:
 	# Don't need the unit to update every frame
 	set_process(false)
 	health = max_health
+	action_points = max_action_points
 	
 	self.current_cell = grid.calculate_grid_coordinates(position)
 	position = grid.calculate_map_position(current_cell)
@@ -65,6 +68,7 @@ func _process(delta: float) -> void:
 		emit_signal("move_finished")
 		
 func take_turn() -> void:
+	is_defending = false
 	game_board._select_unit(self)
 
 func move_along_path(path: PoolVector2Array) -> void:
@@ -82,8 +86,8 @@ func move_along_path(path: PoolVector2Array) -> void:
 		self._is_moving = true
 		
 func take_damage(amount: int) -> void:
-	if is_defending: return
-
+	if is_defending:
+		amount += armor
 	health = int(clamp(health + amount, 0, max_health))
 	emit_signal("health_changed", amount, "damage")
 	_anim_player.play("hurt")
@@ -133,11 +137,10 @@ func can_use_ability(ability) -> bool:
 	return (action_points - ability.action_cost) >= 0
 
 func reduce_ap(cost: int) -> void:
-	action_points = int(clamp(action_points - cost, 0, 1))
+	action_points -= cost
 
 func reset() -> void:
-	action_points = 1
-	is_defending = false
+	action_points = max_action_points
 
 func log_action(ability) -> void:
 	if ability.action_cost < 1: return
@@ -146,7 +149,6 @@ func log_action(ability) -> void:
 	if self.is_in_group("enemy"):
 		extra_log = "[color=silver]%s[/color]" % extra_log
 	EventBus.emit_signal("update_player_log", extra_log, "extra")
-
 
 # Helper methods
 func walk() -> void:
@@ -196,6 +198,9 @@ func set_skin(value: Texture) -> void:
 func set_health(amount: int) -> void:
 	health = int(clamp(health + amount, 0, max_health))
 	emit_signal("health_changed", amount)
+	
+func set_action_points(amount: int) -> void:
+	action_points = int(clamp(action_points + amount, 0, max_action_points))
 	
 func _set_is_moving(value: bool) -> void:
 	_is_moving = value
