@@ -2,6 +2,7 @@ tool
 class_name EnemyUnit
 extends Unit
 
+var is_enraged := false
 export var ranged_unit := false
 
 func take_turn() -> void:

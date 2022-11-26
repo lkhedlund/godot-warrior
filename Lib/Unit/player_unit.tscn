@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Lib/Unit/player_unit.gd" type="Script" id=1]
 [ext_resource path="res://Lib/Unit/unit.tscn" type="PackedScene" id=2]
@@ -12,18 +12,17 @@
 [ext_resource path="res://Lib/Unit/Abilities/shoot.tres" type="Resource" id=10]
 [ext_resource path="res://Lib/Unit/Abilities/look.tres" type="Resource" id=11]
 [ext_resource path="res://Lib/Unit/Abilities/disarm.tres" type="Resource" id=12]
+[ext_resource path="res://Lib/Assets/shield.png" type="Texture" id=13]
 
 [node name="PlayerUnit" groups=["player"] instance=ExtResource( 2 )]
 script = ExtResource( 1 )
 unit_name = "Player"
 max_health = 25
 move_speed = 800
-armor = 7
+armor = 8
 direction = Vector2( 1, 0 )
 abilities = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 9 ) ]
 skin = ExtResource( 3 )
-weapon_skin = ExtResource( 4 )
-weapon_offset = Vector2( 7, 1 )
 
 [node name="Sprite" parent="PathFollow2D" index="0"]
 texture = ExtResource( 3 )
@@ -33,3 +32,10 @@ texture = ExtResource( 3 )
 [node name="Sprite" type="Sprite" parent="Weapon" index="0"]
 position = Vector2( 7, 1 )
 texture = ExtResource( 4 )
+
+[node name="Shield" type="Node2D" parent="." index="3"]
+
+[node name="Sprite" type="Sprite" parent="Shield" index="0"]
+position = Vector2( -5.26516, 4.26516 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 13 )

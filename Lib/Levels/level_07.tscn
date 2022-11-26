@@ -5,12 +5,9 @@
 
 [node name="Level_07" instance=ExtResource( 1 )]
 description = "A cyclops blocks your path. The bones of failed warriors litter the floor. You grab a shield and prepare yourself for a tough battle. "
-hint = "Use [color=red]warrior.defend()[/color] to protect yourself against attacks. You can determine the cyclop's state with [color=red]warrior.feel(\"enraged\")[/color]."
+hint = "Use [color=red]warrior.defend()[/color] to protect yourself against attacks. You can determine the cyclop's state by checking  [color=red].is_enraged[/color] on the target."
 tip = "The cyclops will attack multiple times in a row before cooling down. Defend yourself while the cyclops is enraged and then take your chance to attack. Don't forget to rest when you need to!  "
 
-[node name="PlayerUnit" parent="GameBoard/Units" index="0"]
-max_action_points = 1
-
 [node name="Cyclops" parent="GameBoard/Units" index="1" instance=ExtResource( 2 )]
-position = Vector2( 24, 8 )
+position = Vector2( 72, 8 )
 damage = 10

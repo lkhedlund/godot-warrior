@@ -10,7 +10,7 @@
 [node name="Cyclops" groups=["boss"] instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 unit_name = "Cyclops"
-max_health = 50
+max_health = 30
 vision_range = 1
 max_action_points = 3
 damage = 15

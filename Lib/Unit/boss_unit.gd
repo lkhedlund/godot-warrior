@@ -8,15 +8,18 @@ var cooldown := 0
 func take_turn() -> void:
 	.take_turn() # super
 
-	if feel("player"):
-		if not in_cooldown():
+	if cooldown > 0:
+		cooldown -= 1
+		if cooldown == 0:
 			is_enraged = true
+		return
 
-			for _i in range(action_points):
-				yield(get_tree().create_timer(0.2), "timeout")
-				attack()
+	if feel("player"):
+		for _i in range(action_points):
+			yield(get_tree().create_timer(0.2), "timeout")
+			attack()
+		
+		cooldown = 3
+		is_enraged = false
 	else:
 		walk()
-
-func in_cooldown() -> bool:
-	return cooldown != 0

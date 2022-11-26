@@ -4,16 +4,16 @@ var current_health := 0
 
 func play_turn(warrior: Unit) -> void:
 	var health = warrior.health
-	var targets = warrior.look()
-	
-	var next_target = get_next_target(targets)
-	print(next_target)
+	var next_target = get_next_target(warrior)
 
 	if warrior.feel("enemy"):
-		if next_target.is_enraged:
+		if next_target and next_target.is_enraged:
 			warrior.defend()
 		else:
-			warrior.attack()
+			if health <= 14:
+				warrior.rest()
+			else:
+				warrior.attack()
 	elif warrior.feel("trap"):
 		warrior.disarm()
 	else:
@@ -27,5 +27,8 @@ func play_turn(warrior: Unit) -> void:
 			warrior.walk()
 	current_health = health
 
-func get_next_target(targets: Array):
+func get_next_target(warrior: Unit):
+	var targets = warrior.look()
+
+	if not targets: return
 	return targets[0]

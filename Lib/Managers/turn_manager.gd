@@ -5,13 +5,14 @@ var current_round := 1
 var current_turn: Unit
 var turn_queue := []
 
-export var _turn_cooldown := 0.5
+var _turn_cooldown
 
 onready var _timer: Timer = $Timer
 
 func _ready() -> void:
 	EventBus.connect("play_button_pressed", self, "_on_Play_Button_pressed")
 	EventBus.connect("exit_level", self, "_on_Exit_level")
+	_turn_cooldown = GameManager.game_speed
 
 func start_round() -> void:
 	if turn_queue.empty(): return

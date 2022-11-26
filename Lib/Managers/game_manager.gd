@@ -3,6 +3,7 @@ extends Node
 var game
 var player_stats
 
+export var game_speed := 0.5
 export var debug_level := 0
 export var debug_mode := false
 export var god_mode := false
