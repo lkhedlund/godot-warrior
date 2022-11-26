@@ -18,9 +18,8 @@ func start_round() -> void:
 
 	var i = 0
 	for unit in turn_queue:
-		# Only take turns for the first two units in the 
-		# queue, i.e. the player and first enemy.
-		if i == 0 or i == 1:
+		unit.reset()
+		if is_next_in_queue(i):
 			yield(advance_turn(unit), "completed")
 		i += 1
 	# Advance to the next round
@@ -30,7 +29,6 @@ func advance_turn(unit: Unit) -> void:
 	_timer.start(_turn_cooldown)
 	yield(_timer, "timeout")
 	unit.take_turn()
-	unit.reset_ap()
 	
 func add_turn_to_queue(unit: Unit) -> void:
 	if turn_queue.has(unit): return
@@ -49,6 +47,11 @@ func reset_rounds() -> void:
 	# Empty turn queue
 	turn_queue.clear()
 	current_round = 0
+	
+func is_next_in_queue(index: int) -> bool:
+	# Only take turns for the first two units in the 
+	# queue, i.e. the player and first enemy.
+	return index == 0 or index == 1
 
 # SIGNALS
 func _on_Play_Button_pressed() -> void:

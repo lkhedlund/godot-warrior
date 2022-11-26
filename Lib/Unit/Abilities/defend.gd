@@ -1,6 +1,5 @@
-class_name Guard
+class_name Defend
 extends Ability
 
-#warning-ignore:UNUSED_ARGUMENT
 func perform(unit: Unit, _params={}) -> void:
-	pass
+	unit.is_defending = true

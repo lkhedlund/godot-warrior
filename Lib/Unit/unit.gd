@@ -27,6 +27,7 @@ var health: int setget set_health
 var current_cell := Vector2.ZERO setget set_current_cell
 var is_selected := false setget set_is_selected
 var _is_moving := false setget _set_is_moving
+var is_defending := false setget set_is_defending
 
 onready var _sprite: Sprite = $PathFollow2D/Sprite
 onready var _anim_player: AnimationPlayer = $AnimationPlayer
@@ -81,6 +82,8 @@ func move_along_path(path: PoolVector2Array) -> void:
 		self._is_moving = true
 		
 func take_damage(amount: int) -> void:
+	if is_defending: return
+
 	health = int(clamp(health + amount, 0, max_health))
 	emit_signal("health_changed", amount, "damage")
 	_anim_player.play("hurt")
@@ -132,9 +135,20 @@ func can_use_ability(ability) -> bool:
 func reduce_ap(cost: int) -> void:
 	action_points = int(clamp(action_points - cost, 0, 1))
 
-func reset_ap() -> void:
+func reset() -> void:
 	action_points = 1
+	is_defending = false
 
+func log_action(ability) -> void:
+	if ability.action_cost < 1: return
+
+	var extra_log = "%s performed [color=red]%s[/color] action" % [self.unit_name, ability.name]
+	if self.is_in_group("enemy"):
+		extra_log = "[color=silver]%s[/color]" % extra_log
+	EventBus.emit_signal("update_player_log", extra_log, "extra")
+
+
+# Helper methods
 func walk() -> void:
 	use_ability("walk")
 
@@ -154,19 +168,14 @@ func shoot(target_unit: Unit) -> void:
 func rest() -> void:
 	use_ability("rest")
 	
+func defend() -> void:
+	use_ability("defend")
+	
 func look() -> Array:
 	return use_ability("look")
 	
 func feel(unit_type: String) -> bool:
 	return use_ability("feel", { "unit_type": unit_type })
-	
-func log_action(ability) -> void:
-	if ability.action_cost < 1: return
-
-	var extra_log = "%s performed [color=red]%s[/color] action" % [self.unit_name, ability.name]
-	if self.is_in_group("enemy"):
-		extra_log = "[color=silver]%s[/color]" % extra_log
-	EventBus.emit_signal("update_player_log", extra_log, "extra")
 
 # Setters
 func set_current_cell(value: Vector2) -> void:
@@ -174,6 +183,9 @@ func set_current_cell(value: Vector2) -> void:
 
 func set_is_selected(value: bool) -> void:
 	is_selected = value
+	
+func set_is_defending(value: bool) -> void:
+	is_defending = value
 
 func set_skin(value: Texture) -> void:
 	skin = value

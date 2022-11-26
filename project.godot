@@ -25,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://Lib/Board/Cursor/cursor.gd"
 }, {
 "base": "Ability",
+"class": "Defend",
+"language": "GDScript",
+"path": "res://Lib/Unit/Abilities/defend.gd"
+}, {
+"base": "Ability",
 "class": "Disarm",
 "language": "GDScript",
 "path": "res://Lib/Unit/Abilities/disarm.gd"
@@ -58,11 +63,6 @@ _global_script_classes=[ {
 "class": "Grid",
 "language": "GDScript",
 "path": "res://Lib/Grid/grid.gd"
-}, {
-"base": "Ability",
-"class": "Guard",
-"language": "GDScript",
-"path": "res://Lib/Unit/Abilities/defend.gd"
 }, {
 "base": "Node2D",
 "class": "Interactable",
@@ -153,6 +153,7 @@ _global_script_class_icons={
 "Ability": "",
 "Attack": "",
 "Cursor": "",
+"Defend": "",
 "Disarm": "",
 "EnemyUnit": "",
 "Exit": "",
@@ -160,7 +161,6 @@ _global_script_class_icons={
 "FloatingTextEffect": "",
 "GameBoard": "",
 "Grid": "",
-"Guard": "",
 "Interactable": "",
 "Level": "",
 "LevelManager": "",
