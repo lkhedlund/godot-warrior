@@ -195,7 +195,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Godot Warrior"
-run/main_scene="res://Lib/game.tscn"
+run/main_scene="res://game.tscn"
 config/icon="res://icon.png"
 
 [autoload]

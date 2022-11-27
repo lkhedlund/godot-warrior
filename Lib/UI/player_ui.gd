@@ -2,12 +2,16 @@ extends Control
 
 var player_stats
 
+export var sound_on: Texture
+export var sound_off: Texture
+
 onready var play_button = $BottomContainer/PlayerButtons/PlayButton
 onready var player_log = $BottomContainer/PlayerOutput/PlayerLog
 onready var menu_popup = $MainModal
 onready var abilities_popup = $AbilitiesModal
 onready var new_ability_icon = $BottomContainer/PlayerButtons/AbilitiesButton/NewIcon
 onready var credits_popup = $CreditsModal
+onready var sound_button = $HBoxContainer/SoundButton
 
 func _ready() -> void:
 	EventBus.connect("update_player_log", self, "_on_Player_Log_update")
@@ -16,6 +20,7 @@ func _ready() -> void:
 	player_stats = GameManager.player_stats
 	# Reset player log
 	player_log.bbcode_text = ""
+	toggle_sound_icon(player_stats.play_music)
 
 func _on_Exit_level() -> void:
 	play_button.disabled = false
@@ -32,6 +37,12 @@ func _on_Player_Log_update(new_line: String, log_type: String = "default") -> vo
 	if not player_log.bbcode_text.empty():
 		player_log.bbcode_text += "\n"
 	player_log.bbcode_text += formatted
+	
+func toggle_sound_icon(state: bool) -> void:
+	if state == false:
+		sound_button.icon = sound_off
+	else:
+		sound_button.icon = sound_on
 	
 # Signals
 func _on_PlayButton_pressed():
@@ -54,3 +65,7 @@ func _on_AbilitiesButton_pressed() -> void:
 
 func _on_MainModal_credits_opened():
 	credits_popup.open_menu()
+
+func _on_SoundButton_toggled(button_pressed):
+	toggle_sound_icon(button_pressed)
+	player_stats.play_music = button_pressed

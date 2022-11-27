@@ -28,4 +28,5 @@ signal player_stats_changed(player_stats)
 signal abilities_unlocked(abilities)
 
 signal play_button_pressed
+signal music_toggled(value)
 signal update_player_log(new_line, log_type)

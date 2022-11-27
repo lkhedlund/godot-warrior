@@ -1,14 +1,16 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Lib/UI/Themes/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Lib/UI/player_ui.gd" type="Script" id=2]
 [ext_resource path="res://Lib/UI/Themes/Kenney Pixel.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Lib/UI/Menus/main_modal.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Lib/Assets/UI/menu-hamburger.png" type="Texture" id=5]
+[ext_resource path="res://Lib/Assets/UI/barsHorizontal.png" type="Texture" id=5]
 [ext_resource path="res://Lib/Assets/new-ability.png" type="Texture" id=6]
 [ext_resource path="res://Lib/UI/Menus/abilities_modal.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Lib/UI/Menus/game_over_modal.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Lib/UI/Menus/credits_modal.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Lib/Assets/UI/audioOn.png" type="Texture" id=10]
+[ext_resource path="res://Lib/Assets/UI/audioOff.png" type="Texture" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 12
@@ -31,6 +33,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+sound_on = ExtResource( 10 )
+sound_off = ExtResource( 11 )
 
 [node name="BottomContainer" type="HBoxContainer" parent="PlayerUI"]
 anchor_right = 1.0
@@ -92,11 +96,34 @@ rect_min_size = Vector2( 80, 0 )
 size_flags_vertical = 8
 text = "Play_Turn()"
 
-[node name="MenuButton" type="Button" parent="PlayerUI"]
-margin_left = 296.0
-margin_top = 8.0
-margin_right = 312.0
-margin_bottom = 24.0
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerUI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -60.0
+margin_top = 10.0
+margin_right = -20.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+alignment = 2
+
+[node name="SoundButton" type="Button" parent="PlayerUI/HBoxContainer"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = SubResource( 2 )
+toggle_mode = true
+icon = ExtResource( 10 )
+icon_align = 1
+
+[node name="MenuButton" type="Button" parent="PlayerUI/HBoxContainer"]
+margin_left = 29.0
+margin_right = 54.0
+margin_bottom = 25.0
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/focus = SubResource( 5 )
@@ -117,5 +144,6 @@ theme = null
 
 [connection signal="pressed" from="PlayerUI/BottomContainer/PlayerButtons/AbilitiesButton" to="PlayerUI" method="_on_AbilitiesButton_pressed"]
 [connection signal="pressed" from="PlayerUI/BottomContainer/PlayerButtons/PlayButton" to="PlayerUI" method="_on_PlayButton_pressed"]
-[connection signal="pressed" from="PlayerUI/MenuButton" to="PlayerUI" method="_on_MenuButton_pressed"]
+[connection signal="toggled" from="PlayerUI/HBoxContainer/SoundButton" to="PlayerUI" method="_on_SoundButton_toggled"]
+[connection signal="pressed" from="PlayerUI/HBoxContainer/MenuButton" to="PlayerUI" method="_on_MenuButton_pressed"]
 [connection signal="credits_opened" from="PlayerUI/MainModal" to="PlayerUI" method="_on_MainModal_credits_opened"]

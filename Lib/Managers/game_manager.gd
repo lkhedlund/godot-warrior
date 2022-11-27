@@ -9,15 +9,18 @@ export var debug_mode := false
 export var god_mode := false
 
 onready var level_manager: LevelManager = $LevelManager
+onready var music: AudioStreamPlayer = $GameMusic
 
 func _ready() -> void:
 	EventBus.connect("player_stats_changed", self, "_on_Player_Stats_changed")
 	EventBus.connect("reset_game", self, "_on_reset_game")
+	EventBus.connect("music_toggled", self, "_on_music_toggle")
 	initialize_game()
 
 func initialize_game() -> void:
 	game = get_tree().get_root().get_node('/root/Game')
 	load_player_stats()
+	music.playing = player_stats.play_music
 	level_manager.load_level(get_current_level())
 	
 func get_current_level() -> int:
@@ -51,3 +54,6 @@ func _on_Player_Stats_changed(new_player_stats) -> void:
 func _on_reset_game() -> void:
 	reinitialize_player_stats()
 	get_tree().quit()
+	
+func _on_music_toggle(value: bool) -> void:
+	music.playing = value
