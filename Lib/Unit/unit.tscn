@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Lib/Unit/unit.gd" type="Script" id=1]
 [ext_resource path="res://Lib/Effects/floating_text_effect.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Lib/Assets/hurt.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=3]
+length = 0.001
 
 [sub_resource type="Animation" id=2]
 resource_name = "hurt"
@@ -59,11 +62,6 @@ loop = false
 
 [node name="Sprite" type="Sprite" parent="PathFollow2D"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "idle"
-anims/hurt = SubResource( 2 )
-anims/idle = SubResource( 1 )
-
 [node name="FloatingTextEffect" parent="." instance=ExtResource( 2 )]
 position = Vector2( -8, -8 )
 
@@ -72,5 +70,11 @@ visible = false
 position = Vector2( 0, 2 )
 scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 3 )
+anims/hurt = SubResource( 2 )
+anims/idle = SubResource( 1 )
 
 [connection signal="health_changed" from="." to="FloatingTextEffect" method="_on_Unit_health_changed"]

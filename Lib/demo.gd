@@ -29,6 +29,7 @@ func play_turn(warrior: Unit) -> void:
 
 func get_next_target(warrior: Unit):
 	var spaces = warrior.look()
+	if not spaces: return
 	
 	for space in spaces:
 		if not space.is_empty():
