@@ -28,7 +28,8 @@ func play_turn(warrior: Unit) -> void:
 	current_health = health
 
 func get_next_target(warrior: Unit):
-	var targets = warrior.look()
-
-	if not targets: return
-	return targets[0]
+	var spaces = warrior.look()
+	
+	for space in spaces:
+		if not space.is_empty():
+			return space.unit

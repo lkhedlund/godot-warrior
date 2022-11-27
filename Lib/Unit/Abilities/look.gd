@@ -1,17 +1,16 @@
 class_name Look
 extends Ability
 
+var space_res = preload("res://Lib/Board/space.gd")
 
 func perform(unit: Unit, _params={}) -> Array:
 	var board = unit.game_board
 	var visible_cells = board.get_visible_cells(unit)
-	var visible_targets := []
+	var spaces := []
 	for cell in visible_cells:
-		if not board.is_occupied(cell): continue
-		
-		# Remove current unit from list
-		var target = board.get_unit_at_position(cell)
-		if target == unit: continue
-
-		visible_targets.append(target)
-	return visible_targets
+		var space = space_res.new()
+		space.current_cell = cell
+		if board.is_occupied(cell):
+			space.unit = board.get_unit_at_position(cell)
+		spaces.append(space)
+	return spaces

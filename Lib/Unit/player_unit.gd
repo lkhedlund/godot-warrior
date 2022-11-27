@@ -40,3 +40,5 @@ func unlock_abilities() -> void:
 			unlocked_abilities[ability.name] = ability
 	player_stats.unlocked_abilities = unlocked_abilities
 
+func is_empty(space: Vector2) -> bool:
+	return game_board.is_occupied(space)
