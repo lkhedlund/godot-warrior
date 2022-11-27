@@ -6,6 +6,7 @@ tool
 class_name Unit
 extends Path2D
 
+# warning-ignore:unused_signal
 signal turn_over
 signal move_finished
 signal health_changed(amount, type)
@@ -193,7 +194,8 @@ func set_is_defending(value: bool) -> void:
 func set_skin(value: Texture) -> void:
 	skin = value
 	if not _sprite:
-		yield(self, "ready")
+		if is_instance_valid(self):
+			yield(self, "ready")
 	_sprite.texture = value
 	
 func set_health(amount: int) -> void:

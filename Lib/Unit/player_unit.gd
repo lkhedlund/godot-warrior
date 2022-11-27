@@ -9,7 +9,7 @@ onready var _weapon_sprite: Sprite = $Weapon/Sprite
 onready var _shield_sprite: Sprite = $Shield/Sprite
 
 func _ready() -> void:
-	player = get_tree().get_root().get_node('/root/Game/Demo')
+	player = get_tree().get_root().get_node('/root/Game/Player')
 	player_stats = GameManager.player_stats
 	unlock_abilities()
 	_weapon_sprite.visible = player_stats.has_unlocked("attack")

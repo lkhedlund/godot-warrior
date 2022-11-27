@@ -6,10 +6,16 @@
 [node name="AbilitiesModal" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
 
-[node name="AbilityList" type="VBoxContainer" parent="." index="2"]
+[node name="ScrollContainer" type="ScrollContainer" parent="." index="1"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
 margin_top = 20.0
 margin_right = -20.0
 margin_bottom = -20.0
+
+[node name="AbilityList" type="VBoxContainer" parent="ScrollContainer" index="0"]
+margin_right = 280.0
+margin_bottom = 140.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

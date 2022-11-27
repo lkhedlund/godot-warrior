@@ -3,7 +3,7 @@ extends ModalMenu
 var abilities := []
 var ability_item_ui = preload("res://Lib/UI/ability_item.tscn")
 
-onready var ability_list = $AbilityList
+onready var ability_list = $ScrollContainer/AbilityList
 
 func add_ability_to_list(ability: Resource) -> void:
 	if abilities.has(ability.name): return
