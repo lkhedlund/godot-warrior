@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource( 1 )
 name = "shoot"
-description = "Call [color=red]warrior.shoot()[/color] to fire your bow!"
+description = "Call [color=red]warrior.shoot()[/color] to attack at range with your bow!"
 ability_range = 2
 action_cost = 1
 level_unlocked = 5
