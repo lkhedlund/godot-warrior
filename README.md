@@ -14,7 +14,8 @@ You play as a warrior attempting to escape this mysterious tower. You start by w
 5. Double click to open, and voila!
 
 Once you've opened the project in Godot, you'll see the editor screen before you. The "Game" scene should be automatically opened, but if it isn't, double click on `game.tscn` in the "Filesystem" tab. Once there, you have two goals, (1) edit your player script to command your warrior, and (2) run the game and see how well you did:
-![[Screenshot 2022-12-06 at 9.18.45 AM.png]]
+<img width="1404" alt="Screenshot 2022-12-06 at 9 18 45 AM" src="https://user-images.githubusercontent.com/10522360/207465665-e5430dff-4182-438c-b98b-9c6807bbe8e5.png">
+
 
 ## The Script
 
