@@ -18,7 +18,7 @@ game_speed = 0.6
 debug_mode = true
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
+process_mode = 2
 stream = ExtResource( 11 )
 volume_db = -15.0
 

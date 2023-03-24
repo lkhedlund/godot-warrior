@@ -5,7 +5,7 @@
 [ext_resource path="res://Lib/Unit/unit_overlay.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Lib/Unit/unit_path.tscn" type="PackedScene" id=8]
 
-[node name="GameBoard" type="YSort"]
+[node name="GameBoard" type="Node2D"]
 position = Vector2( 96, 64 )
 script = ExtResource( 3 )
 starting_position = Vector2( 10, 10 )

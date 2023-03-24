@@ -7,7 +7,7 @@ node:
 	EventBus.emit_signal('party_walk_started', {destination = destination}) 
 
 Other nested nodes could connect to these signals: 
-	EventBus.connect('party_walk_started', self, '_on_Party_walk_started')
+	EventBus.connect('party_walk_started',Callable(self,'_on_Party_walk_started'))
 """
 # warning-ignore-all:unused_signal
 signal start_turn(unit)

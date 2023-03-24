@@ -2,7 +2,7 @@
 # The board manages the Unit's position inside the game grid.
 # The unit itself is only a visual representation that moves smoothly in the game world.
 # We use the tool mode so the `skin` and `skin_offset` below update in the editor.
-tool
+@tool
 class_name Unit
 extends Path2D
 
@@ -13,29 +13,29 @@ signal health_changed(amount, type)
 
 var game_board
 
-export var unit_name: String
-export var grid: Resource = preload("res://Lib/Grid/grid.tres")
-export var max_health := 10
-export var move_range := 1
-export var move_speed := 600
-export var vision_range := 3
-export var max_action_points := 1
-export var damage := 5
-export var armor := 3
-export var direction : Vector2 = Vector2.LEFT
-export(Array, Resource) var abilities: Array
-export var skin: Texture setget set_skin
+@export var unit_name: String
+@export var grid: Resource = preload("res://Lib/Grid/grid.tres")
+@export var max_health := 10
+@export var move_range := 1
+@export var move_speed := 600
+@export var vision_range := 3
+@export var max_action_points := 1
+@export var damage := 5
+@export var armor := 3
+@export var direction : Vector2 = Vector2.LEFT
+@export var abilities: Array # (Array, Resource)
+@export var skin: Texture2D : set = set_skin
 
-var health: int setget set_health
-var action_points: int setget set_action_points
-var current_cell := Vector2.ZERO setget set_current_cell
-var is_selected := false setget set_is_selected
-var _is_moving := false setget _set_is_moving
-var is_defending := false setget set_is_defending
+var health: int : set = set_health
+var action_points: int : set = set_action_points
+var current_cell := Vector2.ZERO : set = set_current_cell
+var is_selected := false : set = set_is_selected
+var _is_moving := false : set = _set_is_moving
+var is_defending := false : set = set_is_defending
 
-onready var _sprite: Sprite = $PathFollow2D/Sprite
-onready var _anim_player: AnimationPlayer = $AnimationPlayer
-onready var _path_follow: PathFollow2D = $PathFollow2D
+@onready var _sprite: Sprite2D = $PathFollow2D/Sprite2D
+@onready var _anim_player: AnimationPlayer = $AnimationPlayer
+@onready var _path_follow: PathFollow2D = $PathFollow2D
 
 func initialize(board) -> void:
 	game_board = board
@@ -50,7 +50,7 @@ func _ready() -> void:
 	position = grid.calculate_map_position(current_cell)
 	
 	# Create the curve resource here - creating in the editor prevented movement
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		curve = Curve2D.new()
 	
 func _process(delta: float) -> void:
@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 	# unit has travelled, where a value 1.0 means the end
 	var end_of_path = 1.0
 	
-	if _path_follow.unit_offset >= end_of_path:
+	if _path_follow.progress_ratio >= end_of_path:
 		self._is_moving = false
 		
 		# Reset offset and move unit
@@ -73,8 +73,8 @@ func take_turn() -> void:
 	is_defending = false
 	game_board._select_unit(self)
 
-func move_along_path(path: PoolVector2Array) -> void:
-	if path.empty():
+func move_along_path(path: PackedVector2Array) -> void:
+	if path.is_empty():
 		return
 		
 	# Converts the path to points on the curve.
@@ -106,7 +106,7 @@ func dead() -> void:
 		GameManager.game_over()
 	else:
 		game_board.remove_unit_at_position(current_cell)
-	yield(_anim_player, "animation_finished")
+	await _anim_player.animation_finished
 	self.queue_free()
 
 # Abilities
@@ -191,11 +191,11 @@ func set_is_selected(value: bool) -> void:
 func set_is_defending(value: bool) -> void:
 	is_defending = value
 
-func set_skin(value: Texture) -> void:
+func set_skin(value: Texture2D) -> void:
 	skin = value
 	if not _sprite:
 		if is_instance_valid(self):
-			yield(self, "ready")
+			await self.ready
 	_sprite.texture = value
 	
 func set_health(amount: int) -> void:

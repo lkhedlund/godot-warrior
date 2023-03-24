@@ -1,0 +1,8 @@
+res://game.tscn
+res://default_env.tres
+res://Lib/Levels/Level.tscn
+res://Lib/Levels/level.gd
+res://player.tscn
+res://Lib/Levels/level_00.tscn
+res://Lib/Managers/game_manager.gd
+res://Lib/Unit/unit.gd

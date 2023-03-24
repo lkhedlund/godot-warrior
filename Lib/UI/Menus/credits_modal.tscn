@@ -10,11 +10,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Credits" type="VBoxContainer" parent="CenterContainer" index="0"]
-margin_left = 60.0
-margin_top = 45.0
-margin_right = 260.0
-margin_bottom = 134.0
-rect_min_size = Vector2( 200, 0 )
+offset_left = 60.0
+offset_top = 45.0
+offset_right = 260.0
+offset_bottom = 134.0
+custom_minimum_size = Vector2( 200, 0 )
 alignment = 1
 
 [node name="CreditItem" parent="CenterContainer/Credits" index="0" instance=ExtResource( 2 )]
@@ -22,13 +22,13 @@ label = "Programming, design, and everything else"
 link = "iskotaa.com"
 
 [node name="CreditItem2" parent="CenterContainer/Credits" index="1" instance=ExtResource( 2 )]
-margin_top = 31.0
-margin_bottom = 58.0
+offset_top = 31.0
+offset_bottom = 58.0
 label = "Game Assets"
 link = "kenney.nl"
 
 [node name="CreditItem3" parent="CenterContainer/Credits" index="2" instance=ExtResource( 2 )]
-margin_top = 62.0
-margin_bottom = 89.0
+offset_top = 62.0
+offset_bottom = 89.0
 label = "Inspiration"
 link = "github.com/ryanb/ruby-warrior"

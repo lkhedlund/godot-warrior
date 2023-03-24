@@ -11,29 +11,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="MenuButtons" type="VBoxContainer" parent="MenuContainer" index="0"]
-margin_left = 110.0
-margin_top = 55.0
-margin_right = 210.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 100, 0 )
+offset_left = 110.0
+offset_top = 55.0
+offset_right = 210.0
+offset_bottom = 124.0
+custom_minimum_size = Vector2( 100, 0 )
 
 [node name="ExtraLogsCheckbox" type="CheckBox" parent="MenuContainer/MenuButtons" index="0"]
-margin_top = 36.0
-margin_right = 100.0
-margin_bottom = 59.0
+offset_top = 36.0
+offset_right = 100.0
+offset_bottom = 59.0
 pressed = true
 text = "Extra Logs"
 
 [node name="ResetButton" type="Button" parent="MenuContainer/MenuButtons" index="1"]
-margin_top = 63.0
-margin_right = 100.0
-margin_bottom = 82.0
+offset_top = 63.0
+offset_right = 100.0
+offset_bottom = 82.0
 text = "Reset Game"
 
 [node name="CreditsButton" type="Button" parent="MenuContainer/MenuButtons" index="2"]
-margin_top = 63.0
-margin_right = 100.0
-margin_bottom = 82.0
+offset_top = 63.0
+offset_right = 100.0
+offset_bottom = 82.0
 text = "Credits"
 
 [connection signal="toggled" from="MenuContainer/MenuButtons/ExtraLogsCheckbox" to="." method="_on_ExtraLogsCheckbox_toggled"]

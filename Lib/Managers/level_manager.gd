@@ -4,7 +4,7 @@ extends Node
 signal level_loaded
 
 var current_level: Node2D
-export(Array, PackedScene) var levels: Array
+@export var levels: Array # (Array, PackedScene)
 
 func load_level(new_level_index: int) -> void:
 	
@@ -28,7 +28,7 @@ func clear_previous_level() -> void:
 	current_level.queue_free()
 	
 func get_level_at_index(index: int) -> PackedScene:
-	return levels[index].instance()
+	return levels[index].instantiate()
 
 func get_current_level_tip() -> String:
 	return current_level.tip

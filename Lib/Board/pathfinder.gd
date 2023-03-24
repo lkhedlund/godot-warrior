@@ -1,7 +1,7 @@
 # Finds the path between two points among empty cells using 
-# the AStar pathfinding algorithm
+# the AStar3D pathfinding algorithm
 class_name PathFinder
-extends Reference
+extends RefCounted
 
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
@@ -9,7 +9,7 @@ var _grid: Resource
 var _astar := AStar2D.new()
 
 # Initialize the Astar2D object upon creation
-func _init(grid: Grid, walkable_cells: Array) -> void:
+func _init(grid: Grid,walkable_cells: Array):
 	# Initialize grid from UnitPath on instantiation
 	_grid = grid
 	
@@ -24,7 +24,7 @@ func _init(grid: Grid, walkable_cells: Array) -> void:
 	# a pathfinding graph.
 	_add_and_connect_points(cell_mappings)
 
-func calculate_point_path(start: Vector2, end: Vector2) -> PoolVector2Array:
+func calculate_point_path(start: Vector2, end: Vector2) -> PackedVector2Array:
 	var start_index: int = _grid.as_index(start)
 	var end_index: int = _grid.as_index(end)
 	
@@ -32,11 +32,11 @@ func calculate_point_path(start: Vector2, end: Vector2) -> PoolVector2Array:
 		# Astar2D then finds the best path between two indices.
 		return _astar.get_point_path(start_index, end_index)
 	else:
-		return PoolVector2Array()
+		return PackedVector2Array()
 		
 # Adds and connects the walkable cells to the Astar2D object
 func _add_and_connect_points(cell_mappings: Dictionary) -> void:
-	# Pass each cell's unique index and Vector2 Coordinates to the AStar graph
+	# Pass each cell's unique index and Vector2 Coordinates to the AStar3D graph
 	for point in cell_mappings:
 		_astar.add_point(cell_mappings[point], point)
 	

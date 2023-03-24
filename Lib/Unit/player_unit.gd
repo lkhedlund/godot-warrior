@@ -1,12 +1,12 @@
-tool
+@tool
 class_name PlayerUnit
 extends Unit
 
 var player
 var player_stats
 
-onready var _weapon_sprite: Sprite = $Weapon/Sprite
-onready var _shield_sprite: Sprite = $Shield/Sprite
+@onready var _weapon_sprite: Sprite2D = $Weapon/Sprite2D
+@onready var _shield_sprite: Sprite2D = $Shield/Sprite2D
 
 func _ready() -> void:
 	player = get_tree().get_root().get_node('/root/Game/Player')
@@ -14,10 +14,10 @@ func _ready() -> void:
 	unlock_abilities()
 	_weapon_sprite.visible = player_stats.has_unlocked("attack")
 	_shield_sprite.visible = player_stats.has_unlocked("defend")
-	._ready()
+	super._ready()
 
 func take_turn() -> void:
-	.take_turn() # super
+	super.take_turn() # super
 	player.play_turn(self)
 	emit_signal("turn_over")
 	

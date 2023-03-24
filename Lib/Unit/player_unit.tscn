@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Lib/Unit/player_unit.gd" type="Script" id=1]
 [ext_resource path="res://Lib/Unit/unit.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Lib/Assets/warrior.png" type="Texture" id=3]
-[ext_resource path="res://Lib/Assets/sword.png" type="Texture" id=4]
+[ext_resource path="res://Lib/Assets/warrior.png" type="Texture2D" id=3]
+[ext_resource path="res://Lib/Assets/sword.png" type="Texture2D" id=4]
 [ext_resource path="res://Lib/Unit/Abilities/attack.tres" type="Resource" id=5]
 [ext_resource path="res://Lib/Unit/Abilities/walk.tres" type="Resource" id=6]
 [ext_resource path="res://Lib/Unit/Abilities/feel.tres" type="Resource" id=7]
@@ -12,7 +12,7 @@
 [ext_resource path="res://Lib/Unit/Abilities/shoot.tres" type="Resource" id=10]
 [ext_resource path="res://Lib/Unit/Abilities/look.tres" type="Resource" id=11]
 [ext_resource path="res://Lib/Unit/Abilities/disarm.tres" type="Resource" id=12]
-[ext_resource path="res://Lib/Assets/shield.png" type="Texture" id=13]
+[ext_resource path="res://Lib/Assets/shield.png" type="Texture2D" id=13]
 
 [node name="PlayerUnit" groups=["player"] instance=ExtResource( 2 )]
 script = ExtResource( 1 )
@@ -24,18 +24,18 @@ direction = Vector2( 1, 0 )
 abilities = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 9 ) ]
 skin = ExtResource( 3 )
 
-[node name="Sprite" parent="PathFollow2D" index="0"]
+[node name="Sprite2D" parent="PathFollow2D" index="0"]
 texture = ExtResource( 3 )
 
 [node name="Weapon" type="Node2D" parent="." index="2"]
 
-[node name="Sprite" type="Sprite" parent="Weapon" index="0"]
+[node name="Sprite2D" type="Sprite2D" parent="Weapon" index="0"]
 position = Vector2( 7, 1 )
 texture = ExtResource( 4 )
 
 [node name="Shield" type="Node2D" parent="." index="3"]
 
-[node name="Sprite" type="Sprite" parent="Shield" index="0"]
+[node name="Sprite2D" type="Sprite2D" parent="Shield" index="0"]
 position = Vector2( -5.26516, 4.26516 )
 scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 13 )

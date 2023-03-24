@@ -3,18 +3,18 @@ extends Node
 var game
 var player_stats
 
-export var game_speed := 0.5
-export var debug_level := 0
-export var debug_mode := false
-export var god_mode := false
+@export var game_speed := 0.5
+@export var debug_level := 0
+@export var debug_mode := false
+@export var god_mode := false
 
-onready var level_manager: LevelManager = $LevelManager
-onready var music: AudioStreamPlayer = $GameMusic
+@onready var level_manager: LevelManager = $LevelManager
+@onready var music: AudioStreamPlayer = $GameMusic
 
 func _ready() -> void:
-	EventBus.connect("player_stats_changed", self, "_on_Player_Stats_changed")
-	EventBus.connect("reset_game", self, "_on_reset_game")
-	EventBus.connect("music_toggled", self, "_on_music_toggle")
+	EventBus.connect("player_stats_changed",Callable(self,"_on_Player_Stats_changed"))
+	EventBus.connect("reset_game",Callable(self,"_on_reset_game"))
+	EventBus.connect("music_toggled",Callable(self,"_on_music_toggle"))
 	initialize_game()
 
 func initialize_game() -> void:
@@ -44,12 +44,12 @@ func load_player_stats():
 		
 func reinitialize_player_stats() -> void:
 	var new_player_stats = load("res://Lib/Unit/Stats/player_stats.tres")
-	ResourceSaver.save("user://player_stats.tres", new_player_stats)
+	ResourceSaver.save(new_player_stats, "user://player_stats.tres")
 	player_stats = new_player_stats
 
 # Creates a persistent save on stat changes
 func _on_Player_Stats_changed(new_player_stats) -> void:
-	ResourceSaver.save("user://player_stats.tres", new_player_stats)
+	ResourceSaver.save(new_player_stats, "user://player_stats.tres")
 
 func _on_reset_game() -> void:
 	reinitialize_player_stats()

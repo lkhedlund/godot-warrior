@@ -2,17 +2,17 @@
 
 [ext_resource path="res://Lib/UI/Themes/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Lib/UI/player_ui.gd" type="Script" id=2]
-[ext_resource path="res://Lib/UI/Themes/Kenney Pixel.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Lib/UI/Themes/Kenney Pixel.ttf" type="FontFile" id=3]
 [ext_resource path="res://Lib/UI/Menus/main_modal.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Lib/Assets/UI/barsHorizontal.png" type="Texture" id=5]
-[ext_resource path="res://Lib/Assets/new-ability.png" type="Texture" id=6]
+[ext_resource path="res://Lib/Assets/UI/barsHorizontal.png" type="Texture2D" id=5]
+[ext_resource path="res://Lib/Assets/new-ability.png" type="Texture2D" id=6]
 [ext_resource path="res://Lib/UI/Menus/abilities_modal.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Lib/UI/Menus/game_over_modal.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Lib/UI/Menus/credits_modal.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Lib/Assets/UI/audioOn.png" type="Texture" id=10]
-[ext_resource path="res://Lib/Assets/UI/audioOff.png" type="Texture" id=11]
+[ext_resource path="res://Lib/Assets/UI/audioOn.png" type="Texture2D" id=10]
+[ext_resource path="res://Lib/Assets/UI/audioOff.png" type="Texture2D" id=11]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 12
 font_data = ExtResource( 3 )
 
@@ -39,42 +39,42 @@ sound_off = ExtResource( 11 )
 [node name="BottomContainer" type="HBoxContainer" parent="PlayerUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 104.0
-margin_right = -10.0
-margin_bottom = -10.0
+offset_left = 10.0
+offset_top = 104.0
+offset_right = -10.0
+offset_bottom = -10.0
 
 [node name="PlayerOutput" type="Panel" parent="PlayerUI/BottomContainer"]
 self_modulate = Color( 0.176471, 0.176471, 0.176471, 1 )
-margin_right = 216.0
-margin_bottom = 66.0
-rect_min_size = Vector2( 200, 0 )
+offset_right = 216.0
+offset_bottom = 66.0
+custom_minimum_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
 
 [node name="PlayerLog" type="RichTextLabel" parent="PlayerUI/BottomContainer/PlayerOutput"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 5.0
-margin_right = -5.0
-margin_bottom = -5.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
-bbcode_text = "> You see before you a long hallway with stairs at the end. There is nothing in the way."
+text = "> You see before you a long hallway with stairs at the end. There is nothing in the way."
 text = "> You see before you a long hallway with stairs at the end. There is nothing in the way."
 scroll_following = true
 
 [node name="PlayerButtons" type="VBoxContainer" parent="PlayerUI/BottomContainer"]
-margin_left = 220.0
-margin_right = 300.0
-margin_bottom = 66.0
+offset_left = 220.0
+offset_right = 300.0
+offset_bottom = 66.0
 alignment = 2
 
 [node name="AbilitiesButton" type="Button" parent="PlayerUI/BottomContainer/PlayerButtons"]
-margin_top = 23.0
-margin_right = 80.0
-margin_bottom = 43.0
-rect_min_size = Vector2( 20, 20 )
+offset_top = 23.0
+offset_right = 80.0
+offset_bottom = 43.0
+custom_minimum_size = Vector2( 20, 20 )
 text = "Abilities"
 
 [node name="NewIcon" type="TextureRect" parent="PlayerUI/BottomContainer/PlayerButtons/AbilitiesButton"]
@@ -82,35 +82,35 @@ visible = false
 anchor_top = -0.8
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 24.0
-margin_right = -24.0
-margin_bottom = -20.0
+offset_left = 24.0
+offset_right = -24.0
+offset_bottom = -20.0
 texture = ExtResource( 6 )
 
 [node name="PlayButton" type="Button" parent="PlayerUI/BottomContainer/PlayerButtons"]
 self_modulate = Color( 0.415686, 1, 0.466667, 1 )
-margin_top = 47.0
-margin_right = 80.0
-margin_bottom = 66.0
-rect_min_size = Vector2( 80, 0 )
+offset_top = 47.0
+offset_right = 80.0
+offset_bottom = 66.0
+custom_minimum_size = Vector2( 80, 0 )
 size_flags_vertical = 8
 text = "Play_Turn()"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PlayerUI"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -60.0
-margin_top = 10.0
-margin_right = -20.0
-margin_bottom = 25.0
+offset_left = -60.0
+offset_top = 10.0
+offset_right = -20.0
+offset_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 8
 alignment = 2
 
 [node name="SoundButton" type="Button" parent="PlayerUI/HBoxContainer"]
-margin_right = 25.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
+offset_right = 25.0
+offset_bottom = 25.0
+custom_minimum_size = Vector2( 25, 25 )
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/focus = SubResource( 5 )
@@ -118,19 +118,19 @@ custom_styles/disabled = SubResource( 6 )
 custom_styles/normal = SubResource( 2 )
 toggle_mode = true
 icon = ExtResource( 10 )
-icon_align = 1
+icon_alignment = 1
 
 [node name="MenuButton" type="Button" parent="PlayerUI/HBoxContainer"]
-margin_left = 29.0
-margin_right = 54.0
-margin_bottom = 25.0
+offset_left = 29.0
+offset_right = 54.0
+offset_bottom = 25.0
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/focus = SubResource( 5 )
 custom_styles/disabled = SubResource( 6 )
 custom_styles/normal = SubResource( 2 )
 icon = ExtResource( 5 )
-icon_align = 1
+icon_alignment = 1
 
 [node name="MainModal" parent="PlayerUI" instance=ExtResource( 4 )]
 theme = null

@@ -5,4 +5,4 @@
 [node name="Interactable" type="Node2D" groups=["interactable"]]
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]

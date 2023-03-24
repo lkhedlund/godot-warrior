@@ -1,10 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://s1r2cuearvox"]
 
-[ext_resource path="res://Lib/Levels/level.tscn" type="PackedScene" id=2]
+[ext_resource type="PackedScene" uid="uid://cur87rosqlsr4" path="res://Lib/Levels/level.tscn" id="2"]
 
-[node name="Level_00" instance=ExtResource( 2 )]
+[node name="Level_00" instance=ExtResource("2")]
 description = "You see before you a long hallway with stairs at the end. Freedom at last!"
 hint = "Call [color=red]warrior.walk()[/color] to walk forward in the Player [color=silver]play_turn[/color] method."
 
 [node name="PlayerUnit" parent="GameBoard/Units" index="0" groups=["Unit"]]
-self_modulate = Color( 0.5, 0.6, 1, 0.7 )
+self_modulate = Color(0.5, 0.6, 1, 0.7)

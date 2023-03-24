@@ -2,19 +2,19 @@
 
 [ext_resource path="res://Lib/UI/Themes/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Lib/UI/Menus/game_over_modal.gd" type="Script" id=2]
-[ext_resource path="res://Lib/UI/Themes/Kenney Pixel.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Lib/UI/Themes/Kenney Future Narrow.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Lib/UI/Themes/Kenney Pixel.ttf" type="FontFile" id=3]
+[ext_resource path="res://Lib/UI/Themes/Kenney Future Narrow.ttf" type="FontFile" id=4]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="FontFile" id=1]
 size = 40
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 8
 font_data = ExtResource( 4 )
 
 [node name="GameOverModal" type="Popup"]
-pause_mode = 2
+process_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
@@ -30,35 +30,35 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="GameOverContent" type="VBoxContainer" parent="CentreContainer"]
-margin_left = 60.0
-margin_top = 67.0
-margin_right = 260.0
-margin_bottom = 112.0
-rect_min_size = Vector2( 200, 0 )
+offset_left = 60.0
+offset_top = 67.0
+offset_right = 260.0
+offset_bottom = 112.0
+custom_minimum_size = Vector2( 200, 0 )
 
 [node name="ConditionLabel" type="RichTextLabel" parent="CentreContainer/GameOverContent"]
-margin_right = 200.0
-margin_bottom = 31.0
+offset_right = 200.0
+offset_bottom = 31.0
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
-bbcode_text = "[shake rate=10 level=2]You Died[/shake]"
+text = "[shake rate=10 level=2]You Died[/shake]"
 text = "You Died"
 fit_content_height = true
 
 [node name="ExtraText" type="RichTextLabel" parent="CentreContainer/GameOverContent"]
-margin_top = 35.0
-margin_right = 200.0
-margin_bottom = 65.0
+offset_top = 35.0
+offset_right = 200.0
+offset_bottom = 65.0
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
 fit_content_height = true
 
 [node name="TryAgainButton" type="Button" parent="CentreContainer/GameOverContent"]
-pause_mode = 2
+process_mode = 2
 visible = false
-margin_top = 69.0
-margin_right = 200.0
-margin_bottom = 88.0
+offset_top = 69.0
+offset_right = 200.0
+offset_bottom = 88.0
 text = "Try Again"
 
 [connection signal="pressed" from="CentreContainer/GameOverContent/TryAgainButton" to="." method="_on_TryAgainButton_pressed"]

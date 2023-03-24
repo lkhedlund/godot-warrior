@@ -2,27 +2,27 @@
 # each cell and manages whether a cell is occupied.
 class_name GameBoard
 extends Node2D
-#extends YSort
+#extends Node2D
 
 const DIRECTIONS = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
 
 var current_unit: Unit
 var _walkable_cells := []
 
-export var grid: Resource = preload("res://Lib/Grid/grid.tres")
-export var starting_position := Vector2(0, 0)
+@export var grid: Resource = preload("res://Lib/Grid/grid.tres")
+@export var starting_position := Vector2(0, 0)
 
-onready var _unit_path: UnitPath = $UnitPath
-onready var _unit_overlay: UnitOverlay = $UnitOverlay
-onready var _exit: Exit = $Exit
-onready var _turn_manager: TurnManager = $TurnManager
+@onready var _unit_path: UnitPath = $UnitPath
+@onready var _unit_overlay: UnitOverlay = $UnitOverlay
+@onready var _exit: Exit = $Exit
+@onready var _turn_manager: TurnManager = $TurnManager
 
 # Dictionary to keep track of units on the board
 var _units := {}
 var _traps := {}
 
 func _ready() -> void:
-	EventBus.connect("trap_disarmed", self, "_on_trap_disarmed")
+	EventBus.connect("trap_disarmed",Callable(self,"_on_trap_disarmed"))
 	_reinitialize()
 
 func is_occupied(cell: Vector2) -> bool:
@@ -70,7 +70,7 @@ func _flood_fill(cell: Vector2, max_distance: int) -> Array:
 	
 	# Use stack to store every cell to apply the flood fill to
 	var stack := [cell]
-	while not stack.empty():
+	while not stack.is_empty():
 		var current = stack.pop_back()
 		
 		# For each cell, ensure we can fill further
@@ -127,7 +127,7 @@ func move_current_unit(new_cell: Vector2) -> void:
 	
 	_deselect_player_unit()
 	current_unit.move_along_path(_unit_path.current_path)
-	yield(current_unit, "move_finished")
+	await current_unit.move_finished
 	
 func is_exit(cell: Vector2) -> bool:
 	return _exit.current_cell == cell

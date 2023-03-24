@@ -1,9 +1,9 @@
 [gd_resource type="Theme" load_steps=11 format=2]
 
-[ext_resource path="res://Lib/UI/Themes/pixel_font.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Lib/Assets/UI/buttonLong_blue_pressed.png" type="Texture" id=2]
-[ext_resource path="res://Lib/Assets/UI/buttonLong_blue.png" type="Texture" id=3]
-[ext_resource path="res://Lib/Assets/UI/panel_blue.png" type="Texture" id=4]
+[ext_resource path="res://Lib/UI/Themes/pixel_font.tres" type="FontFile" id=1]
+[ext_resource path="res://Lib/Assets/UI/buttonLong_blue_pressed.png" type="Texture2D" id=2]
+[ext_resource path="res://Lib/Assets/UI/buttonLong_blue.png" type="Texture2D" id=3]
+[ext_resource path="res://Lib/Assets/UI/panel_blue.png" type="Texture2D" id=4]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )

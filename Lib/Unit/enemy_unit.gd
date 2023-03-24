@@ -1,12 +1,12 @@
-tool
+@tool
 class_name EnemyUnit
 extends Unit
 
 var is_enraged := false
-export var ranged_unit := false
+@export var ranged_unit := false
 
 func take_turn() -> void:
-	.take_turn() # super
+	super.take_turn() # super
 
 	if ranged_unit:
 		ranged_attack()

@@ -5,7 +5,7 @@
 [ext_resource path="res://Lib/Unit/Abilities/look.tres" type="Resource" id=3]
 [ext_resource path="res://Lib/Unit/Abilities/attack.tres" type="Resource" id=4]
 [ext_resource path="res://Lib/Unit/Abilities/feel.tres" type="Resource" id=5]
-[ext_resource path="res://Lib/Assets/Enemies/evil_wizard.png" type="Texture" id=6]
+[ext_resource path="res://Lib/Assets/Enemies/evil_wizard.png" type="Texture2D" id=6]
 
 [node name="Wizard" instance=ExtResource( 1 )]
 unit_name = "wizard"
@@ -16,6 +16,6 @@ abilities = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource(
 skin = ExtResource( 6 )
 ranged_unit = true
 
-[node name="Sprite" parent="PathFollow2D" index="0"]
+[node name="Sprite2D" parent="PathFollow2D" index="0"]
 texture = ExtResource( 6 )
 flip_h = true

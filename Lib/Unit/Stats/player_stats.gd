@@ -1,10 +1,10 @@
 class_name PlayerStats
 extends Resource
 
-export var current_level := 0 setget set_current_level
-export var extra_logging := true setget set_extra_logs
-export var play_music := true setget set_music
-var unlocked_abilities := {} setget set_unlocked_abilities
+@export var current_level := 0 : set = set_current_level
+@export var extra_logging := true : set = set_extra_logs
+@export var play_music := true : set = set_music
+var unlocked_abilities := {} : set = set_unlocked_abilities
 
 func has_unlocked(ability_name: String) -> bool:
 	return unlocked_abilities.has(ability_name)

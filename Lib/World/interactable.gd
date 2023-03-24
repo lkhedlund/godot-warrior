@@ -3,7 +3,7 @@ extends Node2D
 
 var current_cell: Vector2
 
-export var grid: Resource = preload("res://Lib/Grid/grid.tres")
+@export var grid: Resource = preload("res://Lib/Grid/grid.tres")
 
 func _ready():
 	initialize()

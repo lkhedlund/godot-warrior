@@ -2,8 +2,8 @@
 class_name Grid
 extends Resource
 
-export var size := Vector2(8, 1)
-export var cell_size := Vector2(16,16)
+@export var size := Vector2(8, 1)
+@export var cell_size := Vector2(16,16)
 
 var _half_cell_size = cell_size / 2
 

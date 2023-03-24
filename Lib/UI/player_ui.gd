@@ -2,24 +2,24 @@ extends Control
 
 var player_stats
 
-export var sound_on: Texture
-export var sound_off: Texture
+@export var sound_on: Texture2D
+@export var sound_off: Texture2D
 
-onready var play_button = $BottomContainer/PlayerButtons/PlayButton
-onready var player_log = $BottomContainer/PlayerOutput/PlayerLog
-onready var menu_popup = $MainModal
-onready var abilities_popup = $AbilitiesModal
-onready var new_ability_icon = $BottomContainer/PlayerButtons/AbilitiesButton/NewIcon
-onready var credits_popup = $CreditsModal
-onready var sound_button = $HBoxContainer/SoundButton
+@onready var play_button = $BottomContainer/PlayerButtons/PlayButton
+@onready var player_log = $BottomContainer/PlayerOutput/PlayerLog
+@onready var menu_popup = $MainModal
+@onready var abilities_popup = $AbilitiesModal
+@onready var new_ability_icon = $BottomContainer/PlayerButtons/AbilitiesButton/NewIcon
+@onready var credits_popup = $CreditsModal
+@onready var sound_button = $HBoxContainer/SoundButton
 
 func _ready() -> void:
-	EventBus.connect("update_player_log", self, "_on_Player_Log_update")
-	EventBus.connect("exit_level", self, "_on_Exit_level")
-	EventBus.connect("abilities_unlocked", self, "_on_abilities_unlocked")
+	EventBus.connect("update_player_log",Callable(self,"_on_Player_Log_update"))
+	EventBus.connect("exit_level",Callable(self,"_on_Exit_level"))
+	EventBus.connect("abilities_unlocked",Callable(self,"_on_abilities_unlocked"))
 	player_stats = GameManager.player_stats
 	# Reset player log
-	player_log.bbcode_text = ""
+	player_log.text = ""
 	toggle_sound_icon(player_stats.play_music)
 
 func _on_Exit_level() -> void:
@@ -34,9 +34,9 @@ func _on_Player_Log_update(new_line: String, log_type: String = "default") -> vo
 			formatted = "[color=aqua]HINT %s[/color]" % base_line
 		"extra":
 			if not GameManager.player_stats.extra_logging: return
-	if not player_log.bbcode_text.empty():
-		player_log.bbcode_text += "\n"
-	player_log.bbcode_text += formatted
+	if not player_log.text.is_empty():
+		player_log.text += "\n"
+	player_log.text += formatted
 	
 func toggle_sound_icon(state: bool) -> void:
 	if state == false:

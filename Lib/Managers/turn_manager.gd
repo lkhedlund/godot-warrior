@@ -6,29 +6,29 @@ var turn_queue := []
 
 var _turn_cooldown
 
-onready var _timer: Timer = $Timer
+@onready var _timer: Timer = $Timer
 
 func _ready() -> void:
-	EventBus.connect("play_button_pressed", self, "_on_Play_Button_pressed")
-	EventBus.connect("exit_level", self, "_on_Exit_level")
+	EventBus.connect("play_button_pressed",Callable(self,"_on_Play_Button_pressed"))
+	EventBus.connect("exit_level",Callable(self,"_on_Exit_level"))
 	_turn_cooldown = GameManager.game_speed
 
 func start_round() -> void:
-	if turn_queue.empty(): return
+	if turn_queue.is_empty(): return
 
 	var i = 0
 	for unit in turn_queue:
 		unit.reset()
 		if is_next_in_queue(i):
 			advance_turn(unit)
-			yield(unit, "turn_over")
+			await unit.turn_over
 		i += 1
 	# Advance to the next round
 	advance_round()
 	
 func advance_turn(unit: Unit) -> void:
 	_timer.start(_turn_cooldown)
-	yield(_timer, "timeout")
+	await _timer.timeout
 	unit.take_turn()
 
 func add_turn_to_queue(unit: Unit) -> void:
@@ -40,7 +40,7 @@ func remove_turn_from_queue(unit: Unit) -> void:
 	turn_queue.erase(unit)
 
 func advance_round() -> void:
-	if turn_queue.empty(): return
+	if turn_queue.is_empty(): return
 	current_round += 1
 	start_round()
 	
